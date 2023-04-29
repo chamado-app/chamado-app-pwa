@@ -1,43 +1,42 @@
-# Chamado.app (chamado-app)
+# 🛸 Chamdo.app
 
-An service desk application
+## 📦 Prerequisites
 
-## Install the dependencies
+- Node.js ^18 or ^16 or ^14.19
+- Yarn 1.21.1
 
-```bash
-yarn
+## 🛬 Cloning
+
+```sh
+git clone git@gitlab.com:chamado.app/chamado.app.git
 # or
-npm install
+git clone https://gitlab.com/chamado.app/chamado.app.git
 ```
 
-### Start the app in development mode (hot-code reloading, error reporting, etc.)
-
-```bash
-quasar dev
+```sh
+cd chamado.app
 ```
 
-### Lint the files
+## 🏃 Running
 
-```bash
-yarn lint
-# or
-npm run lint
+Install node libraries
+
+```sh
+yarn install
 ```
 
-### Format the files
+Running in dev mode
 
-```bash
-yarn format
-# or
-npm run format
+```sh
+yarn dev
 ```
 
-### Build the app for production
+Building for production
 
-```bash
-quasar build
+```sh
+yarn build
 ```
 
-### Customize the configuration
+<!-- ## ✏️ Contributing
 
-See [Configuring quasar.config.js](https://v2.quasar.dev/quasar-cli-vite/quasar-config-js).
+For more information about code patterns and rules for development, see the [CONTRIBUTING](./CONTRIBUTING.md) file. -->
