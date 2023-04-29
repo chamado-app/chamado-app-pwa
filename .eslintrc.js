@@ -9,7 +9,7 @@ module.exports = {
     '@vue/eslint-config-typescript',
     '@vue/eslint-config-prettier'
   ],
-  plugins: ['prettier'],
+  plugins: ['prettier', 'import'],
   parserOptions: {
     project: './tsconfig.json',
     ecmaVersion: 'latest'
@@ -18,6 +18,20 @@ module.exports = {
     'prettier/prettier': ['error'],
     '@typescript-eslint/consistent-type-definitions': 'off',
     '@typescript-eslint/strict-boolean-expressions': 'off',
-    '@typescript-eslint/promise-function-async': 'off'
+    '@typescript-eslint/promise-function-async': 'off',
+
+    'import/order': [
+      'error',
+      {
+        groups: ['builtin', 'external', 'parent', 'sibling', 'index'],
+        pathGroupsExcludedImportTypes: ['builtin'],
+        alphabetize: { order: 'asc' },
+        'newlines-between': 'always'
+      }
+    ],
+    'sort-imports': [
+      'error',
+      { allowSeparatedGroups: true, ignoreDeclarationSort: true }
+    ]
   }
 }
