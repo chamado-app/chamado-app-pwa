@@ -1,4 +1,4 @@
-import { RouteRecordRaw } from 'vue-router';
+import type { RouteRecordRaw } from 'vue-router'
 
 const routes: RouteRecordRaw[] = [
   {
@@ -8,10 +8,10 @@ const routes: RouteRecordRaw[] = [
     children: [
       {
         path: '/coming-soon',
-        component: () => import('src/pages/coming-soon.vue'),
-      },
-    ],
-  },
-];
+        component: () => import('src/pages/coming-soon.vue')
+      }
+    ]
+  }
+]
 
-export default routes;
+export default routes
