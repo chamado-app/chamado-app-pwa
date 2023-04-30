@@ -1,4 +1,8 @@
-# 🛸 Chamdo.app
+# 🛸 Chamado.app
+
+Another service desk application.
+
+This project is intended to be used as a basis for studies and in the construction of a Course Completion Work, of the Technology in Systems Analysis and Development course.
 
 ## 📦 Prerequisites
 
@@ -35,6 +39,16 @@ Building for production
 
 ```sh
 yarn build
+```
+
+## 🧪 Testing
+
+```bash
+# unit tests
+yarn run test
+
+# test coverage
+yarn run test:ci
 ```
 
 <!-- ## ✏️ Contributing
