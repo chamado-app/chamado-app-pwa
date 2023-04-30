@@ -9,9 +9,9 @@
     "lint": "eslint --ext .js,.ts,.vue ./",
     "format": "prettier --write \"**/*.{js,ts,vue,scss,html,md,json}\" --ignore-path .gitignore",
     "test": "jest --passWithNoTests --no-cache --runInBand",
-    "test:watch": "npm test -- --watch",
-    "test:staged": "npm test -- --findRelatedTests",
-    "test:ci": "npm test -- --coverage ",
+    "test:watch": "yarn test --watch",
+    "test:staged": "yarn test --findRelatedTests",
+    "test:ci": "yarn test --coverage ",
     "dev": "quasar dev",
     "build": "quasar build",
     "prepare": "husky install"
