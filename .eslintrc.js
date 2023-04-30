@@ -2,6 +2,7 @@ require('@rushstack/eslint-patch/modern-module-resolution')
 
 module.exports = {
   root: true,
+  parser: '@typescript-eslint/parser',
   extends: [
     'standard-with-typescript',
     'plugin:vue/vue3-essential',
@@ -9,7 +10,7 @@ module.exports = {
     '@vue/eslint-config-typescript',
     '@vue/eslint-config-prettier'
   ],
-  plugins: ['prettier', 'import'],
+  plugins: ['@typescript-eslint/eslint-plugin', 'prettier', 'import'],
   parserOptions: {
     project: './tsconfig.json',
     ecmaVersion: 'latest'
@@ -19,6 +20,7 @@ module.exports = {
     '@typescript-eslint/consistent-type-definitions': 'off',
     '@typescript-eslint/strict-boolean-expressions': 'off',
     '@typescript-eslint/promise-function-async': 'off',
+    '@typescript-eslint/explicit-function-return-type': ['error'],
 
     'import/order': [
       'error',
