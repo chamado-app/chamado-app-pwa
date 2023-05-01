@@ -21,6 +21,7 @@ module.exports = {
     '@typescript-eslint/consistent-type-definitions': 'off',
     '@typescript-eslint/strict-boolean-expressions': 'off',
     '@typescript-eslint/promise-function-async': 'off',
+    '@typescript-eslint/restrict-template-expressions': 'off',
     '@typescript-eslint/explicit-function-return-type': ['error'],
 
     'import/order': [
