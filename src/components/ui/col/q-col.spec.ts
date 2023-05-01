@@ -2,10 +2,10 @@ import { type RenderResult, render } from '@testing-library/vue'
 
 import { type RenderOptions } from '@/tests/types'
 
-import { Col, type QColProps } from '.'
+import { QCol, type QColProps } from '.'
 
 const makeRender = (options: RenderOptions<QColProps> = {}): RenderResult =>
-  render(Col, options)
+  render(QCol, options)
 
 const getElement = (container: Element): Element | null =>
   container.querySelector('div > div')

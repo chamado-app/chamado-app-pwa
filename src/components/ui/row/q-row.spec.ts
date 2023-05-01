@@ -2,10 +2,10 @@ import { type RenderResult, render } from '@testing-library/vue'
 
 import type { RenderOptions } from '@/tests/types'
 
-import { type QRowProps, Row } from '.'
+import { QRow, type QRowProps } from '.'
 
 const makeRender = (options: RenderOptions<QRowProps> = {}): RenderResult =>
-  render(Row, options)
+  render(QRow, options)
 
 const getElement = (container: Element): Element | null =>
   container.querySelector('.row > div > div')
