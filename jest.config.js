@@ -2,9 +2,14 @@ module.exports = {
   roots: ['<rootDir>'],
   collectCoverageFrom: [
     '<rootDir>/src/**/*.{ts,vue}',
-    '!<rootDir>/src/**/assets/*.*',
+    '!**/*.d.ts',
     '!<rootDir>/src/**/index.ts',
-    '!**/*.d.ts'
+    '!<rootDir>/src/App.vue',
+    '!<rootDir>/src/assets/*.*',
+    '!<rootDir>/src/boot/*.*',
+    '!<rootDir>/src/layouts/*.*',
+    '!<rootDir>/src/router/*.*',
+    '!<rootDir>/src/store/*.*'
   ],
   setupFilesAfterEnv: ['<rootDir>/tests/config/jest.setup.js'],
   coverageDirectory: 'coverage',
