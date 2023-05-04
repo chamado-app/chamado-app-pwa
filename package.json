@@ -6,7 +6,7 @@
   "author": "Gabriel Scaranello <gabrieljscaranello@gmail.com>",
   "private": false,
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --port 8080",
     "build": "run-p type-check build-only",
     "preview": "vite preview",
     "build-only": "vite build",
