@@ -1,16 +1,16 @@
-import { type RouteRecordRaw } from 'vue-router'
+import type { RouteRecordRaw } from 'vue-router'
 
 export const authRoutes: RouteRecordRaw[] = [
   {
     name: 'auth',
     path: '/auth',
     redirect: { name: 'auth.login' },
-    component: () => import('layouts/auth-layout.vue'),
+    component: () => import('@/views/layouts/auth-layout.vue'),
     children: [
       {
         path: 'login',
         name: 'auth.login',
-        component: () => import('pages/login/login-page.vue')
+        component: () => import('@/views/pages/login/login-page.vue')
       }
     ]
   }

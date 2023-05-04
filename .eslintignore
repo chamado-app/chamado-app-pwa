@@ -1,8 +1,8 @@
-/dist
-/src-capacitor
-/src-cordova
-/.quasar
-/node_modules
-.eslintrc.js
-/src-ssr
-/coverage
+node_modules
+dist
+coverage
+.env
+.env.*
+!.env.example
+!.env.local
+.eslintrc.cjs
