@@ -1,17 +1,10 @@
 import type { RouteRecordRaw } from 'vue-router'
 
+import { authRoutes } from './auth.routes'
+
 const routes: RouteRecordRaw[] = [
-  {
-    path: '/',
-    component: () => import('layouts/auth-layout.vue'),
-    redirect: '/login',
-    children: [
-      {
-        path: '/login',
-        component: () => import('src/pages/login-page.vue')
-      }
-    ]
-  }
+  { path: '/', redirect: { name: 'auth' } },
+  ...authRoutes
 ]
 
 export default routes
