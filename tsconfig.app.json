@@ -1,9 +1,10 @@
 {
-  "extends": "@vue/tsconfig/tsconfig.web.json",
+  "extends": "@vue/tsconfig/tsconfig.dom.json",
   "include": ["src/**/*"],
   "exclude": [],
   "compilerOptions": {
     "types": ["vitest/globals"],
+    "lib": ["ES2016", "DOM", "DOM.Iterable"],
     "composite": true,
     "baseUrl": ".",
     "paths": {
