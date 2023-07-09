@@ -5,8 +5,8 @@
     <q-page-container>
       <div class="auth__wrapper">
         <aside class="auth__logo-wrapper bg-gradient">
-          <q-icon size="5rem" color="grey-2" name="mdi-code-tags" />
-          <h1 class="text-h2 text-grey-2">Chamado.app</h1>
+          <q-icon size="5rem" color="white" name="mdi-code-tags" />
+          <h1 class="text-h2 text-white">Chamado.app</h1>
         </aside>
         <q-page class="auth__wrapper-container">
           <router-view />

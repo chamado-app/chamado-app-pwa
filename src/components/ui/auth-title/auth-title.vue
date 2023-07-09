@@ -9,8 +9,8 @@ const props = defineProps<AuthTitleProps>()
 
 <template>
   <div class="auth__title">
-    <h1 class="text-h4">{{ props.title }}</h1>
-    <h2 class="text-h5 text-neutral text-weight-regular">
+    <h1 class="text-h4 text-weight-medium">{{ props.title }}</h1>
+    <h2 class="text-h5 text-subtitle text-weight-regular">
       {{ props.subtitle }}
     </h2>
   </div>

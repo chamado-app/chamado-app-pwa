@@ -1,3 +1,9 @@
-.body--light .text-neutral {
-  color: $neutral;
+.body--light {
+  .text-body {
+    color: $text;
+  }
+
+  .text-subtitle {
+    color: $subtext;
+  }
 }
