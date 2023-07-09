@@ -1,5 +1,8 @@
 <script lang="ts" setup>
 import { AuthTitle } from '@/components'
+import { useLoginController } from '@/main/controllers'
+
+const { authenticate, state } = useLoginController()
 </script>
 
 <template>
@@ -8,17 +11,17 @@ import { AuthTitle } from '@/components'
       title="Bem vindo à Chamado.app"
       subtitle="Faça login para continuar" />
 
-    <q-form class="login__form">
+    <q-form class="login__form" @submit.prevent="authenticate">
       <QRow gutter="lg">
         <QCol>
-          <q-input label="E-mail" type="email" model-value="">
+          <q-input label="E-mail" type="email" v-model="state.form.email">
             <template v-slot:prepend>
               <q-icon name="mdi-email-outline" />
             </template>
           </q-input>
         </QCol>
         <QCol>
-          <q-input label="Senha" type="password" model-value="">
+          <q-input label="Senha" type="password" v-model="state.form.password">
             <template v-slot:prepend>
               <q-icon name="mdi-lock-outline" />
             </template>
@@ -28,7 +31,11 @@ import { AuthTitle } from '@/components'
           </q-input>
         </QCol>
         <QCol class="login__form-submit">
-          <q-btn label="entrar" color="primary" />
+          <q-btn
+            :loading="state.loading"
+            color="primary"
+            label="entrar"
+            type="submit" />
         </QCol>
       </QRow>
     </q-form>
