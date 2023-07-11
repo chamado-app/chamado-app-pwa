@@ -1,13 +1,15 @@
 {
-  "extends": ["@tsconfig/node18/tsconfig.json", "@vue/tsconfig/tsconfig.json"],
+  "extends": "@tsconfig/node18/tsconfig.json",
   "include": [
     "vite.config.*",
     "vitest.config.*",
     "cypress.config.*",
+    "nightwatch.conf.*",
     "playwright.config.*"
   ],
   "compilerOptions": {
     "composite": true,
+    "module": "ESNext",
     "types": ["node", "vitest/globals"]
   }
 }
