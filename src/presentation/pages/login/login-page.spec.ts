@@ -1,4 +1,4 @@
-import { type RenderResult, renderWithQuasar } from '@/test-utils/utils'
+import { type RenderResult, renderWithQuasar } from '@/__helpers__/utils'
 
 import LoginPage from './login-page.vue'
 

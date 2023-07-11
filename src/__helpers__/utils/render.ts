@@ -5,7 +5,7 @@ import {
 } from '@testing-library/vue'
 import { Quasar, extend } from 'quasar'
 
-import { QCol, QRow } from '@/components'
+import { QCol, QRow } from '@/presentation/components'
 
 export { type RenderResult, render } from '@testing-library/vue'
 

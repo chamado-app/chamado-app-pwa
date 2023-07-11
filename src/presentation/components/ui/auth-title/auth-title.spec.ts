@@ -1,7 +1,7 @@
 import { faker } from '@faker-js/faker'
 import { type RenderResult, render } from '@testing-library/vue'
 
-import type { RenderOptions } from '@/test-utils/types'
+import type { RenderOptions } from '@/__helpers__/types'
 
 import { AuthTitle, type AuthTitleProps } from '.'
 

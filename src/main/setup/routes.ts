@@ -2,7 +2,7 @@ import { type Router, createRouter, createWebHistory } from 'vue-router'
 
 import type { App } from 'vue'
 
-import { routes } from '@/router'
+import { routes } from '@/presentation/router'
 
 let router: Router
 

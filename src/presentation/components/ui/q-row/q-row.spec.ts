@@ -1,6 +1,6 @@
 import { type RenderResult, render } from '@testing-library/vue'
 
-import type { RenderOptions } from '@/test-utils/types'
+import type { RenderOptions } from '@/__helpers__/types'
 
 import { QRow, type QRowProps } from '.'
 
