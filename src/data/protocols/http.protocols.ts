@@ -1,4 +1,4 @@
-export interface HttpPostClient<T, R> {
+export interface HttpPostClient<T = any, R = any> {
   post: (props: HttpClient.Request<T>) => Promise<HttpClient.Response<R>>
 }
 

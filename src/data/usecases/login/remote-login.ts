@@ -1,4 +1,5 @@
 import { type HttpPostClient, HttpStatusCode } from '@/data/protocols'
+import { UnauthorizedException, UnexpectedException } from '@/domain/errors'
 import { type Login } from '@/domain/usecases'
 
 export class RemoteLogin implements Login {
@@ -15,10 +16,10 @@ export class RemoteLogin implements Login {
         return result.body!
 
       case HttpStatusCode.unauthorized:
-        throw new Error()
+        throw new UnauthorizedException()
 
       default:
-        throw new Error()
+        throw new UnexpectedException()
     }
   }
 }
