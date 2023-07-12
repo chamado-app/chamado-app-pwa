@@ -14,6 +14,7 @@ export default mergeConfig(
       root: fileURLToPath(new URL('./', import.meta.url)),
       globals: true,
       setupFiles: ['src/__helpers__/setup/vitest.ts'],
+      clearMocks: true,
       coverage: {
         provider: 'istanbul',
         all: true,
@@ -27,7 +28,8 @@ export default mergeConfig(
           'src/**/presentation/{router,stores,assets,layouts}/**',
           'src/**/main/setup/**',
           'src/**/main/{App.vue,main.ts}',
-          'src/**/{types,index}.ts'
+          'src/**/{types,index}.ts',
+          'src/**/{__mocks__,__helpers__}'
         ]
       }
     }
