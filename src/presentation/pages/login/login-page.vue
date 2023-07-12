@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { useLoginController } from '@/main/controllers'
 import { AuthTitle } from '@/presentation/components'
+import { useLoginController } from '@/presentation/controllers'
 
 const { authenticate, state } = useLoginController()
 </script>
