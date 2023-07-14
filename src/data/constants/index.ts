@@ -1,3 +1,4 @@
+import { keys } from './keys'
 import { urls } from './urls'
 
-export const constants = { urls } as const
+export const constants = { keys, urls } as const
