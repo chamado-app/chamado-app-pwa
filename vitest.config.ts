@@ -13,7 +13,8 @@ export default mergeConfig(
       exclude: [...configDefaults.exclude, 'e2e/*'],
       root: fileURLToPath(new URL('./', import.meta.url)),
       globals: true,
-      setupFiles: ['src/test-utils/setup/vitest.ts'],
+      setupFiles: ['src/__helpers__/setup/vitest.ts'],
+      clearMocks: true,
       coverage: {
         provider: 'istanbul',
         all: true,
@@ -24,10 +25,12 @@ export default mergeConfig(
         include: ['src/**/*.{vue,ts}'],
         exclude: [
           '**/*.{d,spec}.ts',
-          'src/**/{router,stores,assets,layouts,setup,test-utils}/**',
           'src/**/{types,index}.ts',
-          'src/App.vue',
-          'src/main.ts'
+          'src/domain/errors/**',
+          'src/main/setup/**',
+          'src/main/{App.vue,main.ts}',
+          'src/presentation/{router,stores,assets,layouts,pages}/**',
+          'src/{__mocks__,__helpers__}'
         ]
       }
     }
