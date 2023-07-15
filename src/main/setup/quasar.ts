@@ -1,4 +1,4 @@
-import { Cookies, Quasar } from 'quasar'
+import { Cookies, Notify, Quasar } from 'quasar'
 import quasarIconSet from 'quasar/icon-set/svg-mdi-v7'
 import quasarLang from 'quasar/lang/pt-BR'
 
@@ -13,7 +13,7 @@ import '@quasar/extras/mdi-v7/mdi-v7.css'
 
 export const setupQuasar = (app: App): void => {
   app.use(Quasar, {
-    plugins: { Cookies },
+    plugins: { Cookies, Notify },
     lang: quasarLang,
     iconSet: quasarIconSet
   })

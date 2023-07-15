@@ -16,7 +16,7 @@ export class RemoteLogin implements Login {
         return result.body!
 
       case HttpStatusCode.unauthorized:
-        throw new UnauthorizedException()
+        throw new UnauthorizedException('E-mail e/ou senha inválidos')
 
       default:
         throw new UnexpectedException()

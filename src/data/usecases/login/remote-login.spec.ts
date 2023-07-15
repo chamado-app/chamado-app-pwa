@@ -41,7 +41,9 @@ describe('Usecaseses/RemoteLogin', () => {
 
     const promise = sut.execute(mockedCredentials)
 
-    await expect(promise).rejects.toThrow(new UnauthorizedException())
+    await expect(promise).rejects.toThrow(
+      new UnauthorizedException('E-mail e/ou senha inválidos')
+    )
   })
 
   it('should throw UnexpectedException if HttpPostClient returns 404', async () => {
