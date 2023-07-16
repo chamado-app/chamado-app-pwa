@@ -1,7 +1,7 @@
 import { constants } from '@/data/constants'
 import { RemoteLogin } from '@/data/usecases'
 import type { Login } from '@/domain/usecases'
-import { makeApiUrl, makeHttpClient } from '@/presentation/factories'
+import { useApiUrl, useHttpClient } from '@/presentation/factories'
 
-export const makeLogin = (): Login =>
-  new RemoteLogin(makeApiUrl(constants.urls.login), makeHttpClient())
+export const useLogin = (): Login =>
+  new RemoteLogin(useApiUrl(constants.urls.login), useHttpClient())
