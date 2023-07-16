@@ -1,0 +1,8 @@
+{
+  "@quasar/testing-unit-vitest": {
+    "options": ["scripts", "typescript", "ui"]
+  },
+  "@quasar/testing": {
+    "harnesses": ["unit-vitest@alpha"]
+  }
+}
