@@ -1,7 +1,11 @@
 import { reactive } from 'vue'
 import { useRouter } from 'vue-router'
 
-import { makeLogin, makeNotifier, makeStoreAuthToken } from '@/main/factories'
+import {
+  makeLogin,
+  makeNotifier,
+  makeStoreAuthToken
+} from '@/presentation/factories'
 
 import type { LoginController } from './types'
 
