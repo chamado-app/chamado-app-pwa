@@ -1,7 +1,13 @@
 {
   "extends": "./tsconfig.app.json",
   "exclude": [],
-  "include": ["env.d.ts", "src/**/*", "src/**/*.vue", "./*.config.ts"],
+  "include": [
+    "env.d.ts",
+    "src/**/*.ts",
+    "src/**/*.vue",
+    "./*.config.ts",
+    "./.eslintrc.cjs"
+  ],
   "compilerOptions": {
     "lib": [],
     "types": ["node", "vitest/globals"]
