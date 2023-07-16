@@ -16,7 +16,6 @@ type SutTypes = {
 
 const makeSut = (): SutTypes => {
   const sut = new QuasarNotifier()
-
   return { sut }
 }
 
