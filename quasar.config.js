@@ -30,7 +30,7 @@ module.exports = configure(function (/* ctx */) {
     // app boot file (/src/boot)
     // --> boot files are part of "main.js"
     // https://v2.quasar.dev/quasar-cli-vite/boot-files
-    boot: [],
+    boot: ['global-components'],
 
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#css
     css: ['app.scss'],
@@ -115,7 +115,7 @@ module.exports = configure(function (/* ctx */) {
 
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#sourcefiles
     sourceFiles: {
-      rootComponent: 'src/main/App.vue',
+      rootComponent: 'src/App.vue',
       router: 'src/presentation/router/index',
       store: 'src/presentation/stores/index'
       // registerServiceWorker: 'src-pwa/register-service-worker',

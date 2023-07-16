@@ -1,6 +1,7 @@
-import { type App, defineAsyncComponent } from 'vue'
+import { boot } from 'quasar/wrappers'
+import { defineAsyncComponent } from 'vue'
 
-export const setupGlobalComponents = (app: App): void => {
+export default boot(({ app }) => {
   app.component(
     'QRow',
     defineAsyncComponent(
@@ -14,4 +15,4 @@ export const setupGlobalComponents = (app: App): void => {
       () => import('@/presentation/components/ui/q-col/q-col.vue')
     )
   )
-}
+})

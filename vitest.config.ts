@@ -24,12 +24,12 @@ export default defineConfig({
       include: ['src/**/*.{vue,ts}'],
       exclude: [
         '**/*.{d,spec}.ts',
+        'src/{__mocks__,__helpers__}',
         'src/**/{types,index}.ts',
+        'src/App.vue',
+        'src/boot/**',
         'src/domain/errors/**',
-        'src/main/setup/**',
-        'src/main/{App.vue,main.ts}',
-        'src/presentation/{router,stores,assets,layouts}/**',
-        'src/{__mocks__,__helpers__}'
+        'src/presentation/{router,stores,assets,layouts}/**'
       ]
     }
   },
