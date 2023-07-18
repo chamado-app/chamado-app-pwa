@@ -1,6 +1,6 @@
 import { Cookies } from 'quasar'
 
-import type { StorageSetter } from '@/data/protocols'
+import { type StorageSetter } from '@/data/protocols'
 
 export type CookieStorageOptions = {
   expires?: number | string | Date
@@ -16,10 +16,9 @@ export class QuasarCookie
   implements StorageSetter<string, CookieStorageOptions>
 {
   public async set(
-    key: string,
-    value: string,
-    options: CookieStorageOptions = {}
+    params: StorageSetter.Props<string, CookieStorageOptions>
   ): Promise<void> {
+    const { key, value, options = {} } = params
     Cookies.set(key, value, options)
   }
 }

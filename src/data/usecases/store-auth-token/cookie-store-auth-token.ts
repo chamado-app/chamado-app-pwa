@@ -8,7 +8,10 @@ export class CookieStoreAuthToken implements StoreAuthToken {
   ) {}
 
   async store(data: StoreAuthToken.Input): StoreAuthToken.Output {
-    const token = `${data.type} ${data.accessToken}`
-    await this.storageSetter.set(this.key, token, { sameSite: 'Lax' })
+    await this.storageSetter.set({
+      key: this.key,
+      value: `${data.type} ${data.accessToken}`,
+      options: { sameSite: 'Lax' }
+    })
   }
 }
