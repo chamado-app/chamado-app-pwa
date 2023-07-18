@@ -6,8 +6,8 @@
   "author": "Gabriel Scaranello <gabrieljscaranello@gmail.com>",
   "private": true,
   "scripts": {
-    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --ignore-path .gitignore",
-    "format": "prettier --write \"**/*.{js,ts,vue,scss,html,md,json}\" --ignore-path .gitignore",
+    "lint": "eslint ./src --ext .vue,.ts",
+    "format": "prettier --write \"**/*.{js,ts,vue,scss,html,md,json}\" --ignore-path .eslintignore",
     "dev": "quasar dev",
     "build": "quasar build",
     "prepare": "husky install",

@@ -11,10 +11,10 @@ module.exports = {
   ],
   plugins: ['@typescript-eslint/eslint-plugin', 'prettier', 'import'],
   parserOptions: {
-    project: './tsconfig.eslint.json',
-    parser: require.resolve('@typescript-eslint/parser'),
-    extraFileExtensions: ['.vue'],
-    ecmaVersion: 'latest'
+    tsconfigRootDir: __dirname,
+    project: './tsconfig.json',
+    parser: '@typescript-eslint/parser',
+    extraFileExtensions: ['.vue']
   },
   rules: {
     'prettier/prettier': ['error'],
