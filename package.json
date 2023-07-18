@@ -6,7 +6,7 @@
   "author": "Gabriel Scaranello <gabrieljscaranello@gmail.com>",
   "private": true,
   "scripts": {
-    "lint": "eslint ./src --ext .vue,.ts",
+    "lint": "eslint src --ext .vue,.ts",
     "format": "prettier --write \"**/*.{js,ts,vue,scss,html,md,json}\" --ignore-path .eslintignore",
     "dev": "quasar dev",
     "build": "quasar build",
