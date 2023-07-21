@@ -1,14 +1,18 @@
 import { reactive } from 'vue'
 import { useRouter } from 'vue-router'
 
-import { makeLogin, makeNotifier, makeStoreAuthToken } from '@/main/factories'
+import {
+  useLogin,
+  useNotifier,
+  useStoreAuthToken
+} from '@/presentation/factories'
 
 import type { LoginController } from './types'
 
 export const useLoginController = (): LoginController => {
-  const login = makeLogin()
-  const storeAuthToken = makeStoreAuthToken()
-  const notifier = makeNotifier()
+  const login = useLogin()
+  const storeAuthToken = useStoreAuthToken()
+  const notifier = useNotifier()
   const router = useRouter()
 
   const state = reactive<LoginController.State>({

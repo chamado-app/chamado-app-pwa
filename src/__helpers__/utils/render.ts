@@ -1,21 +1,32 @@
 import {
   type RenderOptions,
   type RenderResult,
-  render
+  render as testingLibraryRender
 } from '@testing-library/vue'
+import { RouterLinkStub } from '@vue/test-utils'
 import { Quasar, extend } from 'quasar'
+import { createRouter, createWebHistory } from 'vue-router'
 
 import { QCol, QRow } from '@/presentation/components'
 
-export { type RenderResult, render } from '@testing-library/vue'
+export { type RenderResult } from '@testing-library/vue'
 
-export const renderWithQuasar = (
-  testComponent: any,
+const Router = createRouter({
+  routes: [{ path: '/blank', component: () => null }],
+  history: createWebHistory(process.env.VUE_ROUTER_BASE)
+})
+
+export const render = (
+  component: any,
   options: RenderOptions = {}
 ): RenderResult => {
   const fixedOptions: RenderOptions = {
-    global: { plugins: [Quasar], components: { QCol, QRow } }
+    global: {
+      plugins: [Router, Quasar],
+      components: { QCol, QRow },
+      stubs: { RouterLink: RouterLinkStub }
+    }
   }
 
-  return render(testComponent, extend(true, fixedOptions, options))
+  return testingLibraryRender(component, extend(true, fixedOptions, options))
 }

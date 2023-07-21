@@ -1,9 +1,9 @@
 import { constants } from '@/data/constants'
 import { CookieStoreAuthToken } from '@/data/usecases'
 import type { StoreAuthToken } from '@/domain/usecases'
-import { makeCookieStorage } from '@/main/factories'
+import { useCookieStorage } from '@/presentation/factories'
 
-export const makeStoreAuthToken = (): StoreAuthToken => {
+export const useStoreAuthToken = (): StoreAuthToken => {
   const key = constants.keys.accessToken
-  return new CookieStoreAuthToken(key, makeCookieStorage())
+  return new CookieStoreAuthToken(key, useCookieStorage())
 }

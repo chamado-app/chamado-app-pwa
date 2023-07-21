@@ -7,11 +7,13 @@ import type { Login } from '@/domain/usecases'
 
 import { RemoteLogin } from '.'
 
-const makeSut = (): {
+type SutTypes = {
   sut: RemoteLogin
   httpPostClient: HttpPostClient
   url: string
-} => {
+}
+
+const makeSut = (): SutTypes => {
   const httpPostClient = new HttpPostClientSpy()
   const url = faker.internet.url()
   const sut = new RemoteLogin(url, httpPostClient)

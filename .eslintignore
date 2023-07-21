@@ -1,8 +1,14 @@
-node_modules
-dist
+/dist
+/src-capacitor
+/src-cordova
+/.quasar
+/node_modules
+.eslintrc.cjs
+/src-ssr
+/quasar.config.*.temporary.compiled*
 coverage
 .env
 .env.*
 !.env.example
 !.env.local
-.eslintrc.cjs
+*.config.*

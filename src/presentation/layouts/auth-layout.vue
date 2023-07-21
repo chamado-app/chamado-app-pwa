@@ -5,8 +5,10 @@
     <q-page-container>
       <div class="auth__wrapper">
         <aside class="auth__logo-wrapper bg-gradient">
-          <q-icon size="5rem" color="white" name="mdi-code-tags" />
-          <h1 class="text-h2 text-white">Chamado.app</h1>
+          <q-img width="8rem" src="@/presentation/assets/logo.svg" />
+          <q-img
+            width="28rem"
+            src="@/presentation/assets/logo-typography.svg" />
         </aside>
         <q-page class="auth__wrapper-container">
           <router-view />
@@ -46,7 +48,7 @@
       justify-content: center;
       align-items: center;
       flex-direction: column;
-      gap: 1.5rem;
+      gap: 2.5rem;
 
       @media (max-width: $breakpoint-sm-max) {
         display: none;

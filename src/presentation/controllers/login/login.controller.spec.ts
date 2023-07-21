@@ -11,10 +11,10 @@ const mockedStoreAuthToken = vi.fn()
 const mockedNofifyError = vi.fn()
 const mockedRouterReplace = vi.fn()
 
-vi.mock('@/main/factories/usecases', () => ({
-  makeLogin: () => ({ execute: mockedLoginExecute }),
-  makeStoreAuthToken: () => ({ store: mockedStoreAuthToken }),
-  makeNotifier: () => ({ error: mockedNofifyError })
+vi.mock('@/presentation/factories', () => ({
+  useLogin: () => ({ execute: mockedLoginExecute }),
+  useStoreAuthToken: () => ({ store: mockedStoreAuthToken }),
+  useNotifier: () => ({ error: mockedNofifyError })
 }))
 
 vi.mock('vue-router', () => ({
