@@ -10,4 +10,8 @@ h6 {
 .body--light {
   background-color: $background;
   color: $text;
+
+  .q-drawer {
+    background-color: $background;
+  }
 }
