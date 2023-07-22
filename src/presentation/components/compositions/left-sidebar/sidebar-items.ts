@@ -8,16 +8,16 @@ export const sidebarItems: SidebarItem[] = [
   {
     icon: 'mdi-progress-clock',
     label: 'Chamados em andamento',
-    to: { name: 'task-list', params: { taskStatus: 'in-progress' } }
+    to: { name: 'ticket-list', params: { ticketStatus: 'in-progress' } }
   },
   {
     icon: 'mdi-check-circle-outline',
     label: 'Chamados concluídos',
-    to: { name: 'task-list', params: { taskStatus: 'completed' } }
+    to: { name: 'ticket-list', params: { ticketStatus: 'completed' } }
   },
   {
     icon: 'mdi-folder-outline',
     label: 'Todos os chamados',
-    to: { name: 'task-list', params: { taskStatus: 'all' } }
+    to: { name: 'ticket-list', params: { ticketStatus: 'all' } }
   }
 ]

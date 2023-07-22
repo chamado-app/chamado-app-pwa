@@ -4,14 +4,14 @@ export const mainRoutes: RouteRecordRaw[] = [
   {
     name: 'main',
     path: '/',
-    redirect: { name: 'task-list', params: { taskStatus: 'in-progress' } },
+    redirect: { name: 'ticket-list', params: { ticketStatus: 'in-progress' } },
     component: () => import('@/presentation/layouts/main-layout.vue'),
     children: [
       {
-        path: '/task-list/:taskStatus',
-        name: 'task-list',
+        path: '/ticket-list/:ticketStatus',
+        name: 'ticket-list',
         component: () =>
-          import('@/presentation/pages/task-list/task-list-page.vue')
+          import('@/presentation/pages/ticket-list/ticket-list-page.vue')
       }
     ]
   }
