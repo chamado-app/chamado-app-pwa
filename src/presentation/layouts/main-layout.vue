@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { GlobalSearch } from '@/presentation/components'
+import { GlobalSearch, LeftSidebar } from '@/presentation/components'
 import { useToggles } from '@/presentation/stores'
 
 const toggles = useToggles()
@@ -29,7 +29,7 @@ const toggles = useToggles()
     </q-header>
 
     <q-drawer show-if-above v-model="toggles.sidebar" side="left">
-      <!-- drawer content -->
+      <LeftSidebar />
     </q-drawer>
 
     <q-page-container>

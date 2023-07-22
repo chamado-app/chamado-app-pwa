@@ -28,16 +28,10 @@
     }
 
     &-wrapper {
-      background-image: linear-gradient(
-        to bottom right,
-        rgba($background, 0.1),
-        rgba($background, 0.2),
-        rgba($background, 0.4),
-        rgba($background, 0.6)
-      );
+      background-color: rgba($background, 0.25);
       border-radius: 0.25rem;
       padding: 0 1rem;
-      transition: background-color 250ms cubic-bezier(1, 0, 0, 1);
+      transition: all 250ms cubic-bezier(1, 0, 0, 1);
 
       &:focus-within {
         background: $background;
