@@ -1,5 +1,18 @@
 import type { RouteRecordRaw } from 'vue-router'
 
 export const mainRoutes: RouteRecordRaw[] = [
-  { path: '/', redirect: { name: 'auth' } }
+  {
+    name: 'main',
+    path: '/',
+    redirect: { name: 'ticket-list', params: { ticketStatus: 'in-progress' } },
+    component: () => import('@/presentation/layouts/main-layout.vue'),
+    children: [
+      {
+        path: '/ticket-list/:ticketStatus',
+        name: 'ticket-list',
+        component: () =>
+          import('@/presentation/pages/ticket-list/ticket-list-page.vue')
+      }
+    ]
+  }
 ]
