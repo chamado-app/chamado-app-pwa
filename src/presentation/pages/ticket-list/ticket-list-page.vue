@@ -19,19 +19,31 @@ const tickets = [
     code: '0001',
     title: 'Problemas no office',
     status: 'aberto',
-    lastMessage: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit...'
+    lastMessage: {
+      content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit...',
+      date: new Date().setDate(new Date().getDate() - 2)
+    },
+    totalMessages: 5
   },
   {
     code: '0002',
     title: 'Problemas no windows',
     status: 'respondido',
-    lastMessage: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit...'
+    lastMessage: {
+      content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit...',
+      date: new Date().setHours(new Date().getHours() - 2)
+    },
+    totalMessages: 3
   },
   {
     code: '0003',
     title: 'Problemas no teclado',
     status: 'concluido',
-    lastMessage: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit...'
+    lastMessage: {
+      content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit...',
+      date: new Date().setMinutes(new Date().getMinutes() - 2)
+    },
+    totalMessages: 7
   }
 ]
 </script>

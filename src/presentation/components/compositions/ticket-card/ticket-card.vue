@@ -1,12 +1,17 @@
 <script lang="ts" setup>
+import { DateTime } from 'luxon'
 import { computed } from 'vue'
 
 const props = defineProps<{
   ticket: {
     code: string
     title: string
-    lastMessage: string
+    lastMessage: {
+      content: string
+      date: number
+    }
     status: string
+    totalMessages: number
   }
 }>()
 
@@ -38,12 +43,27 @@ const status = computed(() => {
         </q-chip>
       </div>
       <div class="ticket-card__sumary">
-        <h3 class="ticket-card__title text-subtitle1 text-weight-bold">
-          {{ props.ticket.title }}
-        </h3>
-        <h4 class="ticket-card__subtitle text-subtitle2">
-          {{ props.ticket.lastMessage }}
-        </h4>
+        <div class="ticket-card__sumary-section">
+          <h3 class="ticket-card__title text-subtitle1 text-weight-bold">
+            {{ props.ticket.title }}
+          </h3>
+          <span class="text-caption text-subtitle1">
+            ({{ props.ticket.totalMessages }})
+          </span>
+          <span class="text-caption text-subtitle2">
+            {{
+              DateTime.fromMillis(props.ticket.lastMessage.date).toRelative({
+                style: 'long',
+                round: true
+              })
+            }}
+          </span>
+        </div>
+        <div class="ticket-card__sumary-section">
+          <h4 class="ticket-card__subtitle text-subtitle2">
+            {{ props.ticket.lastMessage.content }}
+          </h4>
+        </div>
       </div>
     </q-card-section>
   </q-card>
@@ -89,13 +109,14 @@ const status = computed(() => {
     padding-left: 1rem;
   }
 
-  &__code,
-  &__subtitle {
-    color: $subtext;
-  }
-
   &__sumary {
     gap: 0.25rem;
+
+    &-section {
+      display: flex;
+      gap: 0.25rem;
+      align-items: center;
+    }
   }
 
   &__status {
