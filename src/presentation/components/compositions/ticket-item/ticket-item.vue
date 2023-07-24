@@ -4,6 +4,7 @@ import { computed } from 'vue'
 
 const props = defineProps<{
   ticket: {
+    id: number
     code: string
     title: string
     lastMessage: {
@@ -24,27 +25,31 @@ const status = computed(() => {
 
   return statuses[props.ticket.status]
 })
+
+const ticketCardClasses = computed(() => [
+  'ticket-item__wrapper',
+  `ticket-item__wrapper-${status.value.color}`
+])
 </script>
 
 <template>
-  <q-card
-    :class="['ticket-card__wrapper', `ticket-card__wrapper-${status.color}`]">
-    <q-card-section class="ticket-card__content">
-      <div class="ticket-card__indentification">
-        <div class="ticket-card__code text-subtitle2 text-weight-bold">
+  <q-item :to="`/ticket/${props.ticket.id}`" :class="ticketCardClasses">
+    <q-item-section class="ticket-item__content" top>
+      <div class="ticket-item__indentification">
+        <div class="ticket-item__code text-subtitle2 text-weight-bold">
           #{{ props.ticket.code }}
         </div>
         <q-chip
-          class="ticket-card__status text-capitalize"
+          class="ticket-item__status text-capitalize"
           :ripple="false"
           :color="status.color"
           :text-color="status.text">
           {{ props.ticket.status }}
         </q-chip>
       </div>
-      <div class="ticket-card__sumary">
-        <div class="ticket-card__sumary-section">
-          <h3 class="ticket-card__title text-subtitle1 text-weight-bold">
+      <div class="ticket-item__sumary">
+        <div class="ticket-item__sumary-section">
+          <h3 class="ticket-item__title text-subtitle1 text-weight-bold">
             {{ props.ticket.title }}
           </h3>
           <span class="text-caption text-subtitle1">
@@ -59,22 +64,23 @@ const status = computed(() => {
             }}
           </span>
         </div>
-        <div class="ticket-card__sumary-section">
-          <h4 class="ticket-card__subtitle text-subtitle2">
+        <div class="ticket-item__sumary-section">
+          <h4 class="ticket-item__subtitle text-subtitle2">
             {{ props.ticket.lastMessage.content }}
           </h4>
         </div>
       </div>
-    </q-card-section>
-  </q-card>
+    </q-item-section>
+  </q-item>
 </template>
 
 <style lang="scss" scoped>
-.ticket-card {
+.ticket-item {
   &__wrapper {
     border-radius: 0.5rem;
     border-width: 1px;
     border-style: solid;
+    padding: 0;
 
     &-positive {
       border-color: $positive;
