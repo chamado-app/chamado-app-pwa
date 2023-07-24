@@ -18,7 +18,7 @@
 
   &__input {
     color: #ffffff;
-    width: 12rem;
+    width: 13.1rem;
     max-width: calc(100vw - 9.5rem);
     transition: all 250ms cubic-bezier(1, 0, 0, 1);
 

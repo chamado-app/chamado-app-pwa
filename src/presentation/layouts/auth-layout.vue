@@ -32,7 +32,7 @@
 
     &-container {
       display: grid;
-      grid-template-columns: calc(100% - 12rem);
+      grid-template-columns: calc(100% - 13.1rem);
       justify-content: center;
       align-items: center;
 

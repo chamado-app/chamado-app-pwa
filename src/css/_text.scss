@@ -1,9 +1,15 @@
 .body--light {
+  color: $text;
+
   .text-body {
     color: $text;
   }
 
-  .text-subtitle {
-    color: $subtext;
+  .text-subtitle1 {
+    color: $subtext1;
+  }
+
+  .text-subtitle2 {
+    color: $subtext2;
   }
 }
