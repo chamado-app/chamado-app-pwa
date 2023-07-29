@@ -33,7 +33,9 @@ const ticketCardClasses = computed(() => [
 </script>
 
 <template>
-  <q-item :to="`/ticket/${props.ticket.id}`" :class="ticketCardClasses">
+  <q-item
+    :to="{ name: 'ticket-info', params: { id: props.ticket.id } }"
+    :class="ticketCardClasses">
     <q-item-section class="ticket-item__content" top>
       <div class="ticket-item__indentification">
         <div class="ticket-item__code text-subtitle2 text-weight-bold">

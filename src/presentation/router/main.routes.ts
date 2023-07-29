@@ -12,6 +12,12 @@ export const mainRoutes: RouteRecordRaw[] = [
         name: 'ticket-list',
         component: () =>
           import('@/presentation/pages/ticket-list/ticket-list-page.vue')
+      },
+      {
+        path: '/ticket/:id',
+        name: 'ticket-info',
+        component: () =>
+          import('@/presentation/pages/ticket-info/ticket-info-page.vue')
       }
     ]
   }
