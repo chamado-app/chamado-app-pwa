@@ -21,7 +21,13 @@
     }
   }
 
-  .ticket-item__wrapper {
-    background-color: white;
+  .ticket-item {
+    &__wrapper {
+      background-color: white;
+    }
+
+    &__code-tooltip {
+      background-color: $dark;
+    }
   }
 }

@@ -39,7 +39,22 @@ const ticketCardClasses = computed(() => [
     <q-item-section class="ticket-item__content" top>
       <div class="ticket-item__indentification">
         <div class="ticket-item__code text-subtitle2 text-weight-bold">
-          #{{ props.ticket.code }}
+          <span> #{{ props.ticket.code }} </span>
+          <q-btn
+            @click.prevent="() => null"
+            flat
+            round
+            icon="mdi-content-copy"
+            size="sm"
+            dense>
+            <q-tooltip
+              anchor="top middle"
+              self="center middle"
+              class="ticket-item__code-tooltip text-mantle"
+              :offset="[20, 20]">
+              Copiar código
+            </q-tooltip>
+          </q-btn>
         </div>
         <q-chip
           class="ticket-item__status text-capitalize"
@@ -125,6 +140,12 @@ const ticketCardClasses = computed(() => [
       gap: 0.25rem;
       align-items: center;
     }
+  }
+
+  &__code {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
   }
 
   &__status {
