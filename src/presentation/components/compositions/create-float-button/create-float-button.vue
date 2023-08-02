@@ -6,7 +6,7 @@
     <q-page-sticky position="bottom-right" :offset="[18, 18]">
       <q-btn :to="{ name: 'create-ticket' }" fab icon="mdi-plus" color="accent">
         <q-tooltip
-          class="background-dark text-mantle"
+          class="background-inverted text-mantle"
           anchor="top middle"
           self="center middle"
           :offset="[20, 20]">
