@@ -2,7 +2,7 @@
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 
-import { TicketItem } from '@/presentation/components'
+import { CreateFloatButton, TicketItem } from '@/presentation/components'
 
 const route = useRoute()
 
@@ -58,6 +58,7 @@ const tickets = [
       <TicketItem v-for="ticket in tickets" :key="ticket.id" :ticket="ticket" />
     </q-list>
   </div>
+  <CreateFloatButton />
 </template>
 
 <style lang="scss" scoped>

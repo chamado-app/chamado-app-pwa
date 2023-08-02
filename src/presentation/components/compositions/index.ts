@@ -1,4 +1,5 @@
 export * from './auth-title'
+export * from './create-float-button'
 export * from './global-search'
 export * from './left-sidebar'
 export * from './ticket-item'

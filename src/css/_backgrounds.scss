@@ -25,9 +25,9 @@
     &__wrapper {
       background-color: white;
     }
+  }
 
-    &__code-tooltip {
-      background-color: $dark;
-    }
+  .background-dark {
+    background-color: $dark;
   }
 }

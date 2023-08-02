@@ -50,7 +50,7 @@ const ticketCardClasses = computed(() => [
             <q-tooltip
               anchor="top middle"
               self="center middle"
-              class="ticket-item__code-tooltip text-mantle"
+              class="background-dark text-mantle"
               :offset="[20, 20]">
               Copiar código
             </q-tooltip>
