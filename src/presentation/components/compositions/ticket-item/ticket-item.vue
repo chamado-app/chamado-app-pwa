@@ -2,18 +2,10 @@
 import { DateTime } from 'luxon'
 import { computed } from 'vue'
 
+import { type TicketEntity } from '@/domain/entities'
+
 const props = defineProps<{
-  ticket: {
-    id: number
-    code: string
-    title: string
-    lastMessage: {
-      content: string
-      date: number
-    }
-    status: string
-    totalMessages: number
-  }
+  ticket: TicketEntity
 }>()
 
 const status = computed(() => {

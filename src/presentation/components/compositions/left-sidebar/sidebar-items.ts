@@ -13,7 +13,7 @@ export const sidebarItems: SidebarItem[] = [
   {
     icon: 'mdi-check-circle-outline',
     label: 'Chamados concluídos',
-    to: { name: 'ticket-list', params: { ticketStatus: 'completed' } }
+    to: { name: 'ticket-list', params: { ticketStatus: 'done' } }
   },
   {
     icon: 'mdi-folder-outline',
