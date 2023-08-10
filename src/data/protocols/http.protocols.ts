@@ -14,7 +14,8 @@ export enum HttpStatusCode {
 }
 
 export enum HttpMethod {
-  post = 'POST'
+  post = 'POST',
+  get = 'GET'
 }
 
 export namespace HttpClient {

@@ -1,7 +1,7 @@
 export type TicketStatus = 'in-progress' | 'done'
 
 export interface TicketEntity {
-  id: number
+  id: string
   code: string
   title: string
   lastMessage: {
