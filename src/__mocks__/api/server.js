@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
-import { Factory, Model, createServer } from 'miragejs'
+import { Factory, Model, Serializer, createServer } from 'miragejs'
 import { uid } from 'quasar'
 
 import { mockTicketEntity } from '@/__mocks__/domain/entities'
@@ -66,7 +66,10 @@ export const mockServer = ({ environment = 'development' } = {}) => {
 
       this.get('/tickets', (schema) => schema.tickets.all())
     },
-    identityManagers: { application: IdentityManager }
+    identityManagers: { application: IdentityManager },
+    serializers: {
+      application: Serializer.extend({ keyForModel: () => 'data' })
+    }
   })
 
   return server

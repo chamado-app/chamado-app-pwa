@@ -1,13 +1,21 @@
-import { computed } from 'vue'
+import { computed, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 
-import { type TicketEntity } from '@/domain/entities'
+import { useListTickets } from '@/presentation/factories'
+import { useTickets } from '@/presentation/stores'
 
 import { type TicketListController } from './types'
 
 export const useTicketListController = (): TicketListController => {
+  const listTickets = useListTickets()
   const route = useRoute()
-  const tickets: TicketEntity[] = []
+  const ticketsStore = useTickets()
+
+  const doListTickets = async (): Promise<void> => {
+    const { data } = await listTickets.list()
+
+    ticketsStore.$patch({ data })
+  }
 
   const titles: Record<TicketListController.RouteStatus, string> = {
     'in-progress': 'Chamados em andamento',
@@ -18,6 +26,10 @@ export const useTicketListController = (): TicketListController => {
   const title = computed(
     () => titles[route.params.ticketStatus as TicketListController.RouteStatus]
   )
+
+  const tickets = computed(() => ticketsStore.data)
+
+  onMounted(doListTickets)
 
   return { tickets, title }
 }

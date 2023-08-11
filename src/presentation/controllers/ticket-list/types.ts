@@ -3,7 +3,7 @@ import { type ComputedRef } from 'vue'
 import { type TicketEntity, type TicketStatus } from '@/domain/entities'
 
 export interface TicketListController {
-  tickets: TicketEntity[]
+  tickets: ComputedRef<TicketEntity[]>
   title: ComputedRef<string>
 }
 

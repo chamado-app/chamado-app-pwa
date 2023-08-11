@@ -1,8 +1,14 @@
+export interface HttpGetClient<T = any, R = any> {
+  get: (props: HttpClient.Request<T>) => Promise<HttpClient.Response<R>>
+}
+
 export interface HttpPostClient<T = any, R = any> {
   post: (props: HttpClient.Request<T>) => Promise<HttpClient.Response<R>>
 }
 
-export interface HttpClient<T = any, R = any> extends HttpPostClient<T, R> {
+export interface HttpClient<T = any, R = any>
+  extends HttpPostClient<T, R>,
+    HttpGetClient<T, R> {
   request: (props: HttpClient.RequestRaw<T>) => Promise<HttpClient.Response<R>>
 }
 
@@ -14,8 +20,8 @@ export enum HttpStatusCode {
 }
 
 export enum HttpMethod {
-  post = 'POST',
-  get = 'GET'
+  get = 'GET',
+  post = 'POST'
 }
 
 export namespace HttpClient {

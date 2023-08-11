@@ -21,4 +21,8 @@ export class AxiosHttpClient<T = any, R = any> implements HttpClient<T, R> {
   async post(request: HttpClient.Request<T>): Promise<HttpClient.Response<R>> {
     return await this.request({ ...request, method: HttpMethod.post })
   }
+
+  async get(request: HttpClient.Request<T>): Promise<HttpClient.Response<R>> {
+    return await this.request({ ...request, method: HttpMethod.get })
+  }
 }

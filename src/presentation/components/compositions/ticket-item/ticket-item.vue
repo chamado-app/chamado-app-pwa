@@ -10,9 +10,8 @@ const props = defineProps<{
 
 const status = computed(() => {
   const statuses: Record<string, any> = {
-    aberto: { color: 'primary', text: 'white' },
-    respondido: { color: 'secondary', text: 'white' },
-    concluido: { color: 'positive', text: 'white' }
+    'in-progress': { color: 'secondary', text: 'white', label: 'Em progresso' },
+    done: { color: 'positive', text: 'white', label: 'Concluído' }
   }
 
   return statuses[props.ticket.status]
@@ -30,7 +29,8 @@ const ticketCardClasses = computed(() => [
     :class="ticketCardClasses">
     <q-item-section class="ticket-item__content" top>
       <div class="ticket-item__indentification">
-        <div class="ticket-item__code text-subtitle2 text-weight-bold">
+        <div
+          class="ticket-item__code text-subtitle2 text-weight-bold text-uppercase">
           <span> #{{ props.ticket.code }} </span>
           <q-btn
             @click.prevent="() => null"
@@ -49,11 +49,11 @@ const ticketCardClasses = computed(() => [
           </q-btn>
         </div>
         <q-chip
-          class="ticket-item__status text-capitalize"
+          class="ticket-item__status"
           :ripple="false"
           :color="status.color"
           :text-color="status.text">
-          {{ props.ticket.status }}
+          {{ status.label }}
         </q-chip>
       </div>
       <div class="ticket-item__sumary">
