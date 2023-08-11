@@ -10,7 +10,7 @@ const props = defineProps<AuthTitleProps>()
 <template>
   <div class="auth__title">
     <h1 class="text-h4 text-weight-medium">{{ props.title }}</h1>
-    <h2 class="text-h5 text-subtitle text-weight-regular">
+    <h2 class="text-subtitle1 text-h5 text-weight-regular">
       {{ props.subtitle }}
     </h2>
   </div>
@@ -21,5 +21,9 @@ const props = defineProps<AuthTitleProps>()
   display: grid;
   grid-template-columns: 1fr;
   grid-gap: 1rem;
+
+  h2 {
+    font-size: 1.5rem;
+  }
 }
 </style>

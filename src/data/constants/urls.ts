@@ -1,3 +1,4 @@
 export const urls = {
-  login: 'auth/login'
+  login: 'auth/login',
+  listTickets: 'tickets'
 } as const
