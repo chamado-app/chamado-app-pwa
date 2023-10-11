@@ -2,7 +2,7 @@
 
 <!--toc:start-->
 
-- [🛸 Chamado.app](#-chamadoapp)
+- [🛸 Chamado.app PWA](#-chamadoapp-pwa)
   - [📦 Prerequisites](#-prerequisites)
   - [🛬 Cloning](#-cloning)
   - [🏃 Running](#-running)
@@ -23,13 +23,13 @@ Analysis and Development course.
 ## 🛬 Cloning
 
 ```sh
-git clone git@github.com:chamado-app/Chamado.app.git
+git clone git@github.com:chamado-app/chamado-app-pwa.git
 # or
-git clone https://github.com/chamado-app/Chamado.app.git
+git clone https://github.com/chamado-app/chamado-app-pwa.git
 ```
 
 ```sh
-cd Chamado.app
+cd chamado-app-pwa
 ```
 
 ## 🏃 Running
