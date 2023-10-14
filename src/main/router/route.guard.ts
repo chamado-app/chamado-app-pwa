@@ -1,5 +1,3 @@
-import { useWhoAmIState } from '../store'
-
 import {
   type NavigationGuardNext,
   type RouteLocationNormalized,
@@ -8,9 +6,8 @@ import {
 
 import { Role } from '@/domain/entities'
 import { useWhoAmIUsecase } from '@/main/factories'
-
-import { authRoutes } from './auth.routes'
-import { type RouteMeta } from './types'
+import { type RouteMeta, authRoutes } from '@/presentation/router'
+import { useWhoAmIState } from '@/presentation/store'
 
 export const isOnlyGuestRoute = (meta: RouteMeta): boolean => {
   if (!meta.roles?.length) return true
