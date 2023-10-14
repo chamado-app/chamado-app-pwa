@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { GlobalSearch, LeftSidebar } from '@/presentation/components'
-import { useToggles } from '@/presentation/stores'
+import { useToggles } from '@/presentation/store'
 
 const toggles = useToggles()
 </script>

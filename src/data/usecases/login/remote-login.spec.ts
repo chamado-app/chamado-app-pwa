@@ -3,21 +3,23 @@ import { faker } from '@faker-js/faker'
 import { HttpPostClientSpy } from '@/__mocks__/data'
 import { type HttpPostClient, HttpStatusCode } from '@/data/protocols'
 import { UnauthorizedException, UnexpectedException } from '@/domain/errors'
-import type { Login } from '@/domain/usecases'
+import type { Login, StoreAuthToken } from '@/domain/usecases'
 
 import { RemoteLogin } from '.'
 
 type SutTypes = {
   sut: RemoteLogin
   httpPostClient: HttpPostClient
+  tokenStore: StoreAuthToken
   url: string
 }
 
 const makeSut = (): SutTypes => {
   const httpPostClient = new HttpPostClientSpy()
+  const tokenStore: StoreAuthToken = { store: vi.fn() }
   const url = faker.internet.url()
-  const sut = new RemoteLogin(url, httpPostClient)
-  return { sut, httpPostClient, url }
+  const sut = new RemoteLogin(url, httpPostClient, tokenStore)
+  return { sut, httpPostClient, url, tokenStore }
 }
 
 describe('Usecaseses/RemoteLogin', () => {

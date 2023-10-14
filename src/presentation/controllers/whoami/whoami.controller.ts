@@ -1,5 +1,5 @@
-import { useWhoAmI } from '@/presentation/factories'
-import { useWhoAmIState } from '@/presentation/stores'
+import { useWhoAmI } from '@/main/factories'
+import { useWhoAmIState } from '@/presentation/store'
 
 import { type WhoAmIController } from './types'
 

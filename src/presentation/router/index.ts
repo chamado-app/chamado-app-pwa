@@ -9,7 +9,7 @@ import {
 import type { RouteRecordRaw } from 'vue-router'
 
 import { useWhoAmIController } from '@/presentation/controllers'
-import { useWhoAmIState } from '@/presentation/stores'
+import { useWhoAmIState } from '@/presentation/store'
 
 import { authRoutes } from './auth.routes'
 import { mainRoutes } from './main.routes'

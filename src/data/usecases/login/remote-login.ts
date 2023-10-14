@@ -1,11 +1,12 @@
 import { type HttpPostClient, HttpStatusCode } from '@/data/protocols'
 import { UnauthorizedException, UnexpectedException } from '@/domain/errors'
-import { type Login } from '@/domain/usecases'
+import { type Login, type StoreAuthToken } from '@/domain/usecases'
 
 export class RemoteLogin implements Login {
   constructor(
     private readonly url: string,
-    private readonly httpClient: HttpPostClient<Login.Input, Login.Output>
+    private readonly httpClient: HttpPostClient<Login.Input, Login.Output>,
+    private readonly tokenStore: StoreAuthToken
   ) {}
 
   async execute(props: Login.Input): Promise<Login.Output> {
@@ -13,6 +14,7 @@ export class RemoteLogin implements Login {
 
     switch (result.statusCode) {
       case HttpStatusCode.created:
+        await this.tokenStore.store(result.body!)
         return result.body!
 
       case HttpStatusCode.unauthorized:

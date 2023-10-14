@@ -7,13 +7,11 @@ import { useLoginController } from '.'
 import type { LoginController } from './types'
 
 const mockedLoginExecute = vi.fn()
-const mockedStoreAuthToken = vi.fn()
 const mockedNofifyError = vi.fn()
 const mockedRouterReplace = vi.fn()
 
-vi.mock('@/presentation/factories', () => ({
+vi.mock('@/main/factories', () => ({
   useLogin: () => ({ execute: mockedLoginExecute }),
-  useStoreAuthToken: () => ({ store: mockedStoreAuthToken }),
   useNotifier: () => ({ error: mockedNofifyError })
 }))
 
@@ -49,7 +47,6 @@ describe('useLoginController', () => {
     await authenticate()
 
     expect(mockedLoginExecute).toHaveBeenCalledWith({ ...mockedState.form })
-    expect(mockedStoreAuthToken).toHaveBeenCalledWith({ ...mockedAccessToken })
     expect(mockedRouterReplace).toHaveBeenCalledWith({ name: 'main' })
   })
 

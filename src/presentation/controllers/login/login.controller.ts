@@ -1,17 +1,12 @@
 import { reactive } from 'vue'
 import { useRouter } from 'vue-router'
 
-import {
-  useLogin,
-  useNotifier,
-  useStoreAuthToken
-} from '@/presentation/factories'
+import { useLogin, useNotifier } from '@/main/factories'
 
 import type { LoginController } from './types'
 
 export const useLoginController = (): LoginController => {
   const login = useLogin()
-  const storeAuthToken = useStoreAuthToken()
   const notifier = useNotifier()
   const router = useRouter()
 
@@ -24,8 +19,7 @@ export const useLoginController = (): LoginController => {
     state.loading = true
 
     try {
-      const data = await login.execute({ ...state.form })
-      await storeAuthToken.store({ ...data })
+      await login.execute({ ...state.form })
       void router.replace({ name: 'main' })
     } catch (error: any) {
       notifier.error({ message: error.message })

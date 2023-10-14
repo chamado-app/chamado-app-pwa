@@ -1,8 +1,8 @@
 import { computed, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 
-import { useListTickets } from '@/presentation/factories'
-import { useTickets } from '@/presentation/stores'
+import { useListTickets } from '@/main/factories'
+import { useTickets } from '@/presentation/store'
 
 import { type TicketListController } from './types'
 
