@@ -11,7 +11,7 @@ export class CookieStoreAuthToken implements StoreAuthToken {
     await this.storageSetter.set({
       key: this.key,
       value: `${data.type} ${data.accessToken}`,
-      options: { sameSite: 'Lax' }
+      options: { sameSite: 'Lax', path: '/' }
     })
   }
 }

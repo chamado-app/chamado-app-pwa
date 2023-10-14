@@ -12,7 +12,7 @@ export class RemoteLogin implements Login {
     const result = await this.httpClient.post({ url: this.url, body: props })
 
     switch (result.statusCode) {
-      case HttpStatusCode.ok:
+      case HttpStatusCode.created:
         return result.body!
 
       case HttpStatusCode.unauthorized:

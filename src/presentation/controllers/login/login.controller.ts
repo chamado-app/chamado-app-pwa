@@ -26,7 +26,7 @@ export const useLoginController = (): LoginController => {
     try {
       const data = await login.execute({ ...state.form })
       await storeAuthToken.store({ ...data })
-      void router.replace({ name: 'home' })
+      void router.replace({ name: 'main' })
     } catch (error: any) {
       notifier.error({ message: error.message })
     } finally {
