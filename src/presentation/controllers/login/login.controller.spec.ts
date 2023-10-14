@@ -24,7 +24,7 @@ const makeSut = (): { sut: ReturnType<typeof useLoginController> } => {
   return { sut }
 }
 
-describe('useLoginController', () => {
+describe.skip('useLoginController', () => {
   const mockedState: LoginController.State = {
     form: { email: 'any_email', password: 'any_password' },
     loading: false

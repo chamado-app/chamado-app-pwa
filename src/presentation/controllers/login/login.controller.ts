@@ -1,13 +1,14 @@
-import { reactive } from 'vue'
+import { inject, reactive } from 'vue'
 import { useRouter } from 'vue-router'
 
-import { useLogin, useNotifier } from '@/main/factories'
+import { type Notifier } from '@/data/protocols'
+import { type Login } from '@/domain/usecases'
 
 import type { LoginController } from './types'
 
 export const useLoginController = (): LoginController => {
-  const login = useLogin()
-  const notifier = useNotifier()
+  const loginUsecase = inject<Login>('loginUsecase')!
+  const notifier = inject<Notifier>('notifier')!
   const router = useRouter()
 
   const state = reactive<LoginController.State>({
@@ -19,7 +20,7 @@ export const useLoginController = (): LoginController => {
     state.loading = true
 
     try {
-      await login.execute({ ...state.form })
+      await loginUsecase.execute({ ...state.form })
       void router.replace({ name: 'main' })
     } catch (error: any) {
       notifier.error({ message: error.message })

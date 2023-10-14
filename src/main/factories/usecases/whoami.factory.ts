@@ -3,5 +3,5 @@ import { RemoteWhoAmI } from '@/data/usecases'
 import type { WhoAmI } from '@/domain/usecases'
 import { useApiUrl, useAuthorizeHttpClient } from '@/main/factories'
 
-export const useWhoAmI = (): WhoAmI =>
+export const useWhoAmIUsecase = (): WhoAmI =>
   new RemoteWhoAmI(useApiUrl(constants.urls.whoami), useAuthorizeHttpClient())
