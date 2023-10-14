@@ -1,18 +1,15 @@
-import { reactive } from 'vue'
+import { inject, reactive } from 'vue'
 import { useRouter } from 'vue-router'
 
-import {
-  useLogin,
-  useNotifier,
-  useStoreAuthToken
-} from '@/presentation/factories'
+import { type Notifier } from '@/data/protocols'
+import { type Login } from '@/domain/usecases'
+import { PROVIDERS } from '@/presentation/providers'
 
 import type { LoginController } from './types'
 
 export const useLoginController = (): LoginController => {
-  const login = useLogin()
-  const storeAuthToken = useStoreAuthToken()
-  const notifier = useNotifier()
+  const loginUsecase = inject<Login>(PROVIDERS.LOGIN_USECASE)!
+  const notifier = inject<Notifier>(PROVIDERS.NOTIFIER)!
   const router = useRouter()
 
   const state = reactive<LoginController.State>({
@@ -24,12 +21,10 @@ export const useLoginController = (): LoginController => {
     state.loading = true
 
     try {
-      const data = await login.execute({ ...state.form })
-      await storeAuthToken.store({ ...data })
+      await loginUsecase.execute({ ...state.form })
       void router.replace({ name: 'main' })
     } catch (error: any) {
       notifier.error({ message: error.message })
-    } finally {
       state.loading = false
     }
   }

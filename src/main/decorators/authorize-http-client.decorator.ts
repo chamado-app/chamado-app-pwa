@@ -1,9 +1,9 @@
-import { keys } from '@/data/constants/keys'
 import {
   type HttpClient,
   HttpMethod,
   type StorageGuetter
 } from '@/data/protocols'
+import { constants } from '@/infra/constants'
 
 export class AuthorizeHttpClientDecorator<T, R> implements HttpClient<T, R> {
   constructor(
@@ -14,7 +14,9 @@ export class AuthorizeHttpClientDecorator<T, R> implements HttpClient<T, R> {
   async request(
     request: HttpClient.RequestRaw<T>
   ): Promise<HttpClient.Response<R>> {
-    const accessToken = await this.getStorage.get({ key: keys.accessToken })
+    const accessToken = await this.getStorage.get({
+      key: constants.keys.accessToken
+    })
 
     return await this.httpClient.request({
       ...request,
