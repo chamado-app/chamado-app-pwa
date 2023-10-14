@@ -1,6 +1,6 @@
-import type { StorageSetter } from '@/data/protocols'
+import type { StorageGuetter, StorageSetter } from '@/data/protocols'
 import { QuasarCookie } from '@/infra'
 
-export const useCookieStorage = (): StorageSetter => {
+export const useCookieStorage = (): StorageSetter & StorageGuetter => {
   return new QuasarCookie()
 }

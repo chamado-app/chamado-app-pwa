@@ -1,6 +1,8 @@
-import type { RouteRecordRaw } from 'vue-router'
+import { Role } from '@/domain/entities'
 
-export const authRoutes: RouteRecordRaw[] = [
+import { type CustomRouteRecordRaw } from './types'
+
+export const authRoutes: CustomRouteRecordRaw[] = [
   {
     name: 'auth',
     path: '/auth',
@@ -10,7 +12,8 @@ export const authRoutes: RouteRecordRaw[] = [
       {
         path: 'login',
         name: 'auth.login',
-        component: () => import('@/presentation/pages/login/login-page.vue')
+        component: () => import('@/presentation/pages/login/login-page.vue'),
+        meta: { title: 'Login', roles: [Role.GUEST] }
       }
     ]
   }

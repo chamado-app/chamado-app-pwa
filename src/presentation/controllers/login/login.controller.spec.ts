@@ -50,7 +50,7 @@ describe('useLoginController', () => {
 
     expect(mockedLoginExecute).toHaveBeenCalledWith({ ...mockedState.form })
     expect(mockedStoreAuthToken).toHaveBeenCalledWith({ ...mockedAccessToken })
-    expect(mockedRouterReplace).toHaveBeenCalledWith({ name: 'home' })
+    expect(mockedRouterReplace).toHaveBeenCalledWith({ name: 'main' })
   })
 
   it('show call notify on error', async () => {

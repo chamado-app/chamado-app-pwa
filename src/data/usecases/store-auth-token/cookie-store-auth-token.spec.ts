@@ -31,7 +31,7 @@ describe('CookieStoreAuthToken', () => {
     await sut.store(mockedTokenData)
 
     expect(storageSetter.key).toBe(key)
-    expect(storageSetter.options).toEqual({ sameSite: 'Lax' })
+    expect(storageSetter.options).toEqual({ sameSite: 'Lax', path: '/' })
     expect(storageSetter.value).toBe(
       `${mockedTokenData.type} ${mockedTokenData.accessToken}`
     )
