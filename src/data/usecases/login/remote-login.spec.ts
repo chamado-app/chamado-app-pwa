@@ -29,6 +29,7 @@ describe('Usecaseses/RemoteLogin', () => {
   it('should call HttpPostClient with correct values', async () => {
     const { sut, httpPostClient, url } = makeSut()
     const postSpy = vi.spyOn(httpPostClient, 'post')
+    postSpy.mockResolvedValueOnce({ statusCode: HttpStatusCode.created })
 
     await sut.execute(mockedCredentials)
 
@@ -70,10 +71,10 @@ describe('Usecaseses/RemoteLogin', () => {
     await expect(promise).rejects.toThrow(new UnexpectedException())
   })
 
-  it('should return valid token if HttpPostClient returns 200', async () => {
+  it('should return valid token if HttpPostClient returns 201', async () => {
     const { sut, httpPostClient } = makeSut()
     const httpResult = {
-      statusCode: HttpStatusCode.ok,
+      statusCode: HttpStatusCode.created,
       body: { accessToken: faker.random.word() }
     }
     vi.spyOn(httpPostClient, 'post').mockResolvedValueOnce(httpResult)

@@ -6,11 +6,16 @@ export class AxiosHttpClient<T = any, R = any> implements HttpClient<T, R> {
   async request(
     request: HttpClient.RequestRaw<T>
   ): Promise<HttpClient.Response<R>> {
-    const { method, url, body } = request
+    const { method, url, body, headers } = request
 
     let httpResponse: AxiosResponse<R>
     try {
-      httpResponse = await axios.request({ url, method, data: body })
+      httpResponse = await axios.request({
+        url,
+        method,
+        data: body,
+        headers
+      })
     } catch (error: any) {
       httpResponse = error.response
     }

@@ -8,21 +8,22 @@ import {
 
 import type { RouteRecordRaw } from 'vue-router'
 
+import { useWhoAmIController } from '@/presentation/controllers'
+import { useWhoAmIState } from '@/presentation/stores'
+
 import { authRoutes } from './auth.routes'
 import { mainRoutes } from './main.routes'
+import { type RouteMeta } from './types'
+import {
+  hasValidAccess,
+  isAuthRoute,
+  isOnlyGuestRoute,
+  resetGuards
+} from './utils'
 
 export const routes: RouteRecordRaw[] = [...mainRoutes, ...authRoutes]
 
-/*
- * If not building with SSR mode, you can
- * directly export the Router instantiation;
- *
- * The function below can be async too; either use
- * async/await or return a Promise which resolves
- * with the Router instance.
- */
-
-export default route(function (/* { store, ssrContext } */) {
+export default route(function () {
   const createHistory = process.env.SERVER
     ? createMemoryHistory
     : process.env.VUE_ROUTER_MODE === 'history'
@@ -31,12 +32,30 @@ export default route(function (/* { store, ssrContext } */) {
 
   const Router = createRouter({
     scrollBehavior: () => ({ left: 0, top: 0 }),
-    routes,
+    history: createHistory(process.env.VUE_ROUTER_BASE),
+    routes
+  })
 
-    // Leave this as is and make changes in quasar.conf.js instead!
-    // quasar.conf.js -> build -> vueRouterMode
-    // quasar.conf.js -> build -> publicPath
-    history: createHistory(process.env.VUE_ROUTER_BASE)
+  const whoami = useWhoAmIController()
+  const whoamiState = useWhoAmIState()
+
+  Router.beforeEach(async (to, _, next) => {
+    const meta = to.meta as RouteMeta
+
+    if (isOnlyGuestRoute(meta)) {
+      isAuthRoute(to) ? next() : next({ name: 'auth.login' })
+      whoamiState.$reset()
+      return
+    }
+
+    if (!whoamiState.loaded) await whoami.load()
+
+    if (hasValidAccess(whoamiState.hasError, whoamiState.roles, meta.roles)) {
+      next()
+      return
+    }
+
+    resetGuards(whoamiState.$reset, next)
   })
 
   return Router

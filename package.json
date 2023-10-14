@@ -54,7 +54,6 @@
     "happy-dom": "^10.3.2",
     "husky": "^8.0.3",
     "lint-staged": "^13.2.3",
-    "miragejs": "^0.1.47",
     "prettier": "^2.8.8",
     "prettier-config-standard": "^5.0.0",
     "typescript": "^5.1.6",

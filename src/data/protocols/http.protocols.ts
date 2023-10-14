@@ -14,6 +14,7 @@ export interface HttpClient<T = any, R = any>
 
 export enum HttpStatusCode {
   ok = 200,
+  created = 201,
   unauthorized = 401,
   notFound = 404,
   internalServerError = 500
@@ -28,6 +29,7 @@ export namespace HttpClient {
   export type Request<T> = {
     url: string
     body?: T
+    headers?: Record<string, string>
   }
 
   export type RequestRaw<T> = Request<T> & {
