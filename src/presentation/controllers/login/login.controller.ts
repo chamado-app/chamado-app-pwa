@@ -3,12 +3,13 @@ import { useRouter } from 'vue-router'
 
 import { type Notifier } from '@/data/protocols'
 import { type Login } from '@/domain/usecases'
+import { PROVIDERS } from '@/presentation/providers'
 
 import type { LoginController } from './types'
 
 export const useLoginController = (): LoginController => {
-  const loginUsecase = inject<Login>('loginUsecase')!
-  const notifier = inject<Notifier>('notifier')!
+  const loginUsecase = inject<Login>(PROVIDERS.LOGIN_USECASE)!
+  const notifier = inject<Notifier>(PROVIDERS.NOTIFIER)!
   const router = useRouter()
 
   const state = reactive<LoginController.State>({
@@ -24,7 +25,6 @@ export const useLoginController = (): LoginController => {
       void router.replace({ name: 'main' })
     } catch (error: any) {
       notifier.error({ message: error.message })
-    } finally {
       state.loading = false
     }
   }

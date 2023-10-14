@@ -1,17 +1,17 @@
 <script lang="ts" setup>
 import { provide } from 'vue'
 
+import { PROVIDERS } from '@/presentation/providers'
+
 import {
   useListTicketsUsecase,
   useLoginUsecase,
-  useNotifier,
-  useWhoAmIUsecase
+  useNotifier
 } from './factories'
 
-provide('loginUsecase', useLoginUsecase())
-provide('listTicketsUsecase', useListTicketsUsecase())
-provide('whoAmIUsecase', useWhoAmIUsecase())
-provide('notifier', useNotifier())
+provide(PROVIDERS.LOGIN_USECASE, useLoginUsecase())
+provide(PROVIDERS.LIST_TICKETS_USECASE, useListTicketsUsecase())
+provide(PROVIDERS.NOTIFIER, useNotifier())
 </script>
 
 <template>
