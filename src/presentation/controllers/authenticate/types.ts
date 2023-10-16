@@ -1,13 +1,9 @@
-export interface AuthenticateController {
-  state: AuthenticateController.State
-  authenticate: AuthenticateController.Authenticate
+export type AuthenticateControllerState = {
+  loading: boolean
+  form: { email: string; password: string }
 }
 
-export namespace AuthenticateController {
-  export type State = {
-    loading: boolean
-    form: { email: string; password: string }
-  }
-
-  export type Authenticate = () => Promise<void>
+export interface AuthenticateController {
+  state: AuthenticateControllerState
+  authenticate: () => Promise<void>
 }

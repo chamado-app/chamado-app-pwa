@@ -4,7 +4,7 @@ import { type AuthenticateOutputDto } from '@/domain/dto'
 import { UnauthorizedException } from '@/domain/errors'
 
 import { useAuthenticateController } from '.'
-import type { AuthenticateController } from './types'
+import type { AuthenticateControllerState } from './types'
 
 const mockedAuthenticateExecute = vi.fn()
 const mockedNofifyError = vi.fn()
@@ -25,7 +25,7 @@ const makeSut = (): { sut: ReturnType<typeof useAuthenticateController> } => {
 }
 
 describe.skip('useAuthenticateController', () => {
-  const mockedState: AuthenticateController.State = {
+  const mockedState: AuthenticateControllerState = {
     form: { email: 'any_email', password: 'any_password' },
     loading: false
   }

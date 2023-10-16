@@ -5,7 +5,10 @@ import { type Notifier } from '@/data/protocols'
 import { type AuthenticateUsecase } from '@/domain/usecases'
 import { PROVIDERS } from '@/presentation/providers'
 
-import type { AuthenticateController } from './types'
+import type {
+  AuthenticateController,
+  AuthenticateControllerState
+} from './types'
 
 export const useAuthenticateController = (): AuthenticateController => {
   const authenticateUsecase = inject<AuthenticateUsecase>(
@@ -14,7 +17,7 @@ export const useAuthenticateController = (): AuthenticateController => {
   const notifier = inject<Notifier>(PROVIDERS.NOTIFIER)!
   const router = useRouter()
 
-  const state = reactive<AuthenticateController.State>({
+  const state = reactive<AuthenticateControllerState>({
     form: { email: '', password: '' },
     loading: false
   })
