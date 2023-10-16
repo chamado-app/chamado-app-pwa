@@ -1,10 +1,10 @@
 import { type WhoAmIEntity } from '@/domain/entities'
 
-export interface WhoAmI {
-  execute: () => Promise<WhoAmI.Output>
+export interface WhoAmIUsecase {
+  execute: () => Promise<WhoAmIUsecase.Output>
 }
 
-export namespace WhoAmI {
+export namespace WhoAmIUsecase {
   export type Input = never
   export type Output = WhoAmIEntity
 }

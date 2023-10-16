@@ -1,21 +1,21 @@
 import { computed, inject, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 
-import { type ListTickets } from '@/domain/usecases'
+import { type ListTicketsUsecase } from '@/domain/usecases'
 import { PROVIDERS } from '@/presentation/providers'
 import { useTickets } from '@/presentation/store'
 
 import { type TicketListController } from './types'
 
 export const useTicketListController = (): TicketListController => {
-  const listTicketsUsecase = inject<ListTickets>(
+  const listTicketsUsecase = inject<ListTicketsUsecase>(
     PROVIDERS.LIST_TICKETS_USECASE
   )!
   const route = useRoute()
   const ticketsStore = useTickets()
 
   const doListTickets = async (): Promise<void> => {
-    const { data } = await listTicketsUsecase.list()
+    const { tickets: data } = await listTicketsUsecase.list()
 
     ticketsStore.$patch({ data })
   }

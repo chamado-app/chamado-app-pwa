@@ -1,6 +1,6 @@
 export enum PROVIDERS {
   // Usecases
-  LOGIN_USECASE = 'loginUsecase',
+  AUTHENTICATE_USECASE = 'authenticateUsecase',
   LIST_TICKETS_USECASE = 'listTicketsUsecase',
 
   // Utils

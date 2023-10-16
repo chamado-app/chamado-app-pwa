@@ -1,2 +1,2 @@
-export * from './login'
+export * from './authenticate'
 export * from './ticket-list'

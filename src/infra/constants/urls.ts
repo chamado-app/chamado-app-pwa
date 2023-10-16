@@ -1,5 +1,5 @@
 export const urls = {
-  login: 'auth/login',
-  whoami: 'auth/whoami',
-  listTickets: 'tickets'
+  authenticate: 'auth/login',
+  listTickets: 'tickets',
+  whoami: 'auth/whoami'
 } as const

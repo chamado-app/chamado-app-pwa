@@ -5,7 +5,7 @@ import {
 } from 'vue-router'
 
 import { Role } from '@/domain/entities'
-import { type WhoAmI } from '@/domain/usecases'
+import { type WhoAmIUsecase } from '@/domain/usecases'
 import { type RouteMeta, authRoutes } from '@/presentation/router'
 import { useWhoAmIState } from '@/presentation/store'
 
@@ -20,7 +20,10 @@ export const isAuthRoute = (to: RouteLocationNormalized): boolean => {
   )
 }
 
-export const useRouteGuard = (router: Router, whoAmIUsecase: WhoAmI): void => {
+export const useRouteGuard = (
+  router: Router,
+  whoAmIUsecase: WhoAmIUsecase
+): void => {
   const whoAmIStore = useWhoAmIState()
 
   const loadWhoAmI = async (): Promise<void> => {
@@ -38,7 +41,7 @@ export const useRouteGuard = (router: Router, whoAmIUsecase: WhoAmI): void => {
   }
 
   const resetGuards = (next: NavigationGuardNext): void => {
-    next({ name: 'auth.login' })
+    next({ name: 'auth.authenticate' })
     whoAmIStore.$reset()
   }
 
@@ -51,7 +54,7 @@ export const useRouteGuard = (router: Router, whoAmIUsecase: WhoAmI): void => {
     const meta = to.meta as RouteMeta
 
     if (isOnlyGuestRoute(meta)) {
-      isAuthRoute(to) ? next() : next({ name: 'auth.login' })
+      isAuthRoute(to) ? next() : next({ name: 'auth.authenticate' })
       whoAmIStore.$reset()
       return
     }

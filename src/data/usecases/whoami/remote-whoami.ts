@@ -1,14 +1,17 @@
 import { type HttpGetClient, HttpStatusCode } from '@/data/protocols'
 import { UnauthorizedException, UnexpectedException } from '@/domain/errors'
-import { type WhoAmI } from '@/domain/usecases'
+import { type WhoAmIUsecase } from '@/domain/usecases'
 
-export class RemoteWhoAmI implements WhoAmI {
+export class RemoteWhoAmI implements WhoAmIUsecase {
   constructor(
     private readonly url: string,
-    private readonly httpClient: HttpGetClient<WhoAmI.Input, WhoAmI.Output>
+    private readonly httpClient: HttpGetClient<
+      WhoAmIUsecase.Input,
+      WhoAmIUsecase.Output
+    >
   ) {}
 
-  async execute(): Promise<WhoAmI.Output> {
+  async execute(): Promise<WhoAmIUsecase.Output> {
     const result = await this.httpClient.get({ url: this.url })
 
     switch (result.statusCode) {

@@ -1,8 +1,8 @@
-export interface StoreAuthToken {
-  store: (data: StoreAuthToken.Input) => StoreAuthToken.Output
+export interface StoreAuthTokenUsecase {
+  store: (data: StoreAuthTokenUsecase.Input) => StoreAuthTokenUsecase.Output
 }
 
-export namespace StoreAuthToken {
+export namespace StoreAuthTokenUsecase {
   export type Input = {
     type: string
     accessToken: string

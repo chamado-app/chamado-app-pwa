@@ -1,18 +1,18 @@
 import { type HttpGetClient } from '@/data/protocols'
-import type { ListTickets } from '@/domain/usecases'
+import type { ListTicketsUsecase } from '@/domain/usecases'
 
-export class RemoteListTickets implements ListTickets {
+export class RemoteListTickets implements ListTicketsUsecase {
   constructor(
     private readonly url: string,
     private readonly httpClient: HttpGetClient<
-      ListTickets.Options,
-      ListTickets.Output
+      ListTicketsUsecase.Options,
+      ListTicketsUsecase.Output
     >
   ) {}
 
-  async list(): Promise<ListTickets.Output> {
+  async list(): Promise<ListTicketsUsecase.Output> {
     const { body } = await this.httpClient.get({ url: this.url })
 
-    return { data: body?.data ?? [] }
+    return { tickets: body?.tickets ?? [] }
   }
 }

@@ -1,7 +1,7 @@
 import { faker } from '@faker-js/faker'
 
 import { StorageSetterSpy } from '@/__mocks__/data'
-import { type StoreAuthToken } from '@/domain/usecases'
+import { type StoreAuthTokenUsecase } from '@/domain/usecases'
 
 import { CookieStoreAuthToken } from '.'
 
@@ -20,7 +20,7 @@ const makeSut = (): SutTypes => {
 }
 
 describe('CookieStoreAuthToken', () => {
-  const mockedTokenData: StoreAuthToken.Input = {
+  const mockedTokenData: StoreAuthTokenUsecase.Input = {
     accessToken: faker.datatype.uuid(),
     type: 'Bearer'
   }

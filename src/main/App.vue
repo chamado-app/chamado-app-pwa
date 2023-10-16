@@ -4,12 +4,12 @@ import { provide } from 'vue'
 import { PROVIDERS } from '@/presentation/providers'
 
 import {
+  useAuthenticateUsecase,
   useListTicketsUsecase,
-  useLoginUsecase,
   useNotifier
 } from './factories'
 
-provide(PROVIDERS.LOGIN_USECASE, useLoginUsecase())
+provide(PROVIDERS.AUTHENTICATE_USECASE, useAuthenticateUsecase())
 provide(PROVIDERS.LIST_TICKETS_USECASE, useListTicketsUsecase())
 provide(PROVIDERS.NOTIFIER, useNotifier())
 </script>

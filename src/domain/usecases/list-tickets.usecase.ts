@@ -1,15 +1,15 @@
 import type { TicketEntity, TicketStatus } from '@/domain/entities'
 
-export interface ListTickets {
-  list: () => Promise<ListTickets.Output>
+export interface ListTicketsUsecase {
+  list: () => Promise<ListTicketsUsecase.Output>
 }
 
-export namespace ListTickets {
+export namespace ListTicketsUsecase {
   export type Options = {
     status?: TicketStatus
   }
 
   export type Output = {
-    data: TicketEntity[]
+    tickets: TicketEntity[]
   }
 }

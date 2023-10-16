@@ -3,27 +3,30 @@ import { faker } from '@faker-js/faker'
 import { HttpPostClientSpy } from '@/__mocks__/data'
 import { type HttpPostClient, HttpStatusCode } from '@/data/protocols'
 import { UnauthorizedException, UnexpectedException } from '@/domain/errors'
-import type { Login, StoreAuthToken } from '@/domain/usecases'
+import type {
+  AuthenticateUsecase,
+  StoreAuthTokenUsecase
+} from '@/domain/usecases'
 
-import { RemoteLogin } from '.'
+import { RemoteAuthenticate } from '.'
 
 type SutTypes = {
-  sut: RemoteLogin
+  sut: RemoteAuthenticate
   httpPostClient: HttpPostClient
-  tokenStore: StoreAuthToken
+  tokenStore: StoreAuthTokenUsecase
   url: string
 }
 
 const makeSut = (): SutTypes => {
   const httpPostClient = new HttpPostClientSpy()
-  const tokenStore: StoreAuthToken = { store: vi.fn() }
+  const tokenStore: StoreAuthTokenUsecase = { store: vi.fn() }
   const url = faker.internet.url()
-  const sut = new RemoteLogin(url, httpPostClient, tokenStore)
+  const sut = new RemoteAuthenticate(url, httpPostClient, tokenStore)
   return { sut, httpPostClient, url, tokenStore }
 }
 
-describe('Usecaseses/RemoteLogin', () => {
-  const mockedCredentials: Login.Input = {
+describe('Usecaseses/RemoteAuthenticate', () => {
+  const mockedCredentials: AuthenticateUsecase.Input = {
     email: faker.internet.email(),
     password: faker.internet.password()
   }

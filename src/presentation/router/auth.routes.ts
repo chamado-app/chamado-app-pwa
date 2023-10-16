@@ -6,13 +6,14 @@ export const authRoutes: CustomRouteRecordRaw[] = [
   {
     name: 'auth',
     path: '/auth',
-    redirect: { name: 'auth.login' },
+    redirect: { name: 'auth.authenticate' },
     component: () => import('@/presentation/layouts/auth-layout.vue'),
     children: [
       {
         path: 'login',
-        name: 'auth.login',
-        component: () => import('@/presentation/pages/login/login-page.vue'),
+        name: 'auth.authenticate',
+        component: () =>
+          import('@/presentation/pages/authenticate/authenticate-page.vue'),
         meta: { title: 'Login', roles: [Role.GUEST] }
       }
     ]
