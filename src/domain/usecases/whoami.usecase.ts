@@ -1,10 +1,6 @@
-import { type WhoAmIEntity } from '@/domain/entities'
+import { type Usecase } from '@/domain/base'
+import { type WhoAmIOutputDto } from '@/domain/dto'
 
-export interface WhoAmIUsecase {
-  execute: () => Promise<WhoAmIUsecase.Output>
-}
-
-export namespace WhoAmIUsecase {
-  export type Input = never
-  export type Output = WhoAmIEntity
+export interface WhoAmIUsecase extends Usecase<WhoAmIOutputDto> {
+  execute: () => Promise<WhoAmIOutputDto>
 }
