@@ -19,7 +19,7 @@ const makeSut = (): SutTypes => {
   return { sut, httpGetClient, url }
 }
 
-describe('Usecaseses/RemoteLogin', () => {
+describe('Usecaseses/RemoteWhoami', () => {
   it('should call HttpGetClient with correct values', async () => {
     const { sut, httpGetClient, url } = makeSut()
     const postSpy = vi.spyOn(httpGetClient, 'get')

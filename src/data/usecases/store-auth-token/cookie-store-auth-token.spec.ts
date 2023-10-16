@@ -1,7 +1,7 @@
 import { faker } from '@faker-js/faker'
 
 import { StorageSetterSpy } from '@/__mocks__/data'
-import { type StoreAuthToken } from '@/domain/usecases'
+import { type AuthenticateOutputDto } from '@/domain/dto'
 
 import { CookieStoreAuthToken } from '.'
 
@@ -20,7 +20,7 @@ const makeSut = (): SutTypes => {
 }
 
 describe('CookieStoreAuthToken', () => {
-  const mockedTokenData: StoreAuthToken.Input = {
+  const mockedTokenData: AuthenticateOutputDto = {
     accessToken: faker.datatype.uuid(),
     type: 'Bearer'
   }
@@ -28,7 +28,7 @@ describe('CookieStoreAuthToken', () => {
   it('should call StorageSetter with correct values', async () => {
     const { sut, storageSetter, key } = makeSut()
 
-    await sut.store(mockedTokenData)
+    await sut.execute(mockedTokenData)
 
     expect(storageSetter.key).toBe(key)
     expect(storageSetter.options).toEqual({ sameSite: 'Lax', path: '/' })

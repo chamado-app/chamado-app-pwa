@@ -2,17 +2,22 @@ import { inject, reactive } from 'vue'
 import { useRouter } from 'vue-router'
 
 import { type Notifier } from '@/data/protocols'
-import { type Login } from '@/domain/usecases'
+import { type AuthenticateUsecase } from '@/domain/usecases'
 import { PROVIDERS } from '@/presentation/providers'
 
-import type { LoginController } from './types'
+import type {
+  AuthenticateController,
+  AuthenticateControllerState
+} from './types'
 
-export const useLoginController = (): LoginController => {
-  const loginUsecase = inject<Login>(PROVIDERS.LOGIN_USECASE)!
+export const useAuthenticateController = (): AuthenticateController => {
+  const authenticateUsecase = inject<AuthenticateUsecase>(
+    PROVIDERS.AUTHENTICATE_USECASE
+  )!
   const notifier = inject<Notifier>(PROVIDERS.NOTIFIER)!
   const router = useRouter()
 
-  const state = reactive<LoginController.State>({
+  const state = reactive<AuthenticateControllerState>({
     form: { email: '', password: '' },
     loading: false
   })
@@ -21,7 +26,7 @@ export const useLoginController = (): LoginController => {
     state.loading = true
 
     try {
-      await loginUsecase.execute({ ...state.form })
+      await authenticateUsecase.execute({ ...state.form })
       void router.replace({ name: 'main' })
     } catch (error: any) {
       notifier.error({ message: error.message })

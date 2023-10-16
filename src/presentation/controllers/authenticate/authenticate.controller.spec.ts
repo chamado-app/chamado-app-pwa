@@ -1,17 +1,17 @@
 import { faker } from '@faker-js/faker'
 
+import { type AuthenticateOutputDto } from '@/domain/dto'
 import { UnauthorizedException } from '@/domain/errors'
-import type { StoreAuthToken } from '@/domain/usecases'
 
-import { useLoginController } from '.'
-import type { LoginController } from './types'
+import { useAuthenticateController } from '.'
+import type { AuthenticateControllerState } from './types'
 
-const mockedLoginExecute = vi.fn()
+const mockedAuthenticateExecute = vi.fn()
 const mockedNofifyError = vi.fn()
 const mockedRouterReplace = vi.fn()
 
 vi.mock('@/main/factories', () => ({
-  useLogin: () => ({ execute: mockedLoginExecute }),
+  useLogin: () => ({ execute: mockedAuthenticateExecute }),
   useNotifier: () => ({ error: mockedNofifyError })
 }))
 
@@ -19,24 +19,24 @@ vi.mock('vue-router', () => ({
   useRouter: () => ({ replace: mockedRouterReplace })
 }))
 
-const makeSut = (): { sut: ReturnType<typeof useLoginController> } => {
-  const sut = useLoginController()
+const makeSut = (): { sut: ReturnType<typeof useAuthenticateController> } => {
+  const sut = useAuthenticateController()
   return { sut }
 }
 
-describe.skip('useLoginController', () => {
-  const mockedState: LoginController.State = {
+describe.skip('useAuthenticateController', () => {
+  const mockedState: AuthenticateControllerState = {
     form: { email: 'any_email', password: 'any_password' },
     loading: false
   }
 
-  const mockedAccessToken: StoreAuthToken.Input = {
+  const mockedAccessToken: AuthenticateOutputDto = {
     accessToken: faker.datatype.uuid(),
     type: faker.random.word()
   }
 
   beforeAll(() => {
-    mockedLoginExecute.mockResolvedValue(mockedAccessToken)
+    mockedAuthenticateExecute.mockResolvedValue(mockedAccessToken)
   })
 
   it('should execute login function on authenticate', async () => {
@@ -46,13 +46,15 @@ describe.skip('useLoginController', () => {
 
     await authenticate()
 
-    expect(mockedLoginExecute).toHaveBeenCalledWith({ ...mockedState.form })
+    expect(mockedAuthenticateExecute).toHaveBeenCalledWith({
+      ...mockedState.form
+    })
     expect(mockedRouterReplace).toHaveBeenCalledWith({ name: 'main' })
   })
 
   it('show call notify on error', async () => {
     const error = new UnauthorizedException(faker.datatype.string())
-    mockedLoginExecute.mockRejectedValueOnce(error)
+    mockedAuthenticateExecute.mockRejectedValueOnce(error)
     const { sut } = makeSut()
     const { authenticate } = sut
 

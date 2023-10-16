@@ -1,12 +1,7 @@
-export interface StoreAuthToken {
-  store: (data: StoreAuthToken.Input) => StoreAuthToken.Output
-}
+import { type Usecase } from '../base'
 
-export namespace StoreAuthToken {
-  export type Input = {
-    type: string
-    accessToken: string
-  }
+import { type AuthenticateOutputDto } from '@/domain/dto'
 
-  export type Output = Promise<void>
+export interface StoreAuthTokenUsecase extends Usecase<void> {
+  execute: (data: AuthenticateOutputDto) => Promise<void>
 }

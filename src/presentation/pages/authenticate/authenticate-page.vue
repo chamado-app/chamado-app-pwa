@@ -1,17 +1,17 @@
 <script lang="ts" setup>
 import { AuthTitle } from '@/presentation/components'
-import { useLoginController } from '@/presentation/controllers'
+import { useAuthenticateController } from '@/presentation/controllers'
 
-const { authenticate, state } = useLoginController()
+const { authenticate, state } = useAuthenticateController()
 </script>
 
 <template>
-  <div class="login__container">
+  <div class="authenticate__container">
     <AuthTitle
       title="Bem vindo à Chamado.app"
       subtitle="Faça login para continuar" />
 
-    <q-form class="login__form" @submit.prevent="authenticate">
+    <q-form class="authenticate__form" @submit.prevent="authenticate">
       <QRow gutter="lg">
         <QCol>
           <q-input label="E-mail" type="email" v-model="state.form.email">
@@ -30,7 +30,7 @@ const { authenticate, state } = useLoginController()
             </template>
           </q-input>
         </QCol>
-        <QCol class="login__form-submit">
+        <QCol class="authenticate__form-submit">
           <q-btn
             :loading="state.loading"
             color="primary"
@@ -43,7 +43,7 @@ const { authenticate, state } = useLoginController()
 </template>
 
 <style lang="scss">
-.login {
+.authenticate {
   &__container {
     display: grid;
     grid-gap: 3rem;

@@ -1,11 +1,15 @@
 import axios, { type AxiosResponse } from 'axios'
 
-import { type HttpClient, HttpMethod } from '@/data/protocols'
+import {
+  type HttpClient,
+  HttpMethod,
+  type HttpRequest,
+  type HttpRequestRaw,
+  type HttpResponse
+} from '@/data/protocols'
 
 export class AxiosHttpClient<T = any, R = any> implements HttpClient<T, R> {
-  async request(
-    request: HttpClient.RequestRaw<T>
-  ): Promise<HttpClient.Response<R>> {
+  async request(request: HttpRequestRaw<T>): Promise<HttpResponse<R>> {
     const { method, url, body, headers } = request
 
     let httpResponse: AxiosResponse<R>
@@ -23,11 +27,11 @@ export class AxiosHttpClient<T = any, R = any> implements HttpClient<T, R> {
     return { statusCode: httpResponse.status, body: httpResponse.data }
   }
 
-  async post(request: HttpClient.Request<T>): Promise<HttpClient.Response<R>> {
+  async post(request: HttpRequest<T>): Promise<HttpResponse<R>> {
     return await this.request({ ...request, method: HttpMethod.post })
   }
 
-  async get(request: HttpClient.Request<T>): Promise<HttpClient.Response<R>> {
+  async get(request: HttpRequest<T>): Promise<HttpResponse<R>> {
     return await this.request({ ...request, method: HttpMethod.get })
   }
 }

@@ -1,15 +1,9 @@
-import type { TicketEntity, TicketStatus } from '@/domain/entities'
+import { type Usecase } from '@/domain/base'
+import {
+  type ListTicketsInputDto,
+  type ListTicketsOutputDto
+} from '@/domain/dto'
 
-export interface ListTickets {
-  list: () => Promise<ListTickets.Output>
-}
-
-export namespace ListTickets {
-  export type Options = {
-    status?: TicketStatus
-  }
-
-  export type Output = {
-    data: TicketEntity[]
-  }
+export interface ListTicketsUsecase extends Usecase<ListTicketsOutputDto> {
+  execute: (options?: ListTicketsInputDto) => Promise<ListTicketsOutputDto>
 }

@@ -1,24 +1,22 @@
 import { Notify, type QNotifyCreateOptions } from 'quasar'
 
-import type { Notifier } from '@/data/protocols'
+import type { Notifier, NotifierProps } from '@/data/protocols'
 
 export class QuasarNotifier implements Notifier {
-  notify(props: Notifier.Props): void {
-    const types: Record<Notifier.Props['type'], QNotifyCreateOptions['type']> =
-      {
-        success: 'positive',
-        error: 'negative',
-        info: 'info',
-        warning: 'warning'
-      }
+  notify(props: NotifierProps): void {
+    const types: Record<NotifierProps['type'], QNotifyCreateOptions['type']> = {
+      success: 'positive',
+      error: 'negative',
+      info: 'info',
+      warning: 'warning'
+    }
 
-    const icons: Record<Notifier.Props['type'], QNotifyCreateOptions['icon']> =
-      {
-        success: 'mdi-check',
-        error: 'mdi-close',
-        info: 'mdi-information-outline',
-        warning: 'mdi-alert-outline'
-      }
+    const icons: Record<NotifierProps['type'], QNotifyCreateOptions['icon']> = {
+      success: 'mdi-check',
+      error: 'mdi-close',
+      info: 'mdi-information-outline',
+      warning: 'mdi-alert-outline'
+    }
 
     Notify.create({
       type: types[props.type],
@@ -30,19 +28,19 @@ export class QuasarNotifier implements Notifier {
     })
   }
 
-  success(props: Omit<Notifier.Props, 'type'>): void {
+  success(props: Omit<NotifierProps, 'type'>): void {
     this.notify({ ...props, type: 'success' })
   }
 
-  error(props: Omit<Notifier.Props, 'type'>): void {
+  error(props: Omit<NotifierProps, 'type'>): void {
     this.notify({ ...props, type: 'error' })
   }
 
-  warning(props: Omit<Notifier.Props, 'type'>): void {
+  warning(props: Omit<NotifierProps, 'type'>): void {
     this.notify({ ...props, type: 'warning' })
   }
 
-  info(props: Omit<Notifier.Props, 'type'>): void {
+  info(props: Omit<NotifierProps, 'type'>): void {
     this.notify({ ...props, type: 'info' })
   }
 }
