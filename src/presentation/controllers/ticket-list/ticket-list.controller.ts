@@ -15,9 +15,9 @@ export const useTicketListController = (): TicketListController => {
   const ticketsStore = useTickets()
 
   const doListTickets = async (): Promise<void> => {
-    const { tickets: data } = await listTicketsUsecase.list()
+    const { tickets } = await listTicketsUsecase.execute()
 
-    ticketsStore.$patch({ data })
+    ticketsStore.$patch({ tickets })
   }
 
   const titles: Record<TicketListController.RouteStatus, string> = {
@@ -30,7 +30,7 @@ export const useTicketListController = (): TicketListController => {
     () => titles[route.params.ticketStatus as TicketListController.RouteStatus]
   )
 
-  const tickets = computed(() => ticketsStore.data)
+  const tickets = computed(() => ticketsStore.tickets)
 
   onMounted(doListTickets)
 
