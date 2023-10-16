@@ -5,7 +5,7 @@ import { type ListTicketsUsecase } from '@/domain/usecases'
 import { PROVIDERS } from '@/presentation/providers'
 import { useTickets } from '@/presentation/store'
 
-import { type TicketListController } from './types'
+import { type TicketListController, type TicketsRouteStatus } from './types'
 
 export const useTicketListController = (): TicketListController => {
   const listTicketsUsecase = inject<ListTicketsUsecase>(
@@ -20,14 +20,14 @@ export const useTicketListController = (): TicketListController => {
     ticketsStore.$patch({ tickets })
   }
 
-  const titles: Record<TicketListController.RouteStatus, string> = {
+  const titles: Record<TicketsRouteStatus, string> = {
     'in-progress': 'Chamados em andamento',
     done: 'Chamados concluídos',
     all: 'Todos os chamados'
   }
 
   const title = computed(
-    () => titles[route.params.ticketStatus as TicketListController.RouteStatus]
+    () => titles[route.params.ticketStatus as TicketsRouteStatus]
   )
 
   const tickets = computed(() => ticketsStore.tickets)
