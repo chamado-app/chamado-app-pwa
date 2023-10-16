@@ -8,13 +8,13 @@ import {
 
 import type { RouteRecordRaw } from 'vue-router'
 
+import { useRouteGuard } from '@/infra/route'
+import { useWhoAmIUsecase } from '@/main/factories'
 import { authRoutes, mainRoutes } from '@/presentation/router'
 
-import { useRouteGuard } from './route.guard'
-
-export const routes: RouteRecordRaw[] = [...mainRoutes, ...authRoutes]
-
 export default route(function () {
+  const routes: RouteRecordRaw[] = [...mainRoutes, ...authRoutes]
+
   const createHistory = process.env.SERVER
     ? createMemoryHistory
     : process.env.VUE_ROUTER_MODE === 'history'
@@ -27,7 +27,7 @@ export default route(function () {
     routes
   })
 
-  useRouteGuard(Router)
+  useRouteGuard(Router, useWhoAmIUsecase())
 
   return Router
 })

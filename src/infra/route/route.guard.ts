@@ -5,7 +5,7 @@ import {
 } from 'vue-router'
 
 import { Role } from '@/domain/entities'
-import { useWhoAmIUsecase } from '@/main/factories'
+import { type WhoAmI } from '@/domain/usecases'
 import { type RouteMeta, authRoutes } from '@/presentation/router'
 import { useWhoAmIState } from '@/presentation/store'
 
@@ -20,13 +20,12 @@ export const isAuthRoute = (to: RouteLocationNormalized): boolean => {
   )
 }
 
-export const useRouteGuard = (router: Router): void => {
+export const useRouteGuard = (router: Router, whoAmIUsecase: WhoAmI): void => {
   const whoAmIStore = useWhoAmIState()
 
   const loadWhoAmI = async (): Promise<void> => {
     if (whoAmIStore.loading) return
     whoAmIStore.$patch({ loading: true })
-    const whoAmIUsecase = useWhoAmIUsecase()
 
     try {
       const data = await whoAmIUsecase.execute()
