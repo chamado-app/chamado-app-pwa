@@ -1,6 +1,6 @@
 import { faker } from '@faker-js/faker'
 
-import { HttpPostClientSpy } from '@/__mocks__/data'
+import { HttpPostClientSpy } from '@/data/__mocks__'
 import { type HttpPostClient, HttpStatusCode } from '@/data/protocols'
 import { type AuthenticateInputDto } from '@/domain/dto'
 import { UnauthorizedException, UnexpectedException } from '@/domain/errors'

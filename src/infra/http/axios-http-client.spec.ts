@@ -1,9 +1,9 @@
 import type axios from 'axios'
 
-import { mockHttpRequest } from '@/__mocks__/data'
-import { mockAxios, mockHttpResponse } from '@/__mocks__/infra'
+import { mockHttpRequest } from '@/data/__mocks__'
 import { HttpMethod } from '@/data/protocols'
 
+import { mockAxios, mockHttpResponse } from './__mocks__'
 import { AxiosHttpClient } from './axios-http-client'
 
 vi.mock('axios')

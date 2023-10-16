@@ -12,3 +12,4 @@ coverage
 !.env.example
 !.env.local
 *.config.*
+vitest.setup.ts

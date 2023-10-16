@@ -1,6 +1,6 @@
 import { type RenderResult, render } from '@testing-library/vue'
 
-import type { RenderOptions } from '@/__helpers__/types'
+import { type RenderOptions } from '@/__mocks__'
 
 import { QCol, type QColProps } from '.'
 

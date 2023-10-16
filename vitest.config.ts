@@ -3,16 +3,16 @@ import vue from '@vitejs/plugin-vue'
 import tsconfigPaths from 'vite-tsconfig-paths'
 import { configDefaults, defineConfig } from 'vitest/config'
 
-import { fileURLToPath } from 'url'
+import { resolve } from 'path'
 
-// https://vitejs.dev/config/
+// https://vitest.dev/config/
 export default defineConfig({
   test: {
     environment: 'happy-dom',
     exclude: [...configDefaults.exclude, 'e2e/*'],
-    root: fileURLToPath(new URL('./', import.meta.url)),
+    root: resolve(__dirname),
     globals: true,
-    setupFiles: ['src/__helpers__/setup/vitest.ts'],
+    setupFiles: ['vitest.setup.ts'],
     clearMocks: true,
     coverage: {
       provider: 'istanbul',

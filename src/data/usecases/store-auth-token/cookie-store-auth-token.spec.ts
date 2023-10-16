@@ -1,6 +1,6 @@
 import { faker } from '@faker-js/faker'
 
-import { StorageSetterSpy } from '@/__mocks__/data'
+import { StorageSetterSpy } from '@/data/__mocks__'
 import { type AuthenticateOutputDto } from '@/domain/dto'
 
 import { CookieStoreAuthToken } from '.'
