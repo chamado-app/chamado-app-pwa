@@ -1,13 +1,17 @@
 import { faker } from '@faker-js/faker'
 
-import { type HttpClient, HttpMethod } from '@/data/protocols'
+import {
+  HttpMethod,
+  type HttpRequest,
+  type HttpRequestRaw
+} from '@/data/protocols'
 
-export const mockHttpPostRequest = (): HttpClient.Request<any> => ({
+export const mockHttpPostRequest = (): HttpRequest<any> => ({
   url: faker.internet.url(),
   body: faker.datatype.json()
 })
 
-export const mockHttpRequest = (): HttpClient.RequestRaw<any> => ({
+export const mockHttpRequest = (): HttpRequestRaw<any> => ({
   url: faker.internet.url(),
   body: faker.datatype.json(),
   method: faker.helpers.objectValue(HttpMethod)

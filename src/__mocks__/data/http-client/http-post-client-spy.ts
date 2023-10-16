@@ -1,19 +1,18 @@
 import {
-  type HttpClient,
   type HttpPostClient,
+  type HttpRequest,
+  type HttpResponse,
   HttpStatusCode
 } from '@/data/protocols'
 
 export class HttpPostClientSpy implements HttpPostClient {
   url?: string
   body?: string
-  response: HttpClient.Response<any> = {
+  response: HttpResponse<any> = {
     statusCode: HttpStatusCode.ok
   }
 
-  async post(
-    props: HttpClient.Request<any>
-  ): Promise<HttpClient.Response<any>> {
+  async post(props: HttpRequest<any>): Promise<HttpResponse<any>> {
     this.url = props.url
     this.body = props.body
     return this.response
