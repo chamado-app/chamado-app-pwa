@@ -24,7 +24,7 @@ export class RemoteAuthenticate implements AuthenticateUsecase {
 
     switch (result.statusCode) {
       case HttpStatusCode.created:
-        await this.tokenStore.store(result.body!)
+        await this.tokenStore.execute(result.body!)
         return result.body!
 
       case HttpStatusCode.unauthorized:

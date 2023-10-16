@@ -17,7 +17,7 @@ type SutTypes = {
 
 const makeSut = (): SutTypes => {
   const httpPostClient = new HttpPostClientSpy()
-  const tokenStore: StoreAuthTokenUsecase = { store: vi.fn() }
+  const tokenStore: StoreAuthTokenUsecase = { execute: vi.fn() }
   const url = faker.internet.url()
   const sut = new RemoteAuthenticate(url, httpPostClient, tokenStore)
   return { sut, httpPostClient, url, tokenStore }

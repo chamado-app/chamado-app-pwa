@@ -1,7 +1,7 @@
 import { faker } from '@faker-js/faker'
 
+import { type AuthenticateOutputDto } from '@/domain/dto'
 import { UnauthorizedException } from '@/domain/errors'
-import type { StoreAuthTokenUsecase } from '@/domain/usecases'
 
 import { useAuthenticateController } from '.'
 import type { AuthenticateController } from './types'
@@ -30,7 +30,7 @@ describe.skip('useAuthenticateController', () => {
     loading: false
   }
 
-  const mockedAccessToken: StoreAuthTokenUsecase.Input = {
+  const mockedAccessToken: AuthenticateOutputDto = {
     accessToken: faker.datatype.uuid(),
     type: faker.random.word()
   }
