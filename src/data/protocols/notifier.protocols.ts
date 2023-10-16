@@ -1,16 +1,14 @@
+export type NotifierTypes = 'success' | 'error' | 'info' | 'warning'
+
+export type NotifierProps = {
+  message: string
+  type: NotifierTypes
+}
+
 type TypedNotifier = {
-  [x in Notifier.Types]: (props: Omit<Notifier.Props, 'type'>) => void
+  [x in NotifierTypes]: (props: Omit<NotifierProps, 'type'>) => void
 }
 
 export interface Notifier extends TypedNotifier {
-  notify: (props: Notifier.Props) => void
-}
-
-export namespace Notifier {
-  export type Types = 'success' | 'error' | 'info' | 'warning'
-
-  export type Props = {
-    message: string
-    type: Types
-  }
+  notify: (props: NotifierProps) => void
 }
