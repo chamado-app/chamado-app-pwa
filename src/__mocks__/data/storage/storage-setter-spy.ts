@@ -5,7 +5,11 @@ export class StorageSetterSpy implements StorageSetter {
   value?: string
   options?: any
 
-  set({ key, value, options }: StorageSetter.Props): Promise<void> {
+  set({
+    key,
+    value,
+    options
+  }: StorageSetter.StorageSetterProps): Promise<void> {
     this.key = key
     this.value = value
     this.options = options
