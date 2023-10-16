@@ -6,6 +6,7 @@ import {
 
 import { Role } from '@/domain/entities'
 import { type WhoAmIUsecase } from '@/domain/usecases'
+import { constants } from '@/infra/constants'
 import { type RouteMeta, authRoutes } from '@/presentation/router'
 import { useWhoAmIState } from '@/presentation/store'
 
@@ -50,8 +51,13 @@ export const useRouteGuard = (
     return roles.some((role) => whoAmIStore.roles.includes(role))
   }
 
+  const setTitle = (title: string): void => {
+    window.document.title = `${constants.keys.productName} | ${title}`
+  }
+
   router.beforeEach(async (to, _, next) => {
     const meta = to.meta as RouteMeta
+    setTitle(meta.title)
 
     if (isOnlyGuestRoute(meta)) {
       isAuthRoute(to) ? next() : next({ name: 'auth.authenticate' })

@@ -6,18 +6,8 @@ export type SidebarItem = {
 
 export const sidebarItems: SidebarItem[] = [
   {
-    icon: 'mdi-progress-clock',
-    label: 'Chamados em andamento',
-    to: { name: 'ticket-list', params: { ticketStatus: 'in-progress' } }
-  },
-  {
-    icon: 'mdi-check-circle-outline',
-    label: 'Chamados concluídos',
-    to: { name: 'ticket-list', params: { ticketStatus: 'done' } }
-  },
-  {
-    icon: 'mdi-folder-outline',
-    label: 'Todos os chamados',
-    to: { name: 'ticket-list', params: { ticketStatus: 'all' } }
+    icon: 'mdi-tag-multiple-outline',
+    label: 'Chamados',
+    to: { name: 'list-tickets' }
   }
 ]

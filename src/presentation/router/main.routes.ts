@@ -6,22 +6,22 @@ export const mainRoutes: CustomRouteRecordRaw[] = [
   {
     name: 'main',
     path: '/',
-    redirect: { name: 'ticket-list', params: { ticketStatus: 'in-progress' } },
+    redirect: { name: 'list-tickets' },
     component: () => import('@/presentation/layouts/main-layout.vue'),
     children: [
       {
-        path: '/ticket-list/:ticketStatus',
-        name: 'ticket-list',
+        path: '/tickets',
+        name: 'list-tickets',
         component: () =>
-          import('@/presentation/pages/ticket-list/ticket-list-page.vue'),
+          import('@/presentation/pages/list-tickets/list-tickets-page.vue'),
         meta: { title: 'Chamados', roles: AuthenticatedRoles }
       },
       {
-        path: '/ticket/:id',
-        name: 'ticket-info',
+        path: '/tickets/:id',
+        name: 'show-ticket',
         component: () =>
-          import('@/presentation/pages/ticket-info/ticket-info-page.vue'),
-        meta: { title: 'Detalhes do chamado', roles: AuthenticatedRoles }
+          import('@/presentation/pages/view-ticket/view-ticket-page.vue'),
+        meta: { title: 'Visualizar chamado', roles: AuthenticatedRoles }
       }
     ]
   }

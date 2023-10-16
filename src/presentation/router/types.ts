@@ -3,7 +3,7 @@ import { type RouteRecordRaw } from 'vue-router'
 import { type Role } from '@/domain/entities'
 
 export type RouteMeta = {
-  title?: string
+  title: string
   roles: Role[]
 }
 

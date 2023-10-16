@@ -1,8 +1,14 @@
 <script lang="ts" setup>
-import { GlobalSearch, LeftSidebar } from '@/presentation/components'
+import { computed } from 'vue'
+import { useRoute } from 'vue-router'
+
+import { GlobalSearch, LeftSidebar, PageTitle } from '@/presentation/components'
 import { useToggles } from '@/presentation/store'
 
+const route = useRoute()
 const toggles = useToggles()
+
+const title = computed(() => route.meta.title as string)
 </script>
 
 <template>
@@ -34,6 +40,7 @@ const toggles = useToggles()
 
     <q-page-container>
       <q-page padding>
+        <PageTitle :title="title" />
         <router-view />
       </q-page>
     </q-page-container>

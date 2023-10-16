@@ -2,13 +2,12 @@
 import { CreateFloatButton, TicketItem } from '@/presentation/components'
 import { useTicketListController } from '@/presentation/controllers'
 
-const { title, tickets } = useTicketListController()
+const { tickets } = useTicketListController()
 </script>
 
 <template>
-  <h2 class="text-h6 q-mb-md">{{ title }}</h2>
-  <div class="ticket-list__wrapper">
-    <q-list class="ticket-list__content">
+  <div class="list-tickets__wrapper">
+    <q-list class="list-tickets__content">
       <TicketItem v-for="ticket in tickets" :key="ticket.id" :ticket="ticket" />
     </q-list>
   </div>
@@ -16,7 +15,7 @@ const { title, tickets } = useTicketListController()
 </template>
 
 <style lang="scss" scoped>
-.ticket-list {
+.list-tickets {
   &__content {
     display: grid;
     grid-template-columns: 100%;
