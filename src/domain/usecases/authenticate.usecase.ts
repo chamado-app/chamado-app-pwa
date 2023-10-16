@@ -1,17 +1,9 @@
-export interface AuthenticateUsecase {
-  execute: (
-    props: AuthenticateUsecase.Input
-  ) => Promise<AuthenticateUsecase.Output>
-}
+import { type Usecase } from '@/domain/base'
+import {
+  type AuthenticateInputDto,
+  type AuthenticateOutputDto
+} from '@/domain/dto'
 
-export namespace AuthenticateUsecase {
-  export type Input = {
-    email: string
-    password: string
-  }
-
-  export type Output = {
-    type: string
-    accessToken: string
-  }
+export interface AuthenticateUsecase extends Usecase<AuthenticateOutputDto> {
+  execute: (props: AuthenticateInputDto) => Promise<AuthenticateOutputDto>
 }

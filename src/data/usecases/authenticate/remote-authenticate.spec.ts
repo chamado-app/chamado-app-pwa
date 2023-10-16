@@ -2,11 +2,9 @@ import { faker } from '@faker-js/faker'
 
 import { HttpPostClientSpy } from '@/__mocks__/data'
 import { type HttpPostClient, HttpStatusCode } from '@/data/protocols'
+import { type AuthenticateInputDto } from '@/domain/dto'
 import { UnauthorizedException, UnexpectedException } from '@/domain/errors'
-import type {
-  AuthenticateUsecase,
-  StoreAuthTokenUsecase
-} from '@/domain/usecases'
+import type { StoreAuthTokenUsecase } from '@/domain/usecases'
 
 import { RemoteAuthenticate } from '.'
 
@@ -26,7 +24,7 @@ const makeSut = (): SutTypes => {
 }
 
 describe('Usecaseses/RemoteAuthenticate', () => {
-  const mockedCredentials: AuthenticateUsecase.Input = {
+  const mockedCredentials: AuthenticateInputDto = {
     email: faker.internet.email(),
     password: faker.internet.password()
   }
