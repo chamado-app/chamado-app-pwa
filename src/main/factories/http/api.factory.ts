@@ -1,1 +1,4 @@
-export const useApiUrl = (uri: string): string => `http://localhost:3000/${uri}`
+import { constants } from '@/constants'
+
+export const useApiUrl = (uri: string): string =>
+  `${constants.envronment.apiUrl}/${uri}`

@@ -5,6 +5,7 @@ coverage
 *.local
 /cypress/videos/
 /cypress/screenshots/
+.env
 
 # Quasar core related directories
 .quasar
