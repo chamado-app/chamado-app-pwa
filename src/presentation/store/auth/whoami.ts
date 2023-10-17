@@ -9,7 +9,7 @@ export type WhoAmIState = {
   hasError: boolean
 }
 
-export const useWhoAmIState = defineStore('whoami', {
+export const useWhoAmIStore = defineStore('whoami', {
   state: (): WhoAmIState => ({
     data: undefined,
     loading: false,
