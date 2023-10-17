@@ -7,6 +7,7 @@ import {
 import { constants } from '@/constants'
 import { Role } from '@/domain/entities'
 import { type WhoAmIUsecase } from '@/domain/usecases'
+import { verifyAuthRoles } from '@/domain/utils'
 import { type RouteMeta, authRoutes } from '@/presentation/router'
 import { useWhoAmIStore } from '@/presentation/store'
 
@@ -49,7 +50,7 @@ export const useRouteGuard = (
 
   const hasValidAccess = (roles: Role[]): boolean => {
     if (whoAmIStore.hasError) return false
-    return roles.some((role) => whoAmIStore.roles.includes(role))
+    return verifyAuthRoles(roles, whoAmIStore.roles)
   }
 
   const setTitle = (title: string): void => {
