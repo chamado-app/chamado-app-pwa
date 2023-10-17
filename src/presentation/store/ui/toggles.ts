@@ -1,11 +1,11 @@
 import { defineStore } from 'pinia'
 
-type Store = {
+export type TogglesState = {
   sidebar?: boolean
 }
 
-export const useToggles = defineStore('toggles', {
-  state: (): Store => ({ sidebar: undefined }),
+export const useTogglesStore = defineStore('toggles', {
+  state: (): TogglesState => ({ sidebar: undefined }),
   actions: {
     toggleSidebar() {
       this.sidebar = !this.sidebar

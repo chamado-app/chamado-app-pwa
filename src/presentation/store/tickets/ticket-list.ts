@@ -2,12 +2,12 @@ import { defineStore } from 'pinia'
 
 import { type TicketEntity } from '@/domain/entities'
 
-type State = {
+export type TicketListState = {
   tickets: TicketEntity[]
 }
 
-export const useTickets = defineStore('tickets', {
-  state: (): State => ({
+export const useTicketListStore = defineStore('ticketList', {
+  state: (): TicketListState => ({
     tickets: []
   })
 })

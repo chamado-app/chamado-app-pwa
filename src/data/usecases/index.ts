@@ -1,4 +1,2 @@
-export * from './authenticate'
-export * from './list-tickets'
-export * from './store-auth-token'
-export * from './whoami'
+export * from './auth'
+export * from './tickets'

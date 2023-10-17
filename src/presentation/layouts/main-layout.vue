@@ -3,10 +3,10 @@ import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 
 import { GlobalSearch, LeftSidebar, PageTitle } from '@/presentation/components'
-import { useToggles } from '@/presentation/store'
+import { useTogglesStore } from '@/presentation/store'
 
 const route = useRoute()
-const toggles = useToggles()
+const toggles = useTogglesStore()
 
 const title = computed(() => route.meta.title as string)
 </script>

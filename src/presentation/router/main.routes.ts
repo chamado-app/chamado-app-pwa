@@ -1,3 +1,4 @@
+import { constants } from '@/constants'
 import { AuthenticatedRoles } from '@/domain/entities'
 
 import { type CustomRouteRecordRaw } from './types'
@@ -6,21 +7,25 @@ export const mainRoutes: CustomRouteRecordRaw[] = [
   {
     name: 'main',
     path: '/',
-    redirect: { name: 'list-tickets' },
+    redirect: { name: constants.routes.tickets.list },
     component: () => import('@/presentation/layouts/main-layout.vue'),
     children: [
       {
         path: '/tickets',
-        name: 'list-tickets',
+        name: constants.routes.tickets.list,
         component: () =>
-          import('@/presentation/pages/list-tickets/list-tickets-page.vue'),
+          import(
+            '@/presentation/pages/tickets/list-tickets/list-tickets-page.vue'
+          ),
         meta: { title: 'Chamados', roles: AuthenticatedRoles }
       },
       {
         path: '/tickets/:id',
-        name: 'show-ticket',
+        name: constants.routes.tickets.show,
         component: () =>
-          import('@/presentation/pages/view-ticket/view-ticket-page.vue'),
+          import(
+            '@/presentation/pages/tickets/view-ticket/view-ticket-page.vue'
+          ),
         meta: { title: 'Visualizar chamado', roles: AuthenticatedRoles }
       }
     ]

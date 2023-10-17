@@ -8,7 +8,7 @@ import {
 
 import type { RouteRecordRaw } from 'vue-router'
 
-import { useRouteGuard } from '@/infra/route'
+import { useRouteGuard } from '@/infra'
 import { useWhoAmIUsecase } from '@/main/factories'
 import { authRoutes, mainRoutes } from '@/presentation/router'
 

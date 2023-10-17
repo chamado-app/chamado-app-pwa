@@ -4,11 +4,12 @@ import {
   type Router
 } from 'vue-router'
 
+import { constants } from '@/constants'
 import { Role } from '@/domain/entities'
 import { type WhoAmIUsecase } from '@/domain/usecases'
-import { constants } from '@/infra/constants'
+import { verifyAuthRoles } from '@/domain/utils'
 import { type RouteMeta, authRoutes } from '@/presentation/router'
-import { useWhoAmIState } from '@/presentation/store'
+import { useWhoAmIStore } from '@/presentation/store'
 
 export const isOnlyGuestRoute = (meta: RouteMeta): boolean => {
   if (!meta.roles?.length) return true
@@ -25,7 +26,8 @@ export const useRouteGuard = (
   router: Router,
   whoAmIUsecase: WhoAmIUsecase
 ): void => {
-  const whoAmIStore = useWhoAmIState()
+  const authRoute = constants.routes.auth.authenticate
+  const whoAmIStore = useWhoAmIStore()
 
   const loadWhoAmI = async (): Promise<void> => {
     if (whoAmIStore.loading) return
@@ -42,13 +44,13 @@ export const useRouteGuard = (
   }
 
   const resetGuards = (next: NavigationGuardNext): void => {
-    next({ name: 'auth.authenticate' })
+    next({ name: authRoute })
     whoAmIStore.$reset()
   }
 
   const hasValidAccess = (roles: Role[]): boolean => {
     if (whoAmIStore.hasError) return false
-    return roles.some((role) => whoAmIStore.roles.includes(role))
+    return verifyAuthRoles(roles, whoAmIStore.roles)
   }
 
   const setTitle = (title: string): void => {
@@ -60,7 +62,7 @@ export const useRouteGuard = (
     setTitle(meta.title)
 
     if (isOnlyGuestRoute(meta)) {
-      isAuthRoute(to) ? next() : next({ name: 'auth.authenticate' })
+      isAuthRoute(to) ? next() : next({ name: authRoute })
       whoAmIStore.$reset()
       return
     }
