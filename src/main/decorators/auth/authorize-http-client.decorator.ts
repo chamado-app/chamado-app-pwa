@@ -1,3 +1,4 @@
+import { constants } from '@/constants'
 import {
   type HttpClient,
   HttpMethod,
@@ -6,7 +7,6 @@ import {
   type HttpResponse,
   type StorageGuetter
 } from '@/data/protocols'
-import { constants } from '@/infra/constants'
 
 export class AuthorizeHttpClientDecorator<T, R> implements HttpClient<T, R> {
   constructor(

@@ -4,11 +4,11 @@ import {
   type Router
 } from 'vue-router'
 
+import { constants } from '@/constants'
 import { Role } from '@/domain/entities'
 import { type WhoAmIUsecase } from '@/domain/usecases'
-import { constants } from '@/infra/constants'
 import { type RouteMeta, authRoutes } from '@/presentation/router'
-import { useWhoAmIState } from '@/presentation/store'
+import { useWhoAmIStore } from '@/presentation/store'
 
 export const isOnlyGuestRoute = (meta: RouteMeta): boolean => {
   if (!meta.roles?.length) return true
@@ -25,7 +25,7 @@ export const useRouteGuard = (
   router: Router,
   whoAmIUsecase: WhoAmIUsecase
 ): void => {
-  const whoAmIStore = useWhoAmIState()
+  const whoAmIStore = useWhoAmIStore()
 
   const loadWhoAmI = async (): Promise<void> => {
     if (whoAmIStore.loading) return

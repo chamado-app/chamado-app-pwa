@@ -1,6 +1,6 @@
+import { constants } from '@/constants'
 import { CookieStoreAuthToken } from '@/data/usecases'
 import type { StoreAuthTokenUsecase } from '@/domain/usecases'
-import { constants } from '@/infra/constants'
 import { useCookieStorage } from '@/main/factories'
 
 export const useStoreAuthToken = (): StoreAuthTokenUsecase => {
