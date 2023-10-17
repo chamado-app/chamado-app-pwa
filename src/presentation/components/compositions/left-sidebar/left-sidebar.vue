@@ -1,5 +1,7 @@
 <script lang="ts" setup>
-import { sidebarItems } from './sidebar-items'
+import { useLeftSidebarController } from './left-sidebar.controler'
+
+const { sidebarItems } = useLeftSidebarController()
 </script>
 
 <template>

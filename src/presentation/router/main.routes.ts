@@ -14,14 +14,18 @@ export const mainRoutes: CustomRouteRecordRaw[] = [
         path: '/tickets',
         name: constants.routes.tickets.list,
         component: () =>
-          import('@/presentation/pages/tickets/list-tickets/list-tickets.vue'),
+          import(
+            '@/presentation/pages/tickets/list-tickets/list-tickets-page.vue'
+          ),
         meta: { title: 'Chamados', roles: AuthenticatedRoles }
       },
       {
         path: '/tickets/:id',
         name: constants.routes.tickets.show,
         component: () =>
-          import('@/presentation/pages/tickets/view-ticket/view-ticket.vue'),
+          import(
+            '@/presentation/pages/tickets/view-ticket/view-ticket-page.vue'
+          ),
         meta: { title: 'Visualizar chamado', roles: AuthenticatedRoles }
       }
     ]
