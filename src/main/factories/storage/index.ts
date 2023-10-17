@@ -1,1 +1,1 @@
-export * from './cookie-storage.factory'
+export * from './cookie'

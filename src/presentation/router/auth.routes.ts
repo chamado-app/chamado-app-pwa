@@ -13,7 +13,9 @@ export const authRoutes: CustomRouteRecordRaw[] = [
         path: 'login',
         name: 'auth.authenticate',
         component: () =>
-          import('@/presentation/pages/authenticate/authenticate-page.vue'),
+          import(
+            '@/presentation/pages/auth/authenticate/authenticate-page.vue'
+          ),
         meta: { title: 'Login', roles: [Role.GUEST] }
       }
     ]
