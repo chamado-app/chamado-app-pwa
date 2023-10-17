@@ -25,6 +25,7 @@ export const useRouteGuard = (
   router: Router,
   whoAmIUsecase: WhoAmIUsecase
 ): void => {
+  const authRoute = constants.routes.auth.authenticate
   const whoAmIStore = useWhoAmIStore()
 
   const loadWhoAmI = async (): Promise<void> => {
@@ -42,7 +43,7 @@ export const useRouteGuard = (
   }
 
   const resetGuards = (next: NavigationGuardNext): void => {
-    next({ name: 'auth.authenticate' })
+    next({ name: authRoute })
     whoAmIStore.$reset()
   }
 
@@ -60,7 +61,7 @@ export const useRouteGuard = (
     setTitle(meta.title)
 
     if (isOnlyGuestRoute(meta)) {
-      isAuthRoute(to) ? next() : next({ name: 'auth.authenticate' })
+      isAuthRoute(to) ? next() : next({ name: authRoute })
       whoAmIStore.$reset()
       return
     }

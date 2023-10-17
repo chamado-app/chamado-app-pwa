@@ -1,3 +1,5 @@
+import { constants } from '@/constants'
+
 export type SidebarItem = {
   to: { name: string; params?: Record<string, string> }
   label: string
@@ -8,6 +10,6 @@ export const sidebarItems: SidebarItem[] = [
   {
     icon: 'mdi-tag-multiple-outline',
     label: 'Chamados',
-    to: { name: 'list-tickets' }
+    to: { name: constants.routes.tickets.list }
   }
 ]
