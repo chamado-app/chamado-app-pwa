@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { computed, inject, onBeforeMount, watch } from 'vue'
+import { computed, inject, onBeforeMount, onUnmounted, watch } from 'vue'
 
 import { type ListCategoriesUsecase } from '@/domain/usecases'
 import { PROVIDERS } from '@/presentation/providers'
@@ -42,6 +42,9 @@ const changePage = (page: number): void => {
 watch(() => pagination.value.page, loadCategories)
 
 onBeforeMount(loadCategories)
+onUnmounted(() => {
+  store.$reset()
+})
 </script>
 
 <template>
