@@ -20,6 +20,6 @@ export const useListCategoriesStore = defineStore('listCategories', {
     hasError: false,
     total: 0,
     skip: 0,
-    take: 3
+    take: 10
   })
 })

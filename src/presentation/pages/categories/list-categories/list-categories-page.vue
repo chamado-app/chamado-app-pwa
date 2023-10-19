@@ -33,13 +33,18 @@ const pagination = computed(() => ({
   total: Math.ceil(store.total / store.take)
 }))
 
-const tablePagination = computed(() => ({ ...pagination.value, page: 1 }))
+const tablePagination = computed(() => ({
+  ...pagination.value,
+  page: 1,
+  rowsNumber: store.total
+}))
 
 const changePage = (page: number): void => {
   store.$patch({ skip: (page - 1) * store.take })
 }
 
-watch(() => pagination.value.page, loadCategories)
+watch(() => store.skip, loadCategories)
+watch(() => store.take, loadCategories)
 
 onBeforeMount(loadCategories)
 onUnmounted(() => {
@@ -48,17 +53,40 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <q-table
-    flat
-    hide-pagination
-    :rows="store.data"
-    :loading="store.isLoading"
-    :pagination="tablePagination" />
-  <q-pagination
-    v-model="pagination.page"
-    :max-pages="6"
-    :max="pagination.total"
-    @update:model-value="changePage"
-    flat
-    direction-links />
+  <div class="list-wrapper">
+    <q-card class="list-section">
+      <q-card-section>
+        <q-table
+          flat
+          hide-pagination
+          :rows="store.data"
+          :loading="store.isLoading"
+          :pagination="tablePagination" />
+      </q-card-section>
+      <q-card-section class="flex justify-between">
+        <q-select
+          v-model="store.take"
+          :options="[5, 10, 20]"
+          outlined
+          dense
+          color="secondary" />
+        <q-pagination
+          v-model="pagination.page"
+          :max-pages="6"
+          :max="pagination.total"
+          @update:model-value="changePage"
+          flat
+          direction-links
+          color="secondary" />
+      </q-card-section>
+    </q-card>
+  </div>
 </template>
+
+<style lang="scss">
+.list-wrapper {
+  .list-section {
+    box-shadow: 0 0 4px 4px rgba(0, 0, 0, 0.04);
+  }
+}
+</style>
