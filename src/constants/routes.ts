@@ -5,5 +5,8 @@ export const routes = {
   tickets: {
     list: 'tickets.list',
     show: 'tickets.show'
+  },
+  categories: {
+    list: 'categories.list'
   }
 } as const
