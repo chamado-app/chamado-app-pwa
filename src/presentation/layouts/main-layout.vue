@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import {
   Breadcrumbs,
-  GlobalSearch,
+  // GlobalSearch,
   LeftSidebar
 } from '@/presentation/components'
 import { useTogglesStore } from '@/presentation/store'
@@ -22,7 +22,7 @@ const toggles = useTogglesStore()
             :icon="`mdi-menu${toggles.sidebar ? '-open' : ''}`"
             @click="toggles.toggleSidebar" />
 
-          <GlobalSearch />
+          <!-- <GlobalSearch /> -->
         </div>
 
         <q-space />
