@@ -2,7 +2,7 @@
 import { computed, inject, onBeforeMount, onUnmounted, watch } from 'vue'
 
 import { type ListCategoriesUsecase } from '@/domain/usecases'
-import { PaginationFooter } from '@/presentation/components'
+import { PaginationFooter, TableActions } from '@/presentation/components'
 import { PROVIDERS } from '@/presentation/providers'
 import { useListCategoriesStore } from '@/presentation/store'
 
@@ -60,28 +60,7 @@ onUnmounted(() => {
           :pagination="pagination"
           :columns="listCategoriesColumns">
           <template #body-cell-actions>
-            <q-td class="table-actions">
-              <q-btn
-                color="secondary"
-                rounded
-                flat
-                dense
-                icon="mdi-pencil-outline">
-                <q-tooltip anchor="top middle" self="bottom middle">
-                  Editar
-                </q-tooltip>
-              </q-btn>
-              <q-btn
-                color="secondary"
-                rounded
-                flat
-                dense
-                icon="mdi-delete-outline">
-                <q-tooltip anchor="top middle" self="bottom middle">
-                  Deletar
-                </q-tooltip>
-              </q-btn>
-            </q-td>
+            <TableActions />
           </template>
         </q-table>
       </q-card-section>
@@ -104,14 +83,5 @@ onUnmounted(() => {
   .list-section {
     box-shadow: 0 0 4px 4px rgba(0, 0, 0, 0.04);
   }
-}
-
-.table-actions {
-  display: grid;
-  grid-auto-flow: column;
-  grid-gap: 0.25rem;
-  grid-auto-columns: max-content;
-  grid-auto-rows: max-content;
-  justify-content: center;
 }
 </style>
