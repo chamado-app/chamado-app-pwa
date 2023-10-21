@@ -1,7 +1,12 @@
 <script lang="ts" setup>
 import { computed } from 'vue'
+import { useRoute } from 'vue-router'
 
-import { MainWrapper, PaginationFooter } from '@/presentation/components'
+import {
+  MainWrapper,
+  PageTitle,
+  PaginationFooter
+} from '@/presentation/components'
 
 const props = defineProps<{
   total: number
@@ -29,10 +34,18 @@ const pageValue = computed({
     emit('update:page', value)
   }
 })
+
+const route = useRoute()
+const title = computed(() => route.meta.title as string)
 </script>
 
 <template>
   <MainWrapper class="table-wrapper">
+    <q-card-section class="table-wrapper__section">
+      <div>
+        <PageTitle :title="title" />
+      </div>
+    </q-card-section>
     <q-card-section class="table-wrapper__section">
       <slot />
     </q-card-section>

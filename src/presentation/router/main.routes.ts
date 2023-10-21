@@ -5,9 +5,10 @@ import { type CustomRouteRecordRaw } from './types'
 
 export const mainRoutes: CustomRouteRecordRaw[] = [
   {
-    name: 'main',
+    name: constants.routes.home,
     path: '/',
     redirect: { name: constants.routes.tickets.list },
+    meta: { title: 'Home', roles: AuthenticatedRoles },
     component: () => import('@/presentation/layouts/main-layout.vue'),
     children: [
       {
@@ -30,12 +31,18 @@ export const mainRoutes: CustomRouteRecordRaw[] = [
       },
       {
         path: '/categories',
-        name: constants.routes.categories.list,
-        component: () =>
-          import(
-            '@/presentation/pages/categories/list-categories/list-categories-page.vue'
-          ),
-        meta: { title: 'Áreas', roles: AuthenticatedRoles }
+        meta: { title: 'Categorias', roles: AuthenticatedRoles },
+        children: [
+          {
+            path: '',
+            name: constants.routes.categories.list,
+            component: () =>
+              import(
+                '@/presentation/pages/categories/list-categories/list-categories-page.vue'
+              ),
+            meta: { title: 'Lista de áreas', roles: AuthenticatedRoles }
+          }
+        ]
       }
     ]
   }

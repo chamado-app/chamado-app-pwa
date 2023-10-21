@@ -2,13 +2,14 @@
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 
-import { GlobalSearch, LeftSidebar, PageTitle } from '@/presentation/components'
+import { GlobalSearch, LeftSidebar } from '@/presentation/components'
 import { useTogglesStore } from '@/presentation/store'
 
 const route = useRoute()
 const toggles = useTogglesStore()
-
-const title = computed(() => route.meta.title as string)
+const routeMatched = computed(() =>
+  route.matched.map(({ meta, name }) => ({ title: meta.title, name }))
+)
 </script>
 
 <template>
@@ -40,7 +41,16 @@ const title = computed(() => route.meta.title as string)
 
     <q-page-container>
       <q-page padding>
-        <PageTitle :title="title" />
+        <q-breadcrumbs align="left" active-color="primary">
+          <template v-slot:separator>
+            <q-icon name="mdi-arrow-right" />
+          </template>
+          <q-breadcrumbs-el
+            v-for="item in routeMatched"
+            :key="item.name"
+            :label="(item.title as string)"
+            :to="{ name: item.name }" />
+        </q-breadcrumbs>
         <router-view />
       </q-page>
     </q-page-container>

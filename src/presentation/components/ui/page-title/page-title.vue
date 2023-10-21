@@ -7,5 +7,5 @@ defineProps<PageTitleProps>()
 </script>
 
 <template>
-  <h2 class="text-h6 q-mb-md">{{ title }}</h2>
+  <h2 class="text-h6 text-subtitle1 text-weight-bold">{{ title }}</h2>
 </template>
