@@ -3,7 +3,7 @@ import { type QTableProps } from 'quasar'
 import { computed, inject, onBeforeMount, onUnmounted, watch } from 'vue'
 
 import { type ListCategoriesUsecase } from '@/domain/usecases'
-import { PaginationInfo } from '@/presentation/components'
+import { PaginationInfo, RowsPerPage } from '@/presentation/components'
 import { PROVIDERS } from '@/presentation/providers'
 import { useListCategoriesStore } from '@/presentation/store'
 
@@ -141,16 +141,7 @@ const columns: QTableProps['columns'] = [
         </q-table>
       </q-card-section>
       <q-card-section class="flex justify-between">
-        <div class="page-information">
-          <q-select
-            v-model="store.take"
-            :options="[5, 10, 20]"
-            outlined
-            dense
-            color="secondary" />
-
-          <span>Itens por página</span>
-        </div>
+        <RowsPerPage v-model="store.take" />
         <div class="page-information">
           <PaginationInfo
             :total="store.total"

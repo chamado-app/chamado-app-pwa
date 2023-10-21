@@ -1,7 +1,8 @@
 .body--light {
   color: $text;
 
-  .text-body {
+  .text-body,
+  .q-field__native {
     color: $text;
   }
 
