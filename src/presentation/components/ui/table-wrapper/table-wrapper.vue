@@ -14,11 +14,13 @@ const props = defineProps<{
   skip: number
   take: number
   page: number
+  search: string
 }>()
 
 const emit = defineEmits<{
   'update:take': [number]
   'update:page': [number]
+  'update:search': [string]
 }>()
 
 const takeValue = computed({
@@ -35,16 +37,31 @@ const pageValue = computed({
   }
 })
 
+const searchValue = computed({
+  get: () => props.search,
+  set: (value) => {
+    emit('update:search', value)
+  }
+})
+
 const route = useRoute()
 const title = computed(() => route.meta.title as string)
 </script>
 
 <template>
   <MainWrapper class="table-wrapper">
-    <q-card-section class="table-wrapper__section">
-      <div>
-        <PageTitle :title="title" />
-      </div>
+    <q-card-section class="table-wrapper__section table-wrapper__header">
+      <PageTitle :title="title" />
+      <q-input
+        v-model="searchValue"
+        debounce="400"
+        dense
+        outlined
+        placeholder="Pesquisar...">
+        <template #append>
+          <q-icon name="mdi-magnify" />
+        </template>
+      </q-input>
     </q-card-section>
     <q-card-section class="table-wrapper__section">
       <slot />
@@ -71,6 +88,19 @@ const title = computed(() => route.meta.title as string)
 
   &__section {
     padding: 0;
+  }
+
+  &__header {
+    display: grid;
+    gap: 0.75rem;
+
+    @media screen and (min-width: $breakpoint-sm-min) {
+      grid-template-columns: auto 16rem;
+    }
+
+    @media screen and (min-width: $breakpoint-md-min) {
+      grid-template-columns: auto 24rem;
+    }
   }
 }
 </style>

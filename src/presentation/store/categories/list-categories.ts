@@ -10,6 +10,7 @@ export type ListCategoriesState = {
   total: number
   skip: number
   take: number
+  search: string
 }
 
 export const useListCategoriesStore = defineStore('listCategories', {
@@ -20,7 +21,8 @@ export const useListCategoriesStore = defineStore('listCategories', {
     hasError: false,
     total: 0,
     skip: 0,
-    take: 10
+    take: 10,
+    search: ''
   }),
 
   actions: {

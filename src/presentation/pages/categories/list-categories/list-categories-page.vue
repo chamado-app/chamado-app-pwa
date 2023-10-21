@@ -18,6 +18,7 @@ const { pagination, store } = useListCategoriesController()
     :total="store.total"
     v-model:page="store.pagination.page"
     v-model:take="store.take"
+    v-model:search="store.search"
     @update:take="store.changeTake"
     @update:page="store.changePage">
     <q-table
