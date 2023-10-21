@@ -3,7 +3,7 @@ import { type QTableProps } from 'quasar'
 import { computed, inject, onBeforeMount, onUnmounted, watch } from 'vue'
 
 import { type ListCategoriesUsecase } from '@/domain/usecases'
-import { PaginationInfo, RowsPerPage } from '@/presentation/components'
+import { PaginationFooter } from '@/presentation/components'
 import { PROVIDERS } from '@/presentation/providers'
 import { useListCategoriesStore } from '@/presentation/store'
 
@@ -32,7 +32,7 @@ const loadCategories = async (): Promise<void> => {
 const pagination = computed(() => ({
   page: store.skip === 0 ? 1 : store.skip / store.take + 1,
   rowsPerPage: store.take,
-  total: Math.ceil(store.total / store.take)
+  pages: Math.ceil(store.total / store.take)
 }))
 
 const tablePagination = computed(() => ({
@@ -141,21 +141,13 @@ const columns: QTableProps['columns'] = [
         </q-table>
       </q-card-section>
       <q-card-section class="flex justify-between">
-        <RowsPerPage v-model="store.take" />
-        <div class="page-information">
-          <PaginationInfo
-            :total="store.total"
-            :skip="store.skip"
-            :take="store.take" />
-          <q-pagination
-            v-model="pagination.page"
-            :max-pages="6"
-            :max="pagination.total"
-            @update:model-value="changePage"
-            flat
-            direction-links
-            color="secondary" />
-        </div>
+        <PaginationFooter
+          :pages="pagination.pages"
+          :skip="store.skip"
+          :total="store.total"
+          v-model:page="pagination.page"
+          v-model:take="store.take"
+          @update:page="changePage" />
       </q-card-section>
     </q-card>
   </div>
