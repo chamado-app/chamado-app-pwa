@@ -18,8 +18,8 @@ export const useListCategoriesController = (): ListCategoriesController => {
     store.$patch({ isLoading: true })
 
     try {
-      const { skip, take } = store
-      const result = await listCategoriesUsecase.execute({ skip, take })
+      const { skip, take, search } = store
+      const result = await listCategoriesUsecase.execute({ skip, take, search })
       const { categories: data, total } = result
       store.$patch({ data, total })
     } catch (error) {
@@ -38,6 +38,7 @@ export const useListCategoriesController = (): ListCategoriesController => {
 
   watch(() => store.skip, loadCategories)
   watch(() => store.take, loadCategories)
+  watch(() => store.search, loadCategories)
 
   onBeforeMount(loadCategories)
   onUnmounted(() => {

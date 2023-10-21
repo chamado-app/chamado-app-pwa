@@ -15,7 +15,7 @@ export type HttpRequest<T> = {
   url: string
   body?: T
   headers?: Record<string, string>
-  params?: Record<string, string | number>
+  params?: Record<string, string | number | undefined>
 }
 
 export type HttpRequestRaw<T> = HttpRequest<T> & {

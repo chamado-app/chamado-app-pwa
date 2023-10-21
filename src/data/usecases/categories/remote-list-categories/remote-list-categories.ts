@@ -13,10 +13,10 @@ export class RemoteListCategoriesUsecase implements ListCategoriesUsecase {
   ) {}
 
   async execute(options: ListInputDto): Promise<ListCategoriesOutputDto> {
-    const { skip, take } = options
+    const { skip, take, search } = options
     const { statusCode, body } = await this.httpGetClient.get({
       url: this.url,
-      params: { skip, take }
+      params: { skip, take, search }
     })
 
     switch (statusCode) {
