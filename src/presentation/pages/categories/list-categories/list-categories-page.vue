@@ -2,11 +2,7 @@
 import { computed, inject, onBeforeMount, onUnmounted, watch } from 'vue'
 
 import { type ListCategoriesUsecase } from '@/domain/usecases'
-import {
-  MainWrapper,
-  PaginationFooter,
-  TableActions
-} from '@/presentation/components'
+import { TableActions, TableWrapper } from '@/presentation/components'
 import { PROVIDERS } from '@/presentation/providers'
 import { useListCategoriesStore } from '@/presentation/store'
 
@@ -51,31 +47,26 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <MainWrapper>
-    <q-card-section>
-      <q-table
-        flat
-        hide-pagination
-        binary-state-sort
-        row-key="id"
-        :rows="store.data"
-        :loading="store.isLoading"
-        :pagination="pagination"
-        :columns="listCategoriesColumns">
-        <template #body-cell-actions>
-          <TableActions />
-        </template>
-      </q-table>
-    </q-card-section>
-    <q-card-section class="flex justify-between">
-      <PaginationFooter
-        :pages="store.pagination.pages"
-        :skip="store.skip"
-        :total="store.total"
-        v-model:page="store.pagination.page"
-        v-model:take="store.take"
-        @update:take="store.changeTake"
-        @update:page="store.changePage" />
-    </q-card-section>
-  </MainWrapper>
+  <TableWrapper
+    :pages="store.pagination.pages"
+    :skip="store.skip"
+    :total="store.total"
+    v-model:page="store.pagination.page"
+    v-model:take="store.take"
+    @update:take="store.changeTake"
+    @update:page="store.changePage">
+    <q-table
+      flat
+      hide-pagination
+      binary-state-sort
+      row-key="id"
+      :rows="store.data"
+      :loading="store.isLoading"
+      :pagination="pagination"
+      :columns="listCategoriesColumns">
+      <template #body-cell-actions>
+        <TableActions />
+      </template>
+    </q-table>
+  </TableWrapper>
 </template>

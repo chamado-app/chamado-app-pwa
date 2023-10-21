@@ -3,18 +3,21 @@ import { computed } from 'vue'
 
 import { PaginationInfo, RowsPerPage } from '@/presentation/components/ui'
 
-const props = defineProps<{
+export type PaginationFooterProps = {
   total: number
   pages: number
   skip: number
   take: number
   page: number
-}>()
+}
 
-const emit = defineEmits<{
+export type PaginationFooterEmits = {
   'update:take': [number]
   'update:page': [number]
-}>()
+}
+
+const props = defineProps<PaginationFooterProps>()
+const emit = defineEmits<PaginationFooterEmits>()
 
 const takeValue = computed({
   get: () => props.take,
