@@ -41,10 +41,6 @@ const tablePagination = computed(() => ({
   rowsNumber: store.total
 }))
 
-const changePage = (page: number): void => {
-  store.$patch({ skip: (page - 1) * store.take })
-}
-
 watch(() => store.skip, loadCategories)
 watch(() => store.take, loadCategories)
 
@@ -147,7 +143,8 @@ const columns: QTableProps['columns'] = [
           :total="store.total"
           v-model:page="pagination.page"
           v-model:take="store.take"
-          @update:page="changePage" />
+          @update:take="store.changeTake"
+          @update:page="store.changePage" />
       </q-card-section>
     </q-card>
   </div>

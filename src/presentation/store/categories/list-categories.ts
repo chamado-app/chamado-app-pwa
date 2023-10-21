@@ -21,5 +21,15 @@ export const useListCategoriesStore = defineStore('listCategories', {
     total: 0,
     skip: 0,
     take: 10
-  })
+  }),
+
+  actions: {
+    changePage(page: number) {
+      this.skip = page === 1 ? 0 : (page - 1) * this.take
+    },
+
+    changeTake() {
+      this.skip = 0
+    }
+  }
 })
