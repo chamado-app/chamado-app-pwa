@@ -24,6 +24,7 @@ const { pagination, store } = useListCategoriesController()
       flat
       hide-pagination
       binary-state-sort
+      bordered
       row-key="id"
       :rows="store.data"
       :loading="store.isLoading"

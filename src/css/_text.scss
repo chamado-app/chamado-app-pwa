@@ -16,4 +16,15 @@
   .text-mantle {
     color: $mantle;
   }
+
+  .q-table {
+    thead tr {
+      background-color: $crust;
+      color: #000;
+    }
+
+    &__container {
+      color: $text;
+    }
+  }
 }

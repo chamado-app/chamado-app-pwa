@@ -32,11 +32,11 @@ const pageValue = computed({
 </script>
 
 <template>
-  <MainWrapper>
-    <q-card-section>
+  <MainWrapper class="table-wrapper">
+    <q-card-section class="table-wrapper__section">
       <slot />
     </q-card-section>
-    <q-card-section class="flex justify-between">
+    <q-card-section class="flex justify-between table-wrapper__section">
       <slot name="footer">
         <PaginationFooter
           :pages="pages"
@@ -48,3 +48,15 @@ const pageValue = computed({
     </q-card-section>
   </MainWrapper>
 </template>
+
+<style lang="scss" scoped>
+.table-wrapper {
+  display: grid;
+  gap: 1rem;
+  padding: 1rem;
+
+  &__section {
+    padding: 0;
+  }
+}
+</style>
