@@ -65,6 +65,7 @@ const title = computed(() => route.meta.title as string)
 <style lang="scss" scoped>
 .table-wrapper {
   display: grid;
+  grid-template-columns: 100%;
   gap: 1rem;
   padding: 1rem;
 

@@ -27,4 +27,10 @@
       color: $text;
     }
   }
+
+  .q-breadcrumbs {
+    &__separator {
+      color: $text;
+    }
+  }
 }
