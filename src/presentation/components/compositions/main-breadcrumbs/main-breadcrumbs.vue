@@ -11,7 +11,7 @@ const routeMatched = computed(() =>
 <template>
   <q-breadcrumbs align="left" active-color="primary">
     <template v-slot:separator>
-      <q-icon name="mdi-arrow-right" />
+      <q-icon size="1rem" name="mdi-arrow-right" />
     </template>
     <q-breadcrumbs-el
       v-for="item in routeMatched"

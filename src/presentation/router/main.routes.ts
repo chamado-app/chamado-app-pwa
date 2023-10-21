@@ -13,25 +13,32 @@ export const mainRoutes: CustomRouteRecordRaw[] = [
     children: [
       {
         path: '/tickets',
-        name: constants.routes.tickets.list,
-        component: () =>
-          import(
-            '@/presentation/pages/tickets/list-tickets/list-tickets-page.vue'
-          ),
-        meta: { title: 'Chamados', roles: AuthenticatedRoles }
+        meta: { title: 'Chamados', roles: AuthenticatedRoles },
+        children: [
+          {
+            path: '',
+            name: constants.routes.tickets.list,
+            component: () =>
+              import(
+                '@/presentation/pages/tickets/list-tickets/list-tickets-page.vue'
+              ),
+            meta: { title: 'Lista de chamados', roles: AuthenticatedRoles }
+          },
+          {
+            path: '/:id',
+            name: constants.routes.tickets.show,
+            component: () =>
+              import(
+                '@/presentation/pages/tickets/view-ticket/view-ticket-page.vue'
+              ),
+            meta: { title: 'Visualizar chamado', roles: AuthenticatedRoles }
+          }
+        ]
       },
+
       {
-        path: '/tickets/:id',
-        name: constants.routes.tickets.show,
-        component: () =>
-          import(
-            '@/presentation/pages/tickets/view-ticket/view-ticket-page.vue'
-          ),
-        meta: { title: 'Visualizar chamado', roles: AuthenticatedRoles }
-      },
-      {
-        path: '/categories',
-        meta: { title: 'Categorias', roles: AuthenticatedRoles },
+        path: '/areas',
+        meta: { title: 'Áreas', roles: AuthenticatedRoles },
         children: [
           {
             path: '',
