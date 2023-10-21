@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { type QTableProps } from 'quasar'
 import { computed, inject, onBeforeMount, onUnmounted, watch } from 'vue'
 
 import { type ListCategoriesUsecase } from '@/domain/usecases'
@@ -50,6 +51,53 @@ onBeforeMount(loadCategories)
 onUnmounted(() => {
   store.$reset()
 })
+
+const columns: QTableProps['columns'] = [
+  { name: 'name', field: 'name', label: 'Nome', align: 'left' },
+  {
+    name: 'description',
+    field: 'description',
+    label: 'Descrição',
+    align: 'left',
+    format: (value: string) => value || '-'
+  },
+  {
+    name: 'createdAt',
+    field: 'createdAt',
+    label: 'Criado em',
+    align: 'left',
+    format: (value: Date) => {
+      return value.toLocaleString(undefined, {
+        year: '2-digit',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit'
+      })
+    }
+  },
+  {
+    name: 'updatedAt',
+    field: 'updatedAt',
+    label: 'Atualizado em',
+    align: 'left',
+    format: (value: Date) => {
+      return value.toLocaleString(undefined, {
+        year: '2-digit',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit'
+      })
+    }
+  },
+  {
+    name: 'actions',
+    field: 'id',
+    label: 'Ações',
+    align: 'center'
+  }
+]
 </script>
 
 <template>
@@ -59,25 +107,65 @@ onUnmounted(() => {
         <q-table
           flat
           hide-pagination
+          binary-state-sort
+          row-key="id"
           :rows="store.data"
           :loading="store.isLoading"
-          :pagination="tablePagination" />
+          :pagination="tablePagination"
+          :columns="columns">
+          <template #body-cell-actions>
+            <q-td class="table-actions">
+              <q-btn
+                color="secondary"
+                rounded
+                flat
+                dense
+                icon="mdi-pencil-outline">
+                <q-tooltip anchor="top middle" self="bottom middle">
+                  Editar
+                </q-tooltip>
+              </q-btn>
+              <q-btn
+                color="secondary"
+                rounded
+                flat
+                dense
+                icon="mdi-delete-outline">
+                <q-tooltip anchor="top middle" self="bottom middle">
+                  Deletar
+                </q-tooltip>
+              </q-btn>
+            </q-td>
+          </template>
+        </q-table>
       </q-card-section>
       <q-card-section class="flex justify-between">
-        <q-select
-          v-model="store.take"
-          :options="[5, 10, 20]"
-          outlined
-          dense
-          color="secondary" />
-        <q-pagination
-          v-model="pagination.page"
-          :max-pages="6"
-          :max="pagination.total"
-          @update:model-value="changePage"
-          flat
-          direction-links
-          color="secondary" />
+        <div class="page-information">
+          <q-select
+            v-model="store.take"
+            :options="[5, 10, 20]"
+            outlined
+            dense
+            color="secondary" />
+
+          <span>Itens por página</span>
+        </div>
+        <div class="page-information">
+          <span>
+            Página <b> {{ pagination.page }} </b> de
+            <b> {{ pagination.total }} </b>, <b> {{ store.skip + 1 }} </b> até
+            <b> {{ store.skip + store.take }} </b> de
+            <b> {{ store.total }} </b> registros
+          </span>
+          <q-pagination
+            v-model="pagination.page"
+            :max-pages="6"
+            :max="pagination.total"
+            @update:model-value="changePage"
+            flat
+            direction-links
+            color="secondary" />
+        </div>
       </q-card-section>
     </q-card>
   </div>
@@ -88,5 +176,24 @@ onUnmounted(() => {
   .list-section {
     box-shadow: 0 0 4px 4px rgba(0, 0, 0, 0.04);
   }
+}
+
+.table-actions {
+  display: grid;
+  grid-auto-flow: column;
+  grid-gap: 0.25rem;
+  grid-auto-columns: max-content;
+  grid-auto-rows: max-content;
+  justify-content: center;
+}
+
+.page-information {
+  display: grid;
+  grid-auto-flow: column;
+  grid-gap: 0.5rem;
+  grid-auto-columns: max-content;
+  grid-auto-rows: max-content;
+  justify-content: center;
+  align-items: center;
 }
 </style>
