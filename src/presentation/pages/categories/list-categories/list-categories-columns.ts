@@ -1,6 +1,12 @@
 import { type QTableProps } from 'quasar'
 
 export const listCategoriesColumns: QTableProps['columns'] = [
+  {
+    name: 'id',
+    field: 'id',
+    label: 'Código',
+    align: 'left'
+  },
   { name: 'name', field: 'name', label: 'Nome', align: 'left' },
   {
     name: 'description',

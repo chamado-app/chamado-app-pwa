@@ -1,4 +1,5 @@
 export * from './action-button'
+export * from './copy-id-action'
 export * from './main-wrapper'
 export * from './page-title'
 export * from './pagination-info'

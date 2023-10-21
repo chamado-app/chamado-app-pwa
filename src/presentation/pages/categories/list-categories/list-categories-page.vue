@@ -1,5 +1,9 @@
 <script lang="ts" setup>
-import { TableActions, TableWrapper } from '@/presentation/components'
+import {
+  CopyIdAction,
+  TableActions,
+  TableWrapper
+} from '@/presentation/components'
 import { useListCategoriesController } from '@/presentation/controllers'
 
 import { listCategoriesColumns } from './list-categories-columns'
@@ -25,6 +29,9 @@ const { pagination, store } = useListCategoriesController()
       :loading="store.isLoading"
       :pagination="pagination"
       :columns="listCategoriesColumns">
+      <template #body-cell-id="{ value }">
+        <CopyIdAction :value="value" />
+      </template>
       <template #body-cell-actions>
         <TableActions />
       </template>
