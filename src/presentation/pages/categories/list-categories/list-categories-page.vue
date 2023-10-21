@@ -2,7 +2,11 @@
 import { computed, inject, onBeforeMount, onUnmounted, watch } from 'vue'
 
 import { type ListCategoriesUsecase } from '@/domain/usecases'
-import { PaginationFooter, TableActions } from '@/presentation/components'
+import {
+  MainWrapper,
+  PaginationFooter,
+  TableActions
+} from '@/presentation/components'
 import { PROVIDERS } from '@/presentation/providers'
 import { useListCategoriesStore } from '@/presentation/store'
 
@@ -47,41 +51,31 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="list-wrapper">
-    <q-card class="list-section">
-      <q-card-section>
-        <q-table
-          flat
-          hide-pagination
-          binary-state-sort
-          row-key="id"
-          :rows="store.data"
-          :loading="store.isLoading"
-          :pagination="pagination"
-          :columns="listCategoriesColumns">
-          <template #body-cell-actions>
-            <TableActions />
-          </template>
-        </q-table>
-      </q-card-section>
-      <q-card-section class="flex justify-between">
-        <PaginationFooter
-          :pages="store.pagination.pages"
-          :skip="store.skip"
-          :total="store.total"
-          v-model:page="store.pagination.page"
-          v-model:take="store.take"
-          @update:take="store.changeTake"
-          @update:page="store.changePage" />
-      </q-card-section>
-    </q-card>
-  </div>
+  <MainWrapper>
+    <q-card-section>
+      <q-table
+        flat
+        hide-pagination
+        binary-state-sort
+        row-key="id"
+        :rows="store.data"
+        :loading="store.isLoading"
+        :pagination="pagination"
+        :columns="listCategoriesColumns">
+        <template #body-cell-actions>
+          <TableActions />
+        </template>
+      </q-table>
+    </q-card-section>
+    <q-card-section class="flex justify-between">
+      <PaginationFooter
+        :pages="store.pagination.pages"
+        :skip="store.skip"
+        :total="store.total"
+        v-model:page="store.pagination.page"
+        v-model:take="store.take"
+        @update:take="store.changeTake"
+        @update:page="store.changePage" />
+    </q-card-section>
+  </MainWrapper>
 </template>
-
-<style lang="scss">
-.list-wrapper {
-  .list-section {
-    box-shadow: 0 0 4px 4px rgba(0, 0, 0, 0.04);
-  }
-}
-</style>
