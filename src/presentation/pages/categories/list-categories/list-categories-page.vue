@@ -3,6 +3,7 @@ import { type QTableProps } from 'quasar'
 import { computed, inject, onBeforeMount, onUnmounted, watch } from 'vue'
 
 import { type ListCategoriesUsecase } from '@/domain/usecases'
+import { PaginationInfo } from '@/presentation/components'
 import { PROVIDERS } from '@/presentation/providers'
 import { useListCategoriesStore } from '@/presentation/store'
 
@@ -151,12 +152,10 @@ const columns: QTableProps['columns'] = [
           <span>Itens por página</span>
         </div>
         <div class="page-information">
-          <span>
-            Página <b> {{ pagination.page }} </b> de
-            <b> {{ pagination.total }} </b>, <b> {{ store.skip + 1 }} </b> até
-            <b> {{ store.skip + store.take }} </b> de
-            <b> {{ store.total }} </b> registros
-          </span>
+          <PaginationInfo
+            :total="store.total"
+            :skip="store.skip"
+            :take="store.take" />
           <q-pagination
             v-model="pagination.page"
             :max-pages="6"
