@@ -30,14 +30,9 @@ const loadCategories = async (): Promise<void> => {
 }
 
 const pagination = computed(() => ({
-  page: store.skip === 0 ? 1 : store.skip / store.take + 1,
-  rowsPerPage: store.take,
-  pages: Math.ceil(store.total / store.take)
-}))
-
-const tablePagination = computed(() => ({
-  ...pagination.value,
+  ...store.pagination,
   page: 1,
+  rowsPerPage: store.take,
   rowsNumber: store.total
 }))
 
@@ -108,7 +103,7 @@ const columns: QTableProps['columns'] = [
           row-key="id"
           :rows="store.data"
           :loading="store.isLoading"
-          :pagination="tablePagination"
+          :pagination="pagination"
           :columns="columns">
           <template #body-cell-actions>
             <q-td class="table-actions">
@@ -138,10 +133,10 @@ const columns: QTableProps['columns'] = [
       </q-card-section>
       <q-card-section class="flex justify-between">
         <PaginationFooter
-          :pages="pagination.pages"
+          :pages="store.pagination.pages"
           :skip="store.skip"
           :total="store.total"
-          v-model:page="pagination.page"
+          v-model:page="store.pagination.page"
           v-model:take="store.take"
           @update:take="store.changeTake"
           @update:page="store.changePage" />
@@ -164,15 +159,5 @@ const columns: QTableProps['columns'] = [
   grid-auto-columns: max-content;
   grid-auto-rows: max-content;
   justify-content: center;
-}
-
-.page-information {
-  display: grid;
-  grid-auto-flow: column;
-  grid-gap: 0.5rem;
-  grid-auto-columns: max-content;
-  grid-auto-rows: max-content;
-  justify-content: center;
-  align-items: center;
 }
 </style>

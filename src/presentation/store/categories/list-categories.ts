@@ -31,5 +31,12 @@ export const useListCategoriesStore = defineStore('listCategories', {
     changeTake() {
       this.skip = 0
     }
+  },
+
+  getters: {
+    pagination: ({ skip, take, total }) => ({
+      page: skip === 0 ? 1 : skip / take + 1,
+      pages: Math.ceil(total / take)
+    })
   }
 })
