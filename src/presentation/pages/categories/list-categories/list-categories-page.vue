@@ -1,11 +1,12 @@
 <script lang="ts" setup>
-import { type QTableProps } from 'quasar'
 import { computed, inject, onBeforeMount, onUnmounted, watch } from 'vue'
 
 import { type ListCategoriesUsecase } from '@/domain/usecases'
 import { PaginationFooter } from '@/presentation/components'
 import { PROVIDERS } from '@/presentation/providers'
 import { useListCategoriesStore } from '@/presentation/store'
+
+import { listCategoriesColumns } from './list-categories-columns'
 
 const store = useListCategoriesStore()
 const listCategoriesUsecase = inject<ListCategoriesUsecase>(
@@ -43,53 +44,6 @@ onBeforeMount(loadCategories)
 onUnmounted(() => {
   store.$reset()
 })
-
-const columns: QTableProps['columns'] = [
-  { name: 'name', field: 'name', label: 'Nome', align: 'left' },
-  {
-    name: 'description',
-    field: 'description',
-    label: 'Descrição',
-    align: 'left',
-    format: (value: string) => value || '-'
-  },
-  {
-    name: 'createdAt',
-    field: 'createdAt',
-    label: 'Criado em',
-    align: 'left',
-    format: (value: Date) => {
-      return value.toLocaleString(undefined, {
-        year: '2-digit',
-        month: '2-digit',
-        day: '2-digit',
-        hour: '2-digit',
-        minute: '2-digit'
-      })
-    }
-  },
-  {
-    name: 'updatedAt',
-    field: 'updatedAt',
-    label: 'Atualizado em',
-    align: 'left',
-    format: (value: Date) => {
-      return value.toLocaleString(undefined, {
-        year: '2-digit',
-        month: '2-digit',
-        day: '2-digit',
-        hour: '2-digit',
-        minute: '2-digit'
-      })
-    }
-  },
-  {
-    name: 'actions',
-    field: 'id',
-    label: 'Ações',
-    align: 'center'
-  }
-]
 </script>
 
 <template>
@@ -104,7 +58,7 @@ const columns: QTableProps['columns'] = [
           :rows="store.data"
           :loading="store.isLoading"
           :pagination="pagination"
-          :columns="columns">
+          :columns="listCategoriesColumns">
           <template #body-cell-actions>
             <q-td class="table-actions">
               <q-btn
