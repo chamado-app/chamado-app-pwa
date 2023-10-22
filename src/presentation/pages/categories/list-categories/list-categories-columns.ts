@@ -44,11 +44,5 @@ export const listCategoriesColumns: QTableProps['columns'] = [
         minute: '2-digit'
       })
     }
-  },
-  {
-    name: 'actions',
-    field: 'id',
-    label: 'Ações',
-    align: 'center'
   }
 ]

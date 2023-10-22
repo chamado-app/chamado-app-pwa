@@ -25,7 +25,7 @@ export const mainRoutes: CustomRouteRecordRaw[] = [
             meta: { title: 'Lista de chamados', roles: AuthenticatedRoles }
           },
           {
-            path: '/:id',
+            path: ':id',
             name: constants.routes.tickets.show,
             component: () =>
               import(
@@ -48,6 +48,12 @@ export const mainRoutes: CustomRouteRecordRaw[] = [
                 '@/presentation/pages/categories/list-categories/list-categories-page.vue'
               ),
             meta: { title: 'Lista de áreas', roles: AuthenticatedRoles }
+          },
+          {
+            path: ':id',
+            name: constants.routes.categories.show,
+            component: () => '',
+            meta: { title: 'Visualizar área', roles: AuthenticatedRoles }
           }
         ]
       }

@@ -3,7 +3,8 @@ export const routes = {
     authenticate: 'auth.authenticate'
   },
   categories: {
-    list: 'categories.list'
+    list: 'categories.list',
+    show: 'categories.show'
   },
   home: 'home',
   tickets: {

@@ -11,18 +11,20 @@ defineProps<TableActionsProp>()
 </script>
 
 <template>
-  <q-td class="table-actions">
-    <ActionButton
-      v-if="!noEdit"
-      icon="mdi-pencil-outline"
-      tooltip="Editar"
-      @click="() => $emit('edit')" />
+  <q-td>
+    <div class="table-actions">
+      <ActionButton
+        v-if="!noEdit"
+        icon="mdi-pencil-outline"
+        tooltip="Editar"
+        @click="() => $emit('edit')" />
 
-    <ActionButton
-      v-if="!noDelete"
-      icon="mdi-delete-outline"
-      tooltip="Deletar"
-      @click="() => $emit('delete')" />
+      <ActionButton
+        v-if="!noDelete"
+        icon="mdi-delete-outline"
+        tooltip="Deletar"
+        @click="() => $emit('delete')" />
+    </div>
   </q-td>
 </template>
 
