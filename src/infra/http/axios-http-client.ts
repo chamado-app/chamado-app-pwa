@@ -10,7 +10,7 @@ import {
 
 export class AxiosHttpClient<T = any, R = any> implements HttpClient<T, R> {
   async request(request: HttpRequestRaw<T>): Promise<HttpResponse<R>> {
-    const { method, url, body, headers } = request
+    const { method, url, body, headers, params } = request
 
     let httpResponse: AxiosResponse<R>
     try {
@@ -18,6 +18,7 @@ export class AxiosHttpClient<T = any, R = any> implements HttpClient<T, R> {
         url,
         method,
         data: body,
+        params,
         headers
       })
     } catch (error: any) {

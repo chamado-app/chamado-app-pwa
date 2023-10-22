@@ -16,9 +16,13 @@
       }
 
       .q-router-link--exact-active {
-        background-image: linear-gradient(to right, $crust, $crust);
+        background-image: linear-gradient(to left, $crust, $crust);
       }
     }
+  }
+
+  .q-table thead tr {
+    background-color: $crust;
   }
 
   .ticket-item {

@@ -13,6 +13,12 @@ export const sidebarItems: SidebarItem[] = [
     label: 'Chamados',
     to: { name: constants.routes.tickets.list },
     roles: AuthenticatedRoles
+  },
+  {
+    icon: 'mdi-format-list-bulleted',
+    label: 'Áreas',
+    to: { name: constants.routes.categories.list },
+    roles: AuthenticatedRoles
   }
 ]
 

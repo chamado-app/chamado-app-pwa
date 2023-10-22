@@ -1,14 +1,12 @@
 <script lang="ts" setup>
-import { computed } from 'vue'
-import { useRoute } from 'vue-router'
-
-import { GlobalSearch, LeftSidebar, PageTitle } from '@/presentation/components'
+import {
+  Breadcrumbs,
+  // GlobalSearch,
+  LeftSidebar
+} from '@/presentation/components'
 import { useTogglesStore } from '@/presentation/store'
 
-const route = useRoute()
 const toggles = useTogglesStore()
-
-const title = computed(() => route.meta.title as string)
 </script>
 
 <template>
@@ -24,7 +22,7 @@ const title = computed(() => route.meta.title as string)
             :icon="`mdi-menu${toggles.sidebar ? '-open' : ''}`"
             @click="toggles.toggleSidebar" />
 
-          <GlobalSearch />
+          <!-- <GlobalSearch /> -->
         </div>
 
         <q-space />
@@ -39,8 +37,8 @@ const title = computed(() => route.meta.title as string)
     </q-drawer>
 
     <q-page-container>
-      <q-page padding>
-        <PageTitle :title="title" />
+      <q-page class="page__container" padding>
+        <Breadcrumbs />
         <router-view />
       </q-page>
     </q-page-container>
@@ -53,6 +51,19 @@ const title = computed(() => route.meta.title as string)
     display: flex;
     gap: 0.5rem;
     align-items: center;
+  }
+}
+
+.page {
+  &__container {
+    display: grid;
+    grid-auto-rows: max-content;
+    grid-template-columns: 100%;
+    gap: 0.5rem;
+
+    @media screen and (min-width: $breakpoint-sm-min) {
+      gap: 1rem;
+    }
   }
 }
 </style>
