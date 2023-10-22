@@ -7,15 +7,15 @@ import {
   TableWrapper
 } from '@/presentation/components'
 import { useListCategoriesController } from '@/presentation/controllers'
-import { useIsMobile, useTableColumns } from '@/presentation/utils'
+import { useDefaultTableProps, useTableColumns } from '@/presentation/utils'
 
 import {
   desktopTableColumns,
   mobileTableColumns
 } from './list-categories-columns'
 
-const isMobile = useIsMobile()
 const columns = useTableColumns(desktopTableColumns, mobileTableColumns)
+const defaultTableProps = useDefaultTableProps()
 const { pagination, store } = useListCategoriesController()
 </script>
 
@@ -30,14 +30,7 @@ const { pagination, store } = useListCategoriesController()
     @update:take="store.changeTake"
     @update:page="store.changePage">
     <q-table
-      flat
-      hide-pagination
-      :dense="isMobile"
-      :wrap-cells="isMobile"
-      :grid="isMobile"
-      binary-state-sort
-      bordered
-      row-key="id"
+      v-bind="defaultTableProps"
       :rows="store.data"
       :loading="store.isLoading"
       :pagination="pagination"
