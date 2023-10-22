@@ -1,10 +1,7 @@
-import { type TableColumns } from '@/presentation/types'
+import { type TableColumn } from '@/presentation/types'
+import { idTableColumn, timestepTableColumns } from '@/presentation/utils'
 
-const idColumn: TableColumns = [
-  { name: 'id', field: 'id', label: 'Código', align: 'left' }
-]
-
-const tableColumns: TableColumns = [
+const tableColumns: TableColumn[] = [
   { name: 'name', field: 'name', label: 'Nome', align: 'left' },
   {
     name: 'description',
@@ -13,37 +10,14 @@ const tableColumns: TableColumns = [
     align: 'left',
     format: (value: string) => value || '-'
   },
-  {
-    name: 'createdAt',
-    field: 'createdAt',
-    label: 'Criado em',
-    align: 'left',
-    format: (value: Date) => {
-      return value.toLocaleString(undefined, {
-        year: '2-digit',
-        month: '2-digit',
-        day: '2-digit',
-        hour: '2-digit',
-        minute: '2-digit'
-      })
-    }
-  },
-  {
-    name: 'updatedAt',
-    field: 'updatedAt',
-    label: 'Atualizado em',
-    align: 'left',
-    format: (value: Date) => {
-      return value.toLocaleString(undefined, {
-        year: '2-digit',
-        month: '2-digit',
-        day: '2-digit',
-        hour: '2-digit',
-        minute: '2-digit'
-      })
-    }
-  }
+  ...timestepTableColumns
 ]
 
-export const mobileTableColumns: TableColumns = [...tableColumns, ...idColumn]
-export const desktopTableColumns: TableColumns = [...idColumn, ...tableColumns]
+export const mobileTableColumns: TableColumn[] = [
+  ...tableColumns,
+  idTableColumn
+]
+export const desktopTableColumns: TableColumn[] = [
+  idTableColumn,
+  ...tableColumns
+]
