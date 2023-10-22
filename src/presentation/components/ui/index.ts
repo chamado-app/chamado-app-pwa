@@ -1,6 +1,7 @@
 export * from './action-button'
 export * from './copy-id-action'
 export * from './main-wrapper'
+export * from './mobile-table-row'
 export * from './page-title'
 export * from './pagination-info'
 export * from './q-col'
