@@ -30,8 +30,14 @@ export const useListCategoriesStore = defineStore('listCategories', {
       this.skip = page === 1 ? 0 : (page - 1) * this.take
     },
 
-    changeTake() {
+    changeTake(take: number) {
       this.skip = 0
+      this.take = take
+    },
+
+    changeSearch(search: string) {
+      this.search = search
+      this.changePage(1)
     }
   },
 
