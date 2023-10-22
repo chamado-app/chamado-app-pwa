@@ -6,3 +6,9 @@ export const useIsMobile = (): ComputedRef<boolean> => {
   const isMobile = computed(() => quasar.screen.lt.md)
   return isMobile
 }
+
+export const useScrollToTop =
+  (behavior: ScrollBehavior = 'instant'): (() => void) =>
+  (): void => {
+    window.scrollTo({ top: 0, behavior })
+  }

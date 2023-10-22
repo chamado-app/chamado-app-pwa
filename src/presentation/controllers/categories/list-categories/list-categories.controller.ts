@@ -3,6 +3,7 @@ import { computed, inject, onBeforeMount, onUnmounted, watch } from 'vue'
 import { type ListCategoriesUsecase } from '@/domain/usecases'
 import { PROVIDERS } from '@/presentation/providers'
 import { useListCategoriesStore } from '@/presentation/store'
+import { useScrollToTop } from '@/presentation/utils'
 
 import { type ListCategoriesController } from './types'
 
@@ -39,6 +40,7 @@ export const useListCategoriesController = (): ListCategoriesController => {
   watch(() => store.skip, loadCategories)
   watch(() => store.take, loadCategories)
   watch(() => store.search, loadCategories)
+  watch(() => store.isLoading, useScrollToTop())
 
   onBeforeMount(loadCategories)
   onUnmounted(() => {
