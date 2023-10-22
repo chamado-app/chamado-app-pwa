@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 export type ActionButtonProps = {
-  tooltip: string
+  tooltip?: string
   icon: string
 }
 
@@ -11,12 +11,13 @@ defineEmits(['click'])
 <template>
   <q-btn
     :icon="icon"
-    color="secondary"
+    color="white"
     dense
     flat
+    type="button"
     rounded
-    @click="() => $emit('click')">
-    <q-tooltip anchor="top middle" self="bottom middle">
+    @click.prevent.stop="() => $emit('click')">
+    <q-tooltip v-if="tooltip" anchor="top middle" self="bottom middle">
       {{ tooltip }}
     </q-tooltip>
   </q-btn>

@@ -22,7 +22,7 @@ const copy = async (): Promise<void> => {
 <template>
   <q-td>
     <q-btn
-      class="text-weight-regular"
+      class="text-weight-regular copy-id-action__button"
       color="secondary"
       flat
       dense
@@ -41,11 +41,17 @@ const copy = async (): Promise<void> => {
 </template>
 
 <style lang="scss">
-.copy-id-action__content {
-  display: grid;
-  grid-gap: 0.25rem;
-  grid-auto-flow: column;
-  align-items: center;
-  font-size: 13px;
+.copy-id-action {
+  &__button {
+    z-index: 2;
+  }
+
+  &__content {
+    display: grid;
+    grid-gap: 0.25rem;
+    grid-auto-flow: column;
+    align-items: center;
+    font-size: 13px;
+  }
 }
 </style>

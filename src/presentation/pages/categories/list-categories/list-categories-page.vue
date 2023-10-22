@@ -2,8 +2,8 @@
 import { constants } from '@/constants'
 import {
   CopyIdAction,
+  DesktopTableRow,
   MobileTableRow,
-  TableActions,
   TableWrapper
 } from '@/presentation/components'
 import { useListCategoriesController } from '@/presentation/controllers'
@@ -36,18 +36,25 @@ const { pagination, store } = useListCategoriesController()
       :loading="store.isLoading"
       :pagination="pagination"
       :columns="listCategoriesColumns">
-      <template v-slot:item="props">
+      <template #item="props">
         <MobileTableRow
           :columns="props.cols"
           :id="props.key"
-          :route="constants.routes.categories.show" />
+          :route="constants.routes.categories.show">
+          <template #list-item-value-id="{ value }">
+            <CopyIdAction :value="value" />
+          </template>
+        </MobileTableRow>
       </template>
-
-      <template #body-cell-id="{ value }">
-        <CopyIdAction :value="value" />
-      </template>
-      <template #body-cell-actions>
-        <TableActions />
+      <template #body="props">
+        <DesktopTableRow
+          :columns="props.cols"
+          :id="props.key"
+          :route="constants.routes.categories.show">
+          <template #list-item-id="{ column }">
+            <CopyIdAction :value="column.value" />
+          </template>
+        </DesktopTableRow>
       </template>
     </q-table>
   </TableWrapper>
