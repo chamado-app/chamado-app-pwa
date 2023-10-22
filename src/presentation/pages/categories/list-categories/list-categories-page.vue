@@ -1,4 +1,7 @@
 <script lang="ts" setup>
+import { useQuasar } from 'quasar'
+import { computed } from 'vue'
+
 import { constants } from '@/constants'
 import {
   CopyIdAction,
@@ -8,8 +11,16 @@ import {
 } from '@/presentation/components'
 import { useListCategoriesController } from '@/presentation/controllers'
 
-import { listCategoriesColumns } from './list-categories-columns'
+import {
+  listCategoriesColumnsDesktop,
+  listCategoriesColumnsMobile
+} from './list-categories-columns'
 
+const quasar = useQuasar()
+const isMobile = computed(() => quasar.screen.lt.md)
+const columns = computed(() =>
+  isMobile.value ? listCategoriesColumnsMobile : listCategoriesColumnsDesktop
+)
 const { pagination, store } = useListCategoriesController()
 </script>
 
@@ -26,16 +37,16 @@ const { pagination, store } = useListCategoriesController()
     <q-table
       flat
       hide-pagination
-      :dense="$q.screen.lt.md"
-      :wrap-cells="$q.screen.lt.md"
-      :grid="$q.screen.lt.md"
+      :dense="isMobile"
+      :wrap-cells="isMobile"
+      :grid="isMobile"
       binary-state-sort
       bordered
       row-key="id"
       :rows="store.data"
       :loading="store.isLoading"
       :pagination="pagination"
-      :columns="listCategoriesColumns">
+      :columns="columns">
       <template #item="props">
         <MobileTableRow
           :columns="props.cols"

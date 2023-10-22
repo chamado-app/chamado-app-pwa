@@ -1,12 +1,10 @@
 import { type QTableProps } from 'quasar'
 
-export const listCategoriesColumns: QTableProps['columns'] = [
-  {
-    name: 'id',
-    field: 'id',
-    label: 'Código',
-    align: 'left'
-  },
+const idColumn: QTableProps['columns'] = [
+  { name: 'id', field: 'id', label: 'Código', align: 'left' }
+]
+
+const listCategoriesColumns: QTableProps['columns'] = [
   { name: 'name', field: 'name', label: 'Nome', align: 'left' },
   {
     name: 'description',
@@ -45,4 +43,14 @@ export const listCategoriesColumns: QTableProps['columns'] = [
       })
     }
   }
+]
+
+export const listCategoriesColumnsMobile: QTableProps['columns'] = [
+  ...listCategoriesColumns,
+  ...idColumn
+]
+
+export const listCategoriesColumnsDesktop: QTableProps['columns'] = [
+  ...idColumn,
+  ...listCategoriesColumns
 ]
