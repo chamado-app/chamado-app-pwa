@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
-import { PaginationInfo, RowsPerPage } from '@/presentation/components/ui'
+import { PaginationInfo, RowsPerPage } from '@/presentation/components'
+import { useIsMobile } from '@/presentation/utils'
 
 export type PaginationFooterProps = {
   total: number
@@ -32,6 +33,11 @@ const pageValue = computed({
     emit('update:page', value)
   }
 })
+
+const isMobile = useIsMobile()
+const selectPages = computed(() =>
+  Array.from({ length: props.pages }, (_, i) => i + 1)
+)
 </script>
 
 <template>
@@ -39,7 +45,15 @@ const pageValue = computed({
     <RowsPerPage v-model="takeValue" />
     <div class="pagination-footer__info">
       <PaginationInfo :total="total" :skip="skip" :take="takeValue" />
+      <q-select
+        v-if="isMobile"
+        v-model="pageValue"
+        :options="selectPages"
+        color="secondary"
+        dense
+        borderless />
       <q-pagination
+        v-else
         v-model="pageValue"
         :max-pages="6"
         :max="pages"
