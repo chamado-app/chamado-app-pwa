@@ -1,10 +1,10 @@
-import { type QTableProps } from 'quasar'
+import { type TableColumns } from '@/presentation/types'
 
-const idColumn: QTableProps['columns'] = [
+const idColumn: TableColumns = [
   { name: 'id', field: 'id', label: 'Código', align: 'left' }
 ]
 
-const listCategoriesColumns: QTableProps['columns'] = [
+const tableColumns: TableColumns = [
   { name: 'name', field: 'name', label: 'Nome', align: 'left' },
   {
     name: 'description',
@@ -45,12 +45,5 @@ const listCategoriesColumns: QTableProps['columns'] = [
   }
 ]
 
-export const listCategoriesColumnsMobile: QTableProps['columns'] = [
-  ...listCategoriesColumns,
-  ...idColumn
-]
-
-export const listCategoriesColumnsDesktop: QTableProps['columns'] = [
-  ...idColumn,
-  ...listCategoriesColumns
-]
+export const mobileTableColumns: TableColumns = [...tableColumns, ...idColumn]
+export const desktopTableColumns: TableColumns = [...idColumn, ...tableColumns]

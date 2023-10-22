@@ -28,7 +28,7 @@ const copy = async (): Promise<void> => {
       dense
       rounded
       size="md"
-      @click="copy">
+      @click.prevent.stop="copy">
       <template #default>
         <div class="text-body copy-id-action__content">
           {{ croppedValue }}

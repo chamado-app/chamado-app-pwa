@@ -1,7 +1,4 @@
 <script lang="ts" setup>
-import { useQuasar } from 'quasar'
-import { computed } from 'vue'
-
 import { constants } from '@/constants'
 import {
   CopyIdAction,
@@ -10,17 +7,15 @@ import {
   TableWrapper
 } from '@/presentation/components'
 import { useListCategoriesController } from '@/presentation/controllers'
+import { useIsMobile, useTableColumns } from '@/presentation/utils'
 
 import {
-  listCategoriesColumnsDesktop,
-  listCategoriesColumnsMobile
+  desktopTableColumns,
+  mobileTableColumns
 } from './list-categories-columns'
 
-const quasar = useQuasar()
-const isMobile = computed(() => quasar.screen.lt.md)
-const columns = computed(() =>
-  isMobile.value ? listCategoriesColumnsMobile : listCategoriesColumnsDesktop
-)
+const isMobile = useIsMobile()
+const columns = useTableColumns(desktopTableColumns, mobileTableColumns)
 const { pagination, store } = useListCategoriesController()
 </script>
 

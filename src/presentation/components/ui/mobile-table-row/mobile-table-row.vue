@@ -19,7 +19,7 @@ defineProps<MobileTableRowProps>()
     <router-link
       :to="{ name: route, params: { id } }"
       class="mobile-table-row__link">
-      <q-card bordered flat class="mobile-table-row__item">
+      <q-card v-ripple:secondary bordered flat class="mobile-table-row__item">
         <q-list dense class="mobile-table-row__content">
           <template v-for="col in columns" :key="col.name">
             <slot :name="`list-item-${col.name}`" :column="col">
