@@ -1,8 +1,10 @@
 <script lang="ts" setup>
 import { reactive } from 'vue'
 
+import { ActionButton } from '@/presentation/components'
+
 export type DeleteRegisterProps = {
-  handleDelete: () => Promise<void>
+  deleteHandler: () => Promise<void>
 }
 
 const state = reactive({
@@ -11,23 +13,35 @@ const state = reactive({
 })
 
 const props = defineProps<DeleteRegisterProps>()
-const emit = defineEmits(['onDeleted'])
+const emit = defineEmits<{ onDeleted: [] }>()
+
+const resetState = (): void => {
+  state.isLoading = false
+  state.isOpen = false
+}
+
+const onOpen = (): void => {
+  state.isOpen = true
+}
+
+const onClose = (): void => {
+  resetState()
+}
 
 const onConfirm = async (): Promise<void> => {
   if (state.isLoading) return
-  state.isLoading = true
 
-  try {
-    await props.handleDelete()
-    emit('onDeleted')
-  } catch (error) {
-  } finally {
-    state.isLoading = false
-  }
+  state.isLoading = true
+  await props.deleteHandler()
+  resetState()
+  emit('onDeleted')
 }
 </script>
 
 <template>
+  <slot name="handler">
+    <ActionButton @click="onOpen" icon="mdi-delete-outline" />
+  </slot>
   <q-dialog v-model="state.isOpen" persistent>
     <q-card class="delete-action__wrapper">
       <q-card-section
@@ -35,7 +49,7 @@ const onConfirm = async (): Promise<void> => {
         <h2 class="text-subtitle2 text-body-inverted">
           Deseja excluir o registro?
         </h2>
-        <q-btn v-close-popup flat dense round icon="mdi-close" />
+        <q-btn @click.stop="onClose" flat dense round icon="mdi-close" />
       </q-card-section>
       <q-card-section class="delete-action__content">
         <p class="text-caption no-margin">
@@ -46,7 +60,7 @@ const onConfirm = async (): Promise<void> => {
       <q-card-actions align="right">
         <q-btn
           :disable="state.isLoading"
-          v-close-popup
+          @click.stop="onClose"
           no-caps
           flat
           label="Cancelar"

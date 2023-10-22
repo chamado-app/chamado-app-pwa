@@ -2,7 +2,6 @@
 import { constants } from '@/constants'
 import {
   CopyIdAction,
-  DeleteAction,
   DesktopTableRow,
   MobileTableRow,
   TableWrapper
@@ -18,6 +17,10 @@ import {
 const columns = useTableColumns(desktopTableColumns, mobileTableColumns)
 const defaultTableProps = useDefaultTableProps()
 const { pagination, store } = useListCategoriesController()
+
+const deleteHandler = async (): Promise<void> => {
+  //
+}
 </script>
 
 <template>
@@ -51,7 +54,8 @@ const { pagination, store } = useListCategoriesController()
         <DesktopTableRow
           :columns="props.cols"
           :id="props.key"
-          :route="constants.routes.categories.show">
+          :route="constants.routes.categories.show"
+          :delete-handler="deleteHandler">
           <template #list-item-id="{ column }">
             <CopyIdAction :value="column.value" />
           </template>
@@ -59,5 +63,4 @@ const { pagination, store } = useListCategoriesController()
       </template>
     </q-table>
   </TableWrapper>
-  <DeleteAction />
 </template>
