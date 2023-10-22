@@ -1,11 +1,13 @@
 export enum HttpMethod {
   get = 'GET',
-  post = 'POST'
+  post = 'POST',
+  delete = 'DELETE'
 }
 
 export enum HttpStatusCode {
   ok = 200,
   created = 201,
+  noContent = 204,
   unauthorized = 401,
   notFound = 404,
   internalServerError = 500
@@ -35,8 +37,13 @@ export interface HttpPostClient<T = any, R = any> {
   post: (props: HttpRequest<T>) => Promise<HttpResponse<R>>
 }
 
+export interface HttpDeleteClient<T = any, R = any> {
+  delete: (props: HttpRequest<T>) => Promise<HttpResponse<R>>
+}
+
 export interface HttpClient<T = any, R = any>
   extends HttpPostClient<T, R>,
-    HttpGetClient<T, R> {
+    HttpGetClient<T, R>,
+    HttpDeleteClient<T, R> {
   request: (props: HttpRequestRaw<T>) => Promise<HttpResponse<R>>
 }

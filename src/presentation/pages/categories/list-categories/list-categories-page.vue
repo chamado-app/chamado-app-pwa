@@ -2,6 +2,7 @@
 import { constants } from '@/constants'
 import {
   CopyIdAction,
+  DeleteAction,
   DesktopTableRow,
   MobileTableRow,
   TableWrapper
@@ -58,4 +59,5 @@ const { pagination, store } = useListCategoriesController()
       </template>
     </q-table>
   </TableWrapper>
+  <DeleteAction />
 </template>
