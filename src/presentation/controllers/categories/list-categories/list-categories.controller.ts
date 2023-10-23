@@ -22,7 +22,7 @@ export const useListCategoriesController = (): ListCategoriesController => {
       const { skip, take, search } = store
       const result = await listCategoriesUsecase.execute({ skip, take, search })
       const { categories: data, total } = result
-      store.$patch({ data, total })
+      store.$patch({ data, total, isLoaded: true })
     } catch (error) {
       store.$patch({ hasError: true, total: 0 })
     } finally {

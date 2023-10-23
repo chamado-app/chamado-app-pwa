@@ -28,6 +28,7 @@ const { deleteHandler } = useDeleteCategoryController({ loadCategories })
     :pages="store.pagination.pages"
     :skip="store.skip"
     :total="store.total"
+    :no-results="store.noResults"
     :no-registers="store.noRegisters"
     :no-registers-form-path="constants.routes.categories.create"
     v-model:page="store.pagination.page"
@@ -38,6 +39,7 @@ const { deleteHandler } = useDeleteCategoryController({ loadCategories })
     @update:search="store.changeSearch">
     <q-table
       v-bind="defaultTableProps"
+      no-results-label=""
       :rows="store.data"
       :loading="store.isLoading"
       :pagination="pagination"

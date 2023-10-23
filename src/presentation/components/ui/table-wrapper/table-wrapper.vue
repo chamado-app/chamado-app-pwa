@@ -5,6 +5,7 @@ import { useRoute } from 'vue-router'
 import {
   MainWrapper,
   NoRegisters,
+  NoResults,
   PageTitle,
   PaginationFooter
 } from '@/presentation/components'
@@ -17,6 +18,7 @@ const props = defineProps<{
   page: number
   search: string
   noRegisters: boolean
+  noResults: boolean
   noRegistersTitle?: string
   noRegistersMessage?: string
   noRegistersFormPath?: string
@@ -78,19 +80,27 @@ const title = computed(() => route.meta.title as string)
         </template>
       </q-input>
     </q-card-section>
-    <q-card-section class="table-wrapper__section">
-      <slot />
-    </q-card-section>
-    <q-card-section class="flex justify-between table-wrapper__section">
-      <slot name="footer">
-        <PaginationFooter
-          :pages="pages"
-          :skip="skip"
-          :total="total"
-          v-model:page="pageValue"
-          v-model:take="takeValue" />
+
+    <template v-if="noResults">
+      <slot name="no-results">
+        <NoResults />
       </slot>
-    </q-card-section>
+    </template>
+    <template v-else>
+      <q-card-section class="table-wrapper__section">
+        <slot />
+      </q-card-section>
+      <q-card-section class="flex justify-between table-wrapper__section">
+        <slot name="footer">
+          <PaginationFooter
+            :pages="pages"
+            :skip="skip"
+            :total="total"
+            v-model:page="pageValue"
+            v-model:take="takeValue" />
+        </slot>
+      </q-card-section>
+    </template>
   </MainWrapper>
 </template>
 

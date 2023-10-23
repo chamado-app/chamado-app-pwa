@@ -47,6 +47,8 @@ export const useListCategoriesStore = defineStore('listCategories', {
       pages: Math.ceil(state.total / state.take)
     }),
 
-    noRegisters: (state) => !state.total && !state.isLoading && !state.search
+    noRegisters: (state) => !state.total && !state.isLoading && !state.search,
+
+    noResults: (state) => !state.total && !!state.search
   }
 })
