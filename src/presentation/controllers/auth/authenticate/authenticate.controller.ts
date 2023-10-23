@@ -1,6 +1,7 @@
 import { inject, reactive } from 'vue'
 import { useRouter } from 'vue-router'
 
+import { constants } from '@/constants'
 import { type Notifier } from '@/data/protocols'
 import { type AuthenticateUsecase } from '@/domain/usecases'
 import { PROVIDERS } from '@/presentation/providers'
@@ -27,7 +28,7 @@ export const useAuthenticateController = (): AuthenticateController => {
 
     try {
       await authenticateUsecase.execute({ ...state.form })
-      void router.replace({ name: 'main' })
+      void router.replace({ name: constants.routes.home })
     } catch (error: any) {
       notifier.error({ message: error.message })
       state.loading = false

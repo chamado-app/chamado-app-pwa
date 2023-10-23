@@ -8,7 +8,7 @@ export const useIsMobile = (): ComputedRef<boolean> => {
 }
 
 export const useScrollToTop =
-  (behavior: ScrollBehavior = 'instant'): (() => void) =>
+  (behavior: ScrollBehavior = 'smooth'): (() => void) =>
   (): void => {
     window.scrollTo({ top: 0, behavior })
   }
