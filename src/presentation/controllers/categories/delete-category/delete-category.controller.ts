@@ -21,7 +21,7 @@ export const useDeleteCategoryController = (
   const deleteHandler = async (id: string): Promise<void> => {
     try {
       await deleteCategoryUsecase.execute(id)
-      notifier.success({ message: 'Categoria excluída com sucesso.' })
+      notifier.success({ message: 'Área excluída com sucesso.' })
       void props.loadCategories()
     } catch (error: any) {
       notifier.error({ message: error.message })
