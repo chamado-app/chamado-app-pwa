@@ -6,7 +6,10 @@ import {
   MobileTableRow,
   TableWrapper
 } from '@/presentation/components'
-import { useListCategoriesController } from '@/presentation/controllers'
+import {
+  useDeleteCategoryController,
+  useListCategoriesController
+} from '@/presentation/controllers'
 import { useDefaultTableProps, useTableColumns } from '@/presentation/utils'
 
 import {
@@ -16,7 +19,8 @@ import {
 
 const columns = useTableColumns(desktopTableColumns, mobileTableColumns)
 const defaultTableProps = useDefaultTableProps()
-const { pagination, store } = useListCategoriesController()
+const { pagination, store, loadCategories } = useListCategoriesController()
+const { deleteHandler } = useDeleteCategoryController({ loadCategories })
 </script>
 
 <template>
@@ -50,7 +54,8 @@ const { pagination, store } = useListCategoriesController()
         <DesktopTableRow
           :columns="props.cols"
           :id="props.key"
-          :route="constants.routes.categories.show">
+          :route="constants.routes.categories.show"
+          :delete-handler="() => deleteHandler(props.key)">
           <template #list-item-id="{ column }">
             <CopyIdAction :value="column.value" />
           </template>

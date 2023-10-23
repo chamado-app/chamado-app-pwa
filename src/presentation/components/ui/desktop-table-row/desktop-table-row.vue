@@ -11,10 +11,11 @@ export type DesktopRowProps = {
   columns: Column[]
   id: string
   route: string
+  deleteHandler?: () => Promise<void>
 }
 
 defineProps<DesktopRowProps>()
-defineEmits(['delete'])
+defineEmits(['onDeleted'])
 </script>
 
 <template>
@@ -30,7 +31,9 @@ defineEmits(['delete'])
       v-ripple:secondary
       :to="{ name: route, params: { id } }"
       class="table-row__actions">
-      <TableActions @delete="() => $emit('delete')" />
+      <TableActions
+        :delete-handler="deleteHandler"
+        @on-deleted="() => $emit('onDeleted')" />
     </router-link>
   </q-tr>
 </template>

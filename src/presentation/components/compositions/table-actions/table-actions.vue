@@ -1,21 +1,20 @@
 <script lang="ts" setup>
-import { ActionButton } from '@/presentation/components/ui'
+import { DeleteAction } from '@/presentation/components'
 
 export type TableActionsProp = {
-  noDelete?: boolean
+  deleteHandler?: () => Promise<void>
 }
 
-defineEmits(['delete'])
+defineEmits(['onDeleted'])
 defineProps<TableActionsProp>()
 </script>
 
 <template>
   <div class="table-actions">
-    <ActionButton
-      v-if="!noDelete"
-      icon="mdi-delete-outline"
-      tooltip="Deletar"
-      @click="() => $emit('delete')" />
+    <DeleteAction
+      v-if="!!deleteHandler"
+      @on-deleted="() => $emit('onDeleted')"
+      :delete-handler="deleteHandler" />
   </div>
 </template>
 

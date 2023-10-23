@@ -6,4 +6,5 @@ import { type ComputedPagination } from '@/presentation/types'
 export interface ListCategoriesController {
   store: ReturnType<typeof useListCategoriesStore>
   pagination: ComputedRef<ComputedPagination>
+  loadCategories: () => Promise<void>
 }
