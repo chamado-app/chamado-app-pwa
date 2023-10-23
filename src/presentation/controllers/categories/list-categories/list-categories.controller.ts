@@ -47,5 +47,5 @@ export const useListCategoriesController = (): ListCategoriesController => {
     store.$reset()
   })
 
-  return { pagination, store }
+  return { pagination, store, loadCategories }
 }

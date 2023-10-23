@@ -5,12 +5,14 @@ import { PROVIDERS } from '@/presentation/providers'
 
 import {
   useAuthenticateUsecase,
+  useDeleteCategoryUsecase,
   useListCategoriesUsecase,
   useListTicketsUsecase,
   useNotifier
 } from './factories'
 
 provide(PROVIDERS.AUTHENTICATE_USECASE, useAuthenticateUsecase())
+provide(PROVIDERS.DELETE_CATEGORY_USECASE, useDeleteCategoryUsecase())
 provide(PROVIDERS.LIST_CATEGORIES_USECASE, useListCategoriesUsecase())
 provide(PROVIDERS.LIST_TICKETS_USECASE, useListTicketsUsecase())
 provide(PROVIDERS.NOTIFIER, useNotifier())
