@@ -25,12 +25,13 @@ const { deleteHandler } = useDeleteCategoryController({ loadCategories })
 
 <template>
   <TableWrapper
+    :is-first-loading="store.isFirstLoading"
+    :no-registers-form-path="constants.routes.categories.create"
+    :no-registers="store.noRegisters"
+    :no-results="store.noResults"
     :pages="store.pagination.pages"
     :skip="store.skip"
     :total="store.total"
-    :no-results="store.noResults"
-    :no-registers="store.noRegisters"
-    :no-registers-form-path="constants.routes.categories.create"
     v-model:page="store.pagination.page"
     v-model:take="store.take"
     v-model:search="store.search"
@@ -39,10 +40,9 @@ const { deleteHandler } = useDeleteCategoryController({ loadCategories })
     @update:search="store.changeSearch">
     <q-table
       v-bind="defaultTableProps"
-      no-results-label=""
       :rows="store.data"
-      :loading="store.isLoading"
       :pagination="pagination"
+      :loading="store.isLoading"
       :columns="columns">
       <template #item="props">
         <MobileTableRow

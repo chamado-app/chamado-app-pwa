@@ -3,6 +3,7 @@ import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 
 import {
+  FirstLoadingList,
   MainWrapper,
   NoRegisters,
   NoResults,
@@ -17,8 +18,9 @@ const props = defineProps<{
   take: number
   page: number
   search: string
-  noRegisters: boolean
+  isFirstLoading: boolean
   noResults: boolean
+  noRegisters: boolean
   noRegistersTitle?: string
   noRegistersMessage?: string
   noRegistersFormPath?: string
@@ -81,7 +83,12 @@ const title = computed(() => route.meta.title as string)
       </q-input>
     </q-card-section>
 
-    <template v-if="noResults">
+    <template v-if="isFirstLoading">
+      <slot name="first-loading-list">
+        <FirstLoadingList />
+      </slot>
+    </template>
+    <template v-else-if="noResults">
       <slot name="no-results">
         <NoResults />
       </slot>

@@ -19,7 +19,7 @@
     align-items: center;
     justify-content: center;
     gap: 1rem;
-    padding: 2rem 1rem;
+    padding: 4rem 1rem;
 
     @media screen and (max-width: $breakpoint-sm-max) {
       .text-h6 {

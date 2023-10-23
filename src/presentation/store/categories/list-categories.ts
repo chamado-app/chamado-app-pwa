@@ -48,7 +48,7 @@ export const useListCategoriesStore = defineStore('listCategories', {
     }),
 
     noRegisters: (state) => !state.total && !state.isLoading && !state.search,
-
-    noResults: (state) => !state.total && !!state.search
+    noResults: (state) => !state.total && !!state.search,
+    isFirstLoading: (state) => state.isLoading && !state.isLoaded
   }
 })

@@ -1,6 +1,7 @@
 export * from './action-button'
 export * from './copy-id-action'
 export * from './desktop-table-row'
+export * from './first-loading-list'
 export * from './main-wrapper'
 export * from './mobile-table-row'
 export * from './no-registers'
