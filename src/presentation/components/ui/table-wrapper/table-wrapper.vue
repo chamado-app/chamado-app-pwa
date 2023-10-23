@@ -119,6 +119,11 @@ const title = computed(() => route.meta.title as string)
   grid-template-columns: 100%;
   gap: 1rem;
   padding: 1rem;
+  margin-bottom: 5.25rem;
+
+  @media screen and (min-width: $breakpoint-sm-min) {
+    margin-bottom: 4rem;
+  }
 
   &__section {
     padding: 0;
