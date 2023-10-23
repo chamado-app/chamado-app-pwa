@@ -50,10 +50,16 @@ export const mainRoutes: CustomRouteRecordRaw[] = [
             meta: { title: 'Lista de áreas', roles: AuthenticatedRoles }
           },
           {
+            path: 'create',
+            name: constants.routes.categories.create,
+            component: () => '',
+            meta: { title: 'Nova área', roles: AuthenticatedRoles }
+          },
+          {
             path: ':id',
             name: constants.routes.categories.show,
             component: () => '',
-            meta: { title: 'Visualizar área', roles: AuthenticatedRoles }
+            meta: { title: 'Editar área', roles: AuthenticatedRoles }
           }
         ]
       }

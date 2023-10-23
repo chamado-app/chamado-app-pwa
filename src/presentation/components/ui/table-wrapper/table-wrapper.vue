@@ -4,6 +4,7 @@ import { useRoute } from 'vue-router'
 
 import {
   MainWrapper,
+  NoRegisters,
   PageTitle,
   PaginationFooter
 } from '@/presentation/components'
@@ -15,6 +16,11 @@ const props = defineProps<{
   take: number
   page: number
   search: string
+  noRegisters: boolean
+  noRegistersTitle?: string
+  noRegistersMessage?: string
+  noRegistersFormPath?: string
+  noRegistersButtonLabel?: string
 }>()
 
 const emit = defineEmits<{
@@ -49,7 +55,16 @@ const title = computed(() => route.meta.title as string)
 </script>
 
 <template>
-  <MainWrapper class="table-wrapper">
+  <template v-if="noRegisters">
+    <slot name="no-registers">
+      <NoRegisters
+        :title="noRegistersTitle"
+        :message="noRegistersMessage"
+        :button-label="noRegistersButtonLabel"
+        :form-path="noRegistersFormPath" />
+    </slot>
+  </template>
+  <MainWrapper v-else class="table-wrapper">
     <q-card-section class="table-wrapper__section table-wrapper__header">
       <PageTitle :title="title" />
       <q-input

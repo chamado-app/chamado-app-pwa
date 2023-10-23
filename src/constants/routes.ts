@@ -4,7 +4,8 @@ export const routes = {
   },
   categories: {
     list: 'categories.list',
-    show: 'categories.show'
+    show: 'categories.show',
+    create: 'categories.create'
   },
   home: 'home',
   tickets: {
