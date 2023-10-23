@@ -26,12 +26,13 @@ const { deleteHandler } = useDeleteCategoryController({ loadCategories })
 <template>
   <TableWrapper
     :is-first-loading="store.isFirstLoading"
-    :no-registers-form-path="constants.routes.categories.create"
+    :form-path="constants.routes.categories.create"
     :no-registers="store.noRegisters"
     :no-results="store.noResults"
     :pages="store.pagination.pages"
     :skip="store.skip"
     :total="store.total"
+    create-register-label="Cadastrar nova área"
     v-model:page="store.pagination.page"
     v-model:take="store.take"
     v-model:search="store.search"

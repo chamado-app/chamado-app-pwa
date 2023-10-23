@@ -40,7 +40,7 @@ const onConfirm = async (): Promise<void> => {
 
 <template>
   <slot name="handler">
-    <ActionButton @click="onOpen" icon="mdi-delete-outline" />
+    <ActionButton @click="onOpen" icon="mdi-delete-outline" tooltip="Excluir" />
   </slot>
   <q-dialog v-model="state.isOpen" persistent>
     <q-card class="delete-action__wrapper">

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { CreateFloatButton, TicketItem } from '@/presentation/components'
+import { TicketItem } from '@/presentation/components'
 import { useTicketListController } from '@/presentation/controllers'
 
 const { tickets } = useTicketListController()
@@ -11,7 +11,6 @@ const { tickets } = useTicketListController()
       <TicketItem v-for="ticket in tickets" :key="ticket.id" :ticket="ticket" />
     </q-list>
   </div>
-  <CreateFloatButton />
 </template>
 
 <style lang="scss" scoped>

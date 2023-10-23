@@ -3,6 +3,7 @@ import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 
 import {
+  CreateFloatButton,
   FirstLoadingList,
   MainWrapper,
   NoRegisters,
@@ -19,11 +20,11 @@ const props = defineProps<{
   page: number
   search: string
   isFirstLoading: boolean
+  formPath: string
   noResults: boolean
   noRegisters: boolean
-  noRegistersTitle?: string
+  createRegisterLabel: string
   noRegistersMessage?: string
-  noRegistersFormPath?: string
   noRegistersButtonLabel?: string
 }>()
 
@@ -62,10 +63,10 @@ const title = computed(() => route.meta.title as string)
   <template v-if="noRegisters">
     <slot name="no-registers">
       <NoRegisters
-        :title="noRegistersTitle"
+        :title="createRegisterLabel"
         :message="noRegistersMessage"
         :button-label="noRegistersButtonLabel"
-        :form-path="noRegistersFormPath" />
+        :form-path="formPath" />
     </slot>
   </template>
   <MainWrapper v-else class="table-wrapper">
@@ -109,6 +110,7 @@ const title = computed(() => route.meta.title as string)
       </q-card-section>
     </template>
   </MainWrapper>
+  <CreateFloatButton :form-path="formPath" :label="createRegisterLabel" />
 </template>
 
 <style lang="scss" scoped>
