@@ -19,11 +19,11 @@ const props = defineProps<{
   take: number
   page: number
   search: string
-  isFirstLoading: boolean
-  formPath: string
+  createRegisterLabel: string
   noResults: boolean
   noRegisters: boolean
-  createRegisterLabel: string
+  isFirstLoading: boolean
+  formPath: string
   noRegistersMessage?: string
   noRegistersButtonLabel?: string
 }>()

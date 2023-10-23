@@ -19,7 +19,7 @@ defineEmits(['onDeleted'])
 </script>
 
 <template>
-  <q-tr class="table-row__item">
+  <q-tr class="desktop-table-row__item">
     <template v-for="col in columns" :key="col.name">
       <slot :name="`list-item-${col.name}`" :column="col">
         <q-td>
@@ -30,7 +30,7 @@ defineEmits(['onDeleted'])
     <router-link
       v-ripple:secondary
       :to="{ name: route, params: { id } }"
-      class="table-row__actions">
+      class="desktop-table-row__actions">
       <TableActions
         :delete-handler="deleteHandler"
         @on-deleted="() => $emit('onDeleted')" />
@@ -39,7 +39,7 @@ defineEmits(['onDeleted'])
 </template>
 
 <style lang="scss" scoped>
-.table-row {
+.desktop-table-row {
   &__item {
     position: relative;
     z-index: 0;

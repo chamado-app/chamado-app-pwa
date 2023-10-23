@@ -80,9 +80,3 @@ const selectPages = computed(() =>
   }
 }
 </style>
-
-<style lang="scss">
-.body--light .pagination-footer .q-field__native {
-  color: $text;
-}
-</style>

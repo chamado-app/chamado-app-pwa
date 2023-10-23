@@ -59,7 +59,6 @@ defineProps<MobileTableRowProps>()
 
   &__link {
     text-decoration: none;
-    color: $text;
   }
 
   &__item {

@@ -1,3 +1,4 @@
+// light theme
 .body--light {
   color: $text;
 
@@ -17,6 +18,16 @@
     color: $mantle;
   }
 
+  .global-search {
+    &__input {
+      color: #ffffff;
+
+      &:focus {
+        color: $text;
+      }
+    }
+  }
+
   .q-table {
     thead tr {
       background-color: $crust;
@@ -24,6 +35,29 @@
     }
 
     &__container {
+      color: $text;
+    }
+  }
+
+  .pagination-footer .q-field__native {
+    color: $text;
+  }
+
+  .desktop-table-row {
+    &__actions {
+      &::before {
+        background-image: linear-gradient(
+          to right,
+          transparent,
+          rgba($secondary, 0.6),
+          $secondary
+        );
+      }
+    }
+  }
+
+  .mobile-table-row {
+    &__link {
       color: $text;
     }
   }

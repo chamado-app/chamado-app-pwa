@@ -17,25 +17,18 @@
   }
 
   &__input {
-    color: #ffffff;
     width: 13.1rem;
     max-width: calc(100vw - 9.5rem);
     transition: all 250ms cubic-bezier(1, 0, 0, 1);
 
     &:focus {
-      color: $text;
       width: 20rem;
     }
 
     &-wrapper {
-      background-color: rgba($background, 0.25);
       border-radius: 0.25rem;
       padding: 0 1rem;
       transition: all 250ms cubic-bezier(1, 0, 0, 1);
-
-      &:focus-within {
-        background: $background;
-      }
     }
   }
 }
