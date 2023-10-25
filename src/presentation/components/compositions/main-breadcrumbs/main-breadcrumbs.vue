@@ -10,13 +10,13 @@ const routeMatched = computed(() =>
 
 <template>
   <q-breadcrumbs align="left" active-color="primary">
-    <template v-slot:separator>
+    <template #separator>
       <q-icon size="1rem" name="mdi-arrow-right" />
     </template>
     <q-breadcrumbs-el
       v-for="item in routeMatched"
       :key="item.name"
-      :label="(item.title as string)"
+      :label="item.title as string"
       :to="{ name: item.name }" />
   </q-breadcrumbs>
 </template>

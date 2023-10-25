@@ -3,7 +3,7 @@ export type NoRegistersProps = {
   title?: string
   message?: string
   buttonLabel?: string
-  formPath?: string
+  formPath: string
 }
 
 withDefaults(defineProps<NoRegistersProps>(), {

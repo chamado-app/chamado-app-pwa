@@ -25,6 +25,9 @@ const { deleteHandler } = useDeleteCategoryController({ loadCategories })
 
 <template>
   <TableWrapper
+    v-model:page="store.pagination.page"
+    v-model:take="store.take"
+    v-model:search="store.search"
     :is-first-loading="store.isFirstLoading"
     :form-path="constants.routes.categories.create"
     :no-registers="store.noRegisters"
@@ -33,9 +36,6 @@ const { deleteHandler } = useDeleteCategoryController({ loadCategories })
     :skip="store.skip"
     :total="store.total"
     create-register-label="Cadastrar nova área"
-    v-model:page="store.pagination.page"
-    v-model:take="store.take"
-    v-model:search="store.search"
     @update:take="store.changeTake"
     @update:page="store.changePage"
     @update:search="store.changeSearch">
@@ -47,8 +47,8 @@ const { deleteHandler } = useDeleteCategoryController({ loadCategories })
       :columns="columns">
       <template #item="props">
         <MobileTableRow
-          :columns="props.cols"
           :id="props.key"
+          :columns="props.cols"
           :route="constants.routes.categories.show">
           <template #list-item-value-id="{ value }">
             <CopyIdAction :value="value" />
@@ -57,8 +57,8 @@ const { deleteHandler } = useDeleteCategoryController({ loadCategories })
       </template>
       <template #body="props">
         <DesktopTableRow
-          :columns="props.cols"
           :id="props.key"
+          :columns="props.cols"
           :route="constants.routes.categories.show"
           :delete-handler="() => deleteHandler(props.key)">
           <template #list-item-id="{ column }">

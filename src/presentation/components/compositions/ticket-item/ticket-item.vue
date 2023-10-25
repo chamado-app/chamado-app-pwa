@@ -33,12 +33,12 @@ const ticketCardClasses = computed(() => [
           class="ticket-item__code text-subtitle2 text-weight-bold text-uppercase">
           <span> #{{ props.ticket.code }} </span>
           <q-btn
-            @click.prevent="() => null"
             flat
             round
             icon="mdi-content-copy"
             size="sm"
-            dense>
+            dense
+            @click.prevent="() => null">
             <q-tooltip
               anchor="top middle"
               self="center middle"

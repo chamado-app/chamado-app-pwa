@@ -13,8 +13,8 @@ defineProps<TableActionsProp>()
   <div class="table-actions">
     <DeleteAction
       v-if="!!deleteHandler"
-      @on-deleted="() => $emit('onDeleted')"
-      :delete-handler="deleteHandler" />
+      :delete-handler="deleteHandler"
+      @on-deleted="() => $emit('onDeleted')" />
   </div>
 </template>
 

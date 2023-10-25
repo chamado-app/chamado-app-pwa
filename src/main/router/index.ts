@@ -5,7 +5,6 @@ import {
   createWebHashHistory,
   createWebHistory
 } from 'vue-router'
-
 import type { RouteRecordRaw } from 'vue-router'
 
 import { useRouteGuard } from '@/infra'

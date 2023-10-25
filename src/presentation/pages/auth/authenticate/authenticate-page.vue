@@ -14,18 +14,18 @@ const { authenticate, state } = useAuthenticateController()
     <q-form class="authenticate__form" @submit.prevent="authenticate">
       <QRow gutter="lg">
         <QCol>
-          <q-input label="E-mail" type="email" v-model="state.form.email">
-            <template v-slot:prepend>
+          <q-input v-model="state.form.email" label="E-mail" type="email">
+            <template #prepend>
               <q-icon name="mdi-email-outline" />
             </template>
           </q-input>
         </QCol>
         <QCol>
-          <q-input label="Senha" type="password" v-model="state.form.password">
-            <template v-slot:prepend>
+          <q-input v-model="state.form.password" label="Senha" type="password">
+            <template #prepend>
               <q-icon name="mdi-lock-outline" />
             </template>
-            <template v-slot:append>
+            <template #append>
               <q-btn round flat icon="mdi-eye-off-outline" />
             </template>
           </q-input>

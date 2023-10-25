@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import {
-  Breadcrumbs,
-  // GlobalSearch,
+  Breadcrumbs, // GlobalSearch,
   LeftSidebar
 } from '@/presentation/components'
 import { useTogglesStore } from '@/presentation/store'
@@ -32,7 +31,7 @@ const toggles = useTogglesStore()
       </q-toolbar>
     </q-header>
 
-    <q-drawer show-if-above v-model="toggles.sidebar" side="left">
+    <q-drawer v-model="toggles.sidebar" show-if-above side="left">
       <LeftSidebar />
     </q-drawer>
 

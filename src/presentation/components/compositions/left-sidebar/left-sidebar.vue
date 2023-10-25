@@ -10,10 +10,10 @@ const { sidebarItems } = useLeftSidebarController()
       <q-item
         v-for="(item, index) in sidebarItems"
         :key="index"
+        v-ripple
         :to="item.to"
         class="sidebar__item"
-        clickable
-        v-ripple>
+        clickable>
         <q-item-section avatar>
           <q-icon :name="item.icon" />
         </q-item-section>

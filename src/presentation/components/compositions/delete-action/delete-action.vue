@@ -40,7 +40,7 @@ const onConfirm = async (): Promise<void> => {
 
 <template>
   <slot name="handler">
-    <ActionButton @click="onOpen" icon="mdi-delete-outline" tooltip="Excluir" />
+    <ActionButton icon="mdi-delete-outline" tooltip="Excluir" @click="onOpen" />
   </slot>
   <q-dialog v-model="state.isOpen" persistent>
     <q-card class="delete-action__wrapper">
@@ -49,7 +49,7 @@ const onConfirm = async (): Promise<void> => {
         <h2 class="text-subtitle2 text-body-inverted">
           Deseja excluir o registro?
         </h2>
-        <q-btn @click.stop="onClose" flat dense round icon="mdi-close" />
+        <q-btn flat dense round icon="mdi-close" @click.stop="onClose" />
       </q-card-section>
       <q-card-section class="delete-action__content">
         <p class="text-caption no-margin">
@@ -60,11 +60,11 @@ const onConfirm = async (): Promise<void> => {
       <q-card-actions align="right">
         <q-btn
           :disable="state.isLoading"
-          @click.stop="onClose"
           no-caps
           flat
           label="Cancelar"
-          color="negative" />
+          color="negative"
+          @click.stop="onClose" />
         <q-btn
           :loading="state.isLoading"
           flat

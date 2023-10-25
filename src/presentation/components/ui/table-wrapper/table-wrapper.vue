@@ -101,11 +101,11 @@ const title = computed(() => route.meta.title as string)
       <q-card-section class="flex justify-between table-wrapper__section">
         <slot name="footer">
           <PaginationFooter
+            v-model:page="pageValue"
+            v-model:take="takeValue"
             :pages="pages"
             :skip="skip"
-            :total="total"
-            v-model:page="pageValue"
-            v-model:take="takeValue" />
+            :total="total" />
         </slot>
       </q-card-section>
     </template>
