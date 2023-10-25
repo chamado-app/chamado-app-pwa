@@ -30,14 +30,15 @@ export const useDefaultTableProps = (): ComputedRef<QTableProps> => {
   return props
 }
 
-const formatTimestepTableColumn = (value: Date): string =>
-  value.toLocaleString(undefined, {
+const formatTimestepTableColumn = (value: Date): string => {
+  return value.toLocaleString(undefined, {
     year: '2-digit',
     month: '2-digit',
     day: '2-digit',
     hour: '2-digit',
     minute: '2-digit'
   })
+}
 
 export const idTableColumn: TableColumn = {
   name: 'id',

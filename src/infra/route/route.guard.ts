@@ -16,10 +16,11 @@ export const isOnlyGuestRoute = (meta: RouteMeta): boolean => {
   return meta.roles.length === 1 && meta.roles[0] === Role.GUEST
 }
 
-export const isAuthRoute = (to: RouteLocationNormalized): boolean =>
-  authRoutes.some(
+export const isAuthRoute = (to: RouteLocationNormalized): boolean => {
+  return authRoutes.some(
     (route) => route.children?.some((child) => child.name === to.name)
   )
+}
 
 export const useRouteGuard = (
   router: Router,
