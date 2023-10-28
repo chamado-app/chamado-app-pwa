@@ -28,6 +28,7 @@ const { deleteHandler } = useDeleteCategoryController({ loadCategories })
     v-model:page="store.pagination.page"
     v-model:take="store.take"
     v-model:search="store.search"
+    title="Áreas"
     :is-first-loading="store.isFirstLoading"
     :form-path="constants.routes.categories.create"
     :no-registers="store.noRegisters"

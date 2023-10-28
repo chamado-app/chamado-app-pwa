@@ -7,5 +7,15 @@ defineProps<PageTitleProps>()
 </script>
 
 <template>
-  <h2 class="text-h6 text-subtitle1 text-weight-bold">{{ title }}</h2>
+  <h2 class="text-subtitle1 text-weight-bold page-title">{{ title }}</h2>
 </template>
+
+<style lang="scss" scoped>
+.page-title {
+  font-size: 1.125rem;
+
+  @media screen and (min-width: $breakpoint-md-min) {
+    font-size: 1.5rem;
+  }
+}
+</style>
