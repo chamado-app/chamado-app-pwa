@@ -50,7 +50,10 @@ export const mainRoutes: CustomRouteRecordRaw[] = [
               {
                 path: 'create',
                 name: constants.routes.categories.create,
-                component: () => '',
+                component: () =>
+                  import(
+                    '@/presentation/pages/categories/create-category/create-category-page.vue'
+                  ),
                 meta: { title: 'Nova área', roles: AuthenticatedRoles }
               },
               {

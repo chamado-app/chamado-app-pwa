@@ -69,4 +69,5 @@ const { deleteHandler } = useDeleteCategoryController({ loadCategories })
       </template>
     </q-table>
   </TableWrapper>
+  <router-view />
 </template>
