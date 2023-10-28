@@ -3,11 +3,9 @@ defineEmits<{ onCancel: [] }>()
 </script>
 
 <template>
-  <div class="form-actions">
-    <q-btn flat color="negative" no-caps @click.stop="() => $emit('onCancel')">
-      Cancelar
-    </q-btn>
-    <q-btn color="primary" type="submit" no-caps>Salvar</q-btn>
+  <div class="text-body form-actions">
+    <q-btn flat no-caps @click.stop="() => $emit('onCancel')"> Cancelar </q-btn>
+    <q-btn type="submit" color="primary" no-caps>Salvar</q-btn>
   </div>
 </template>
 
@@ -20,6 +18,7 @@ defineEmits<{ onCancel: [] }>()
   gap: 1rem;
   justify-content: end;
   align-items: center;
-  margin-top: 1rem;
+  margin-top: 1.5rem;
+  width: 100%;
 }
 </style>

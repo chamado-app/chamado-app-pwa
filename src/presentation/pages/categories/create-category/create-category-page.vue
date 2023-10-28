@@ -1,36 +1,33 @@
 <script lang="ts" setup>
-import { reactive } from 'vue'
-import { useRouter } from 'vue-router'
-
 import { FormActions, PageModalWrapper } from '@/presentation/components'
+import { useCreateCategoryController } from '@/presentation/controllers'
 
-const router = useRouter()
-
-const state = reactive({ name: '', description: '' })
-
-const onClose = (): void => {
-  router.back()
-}
-
-const onSubmit = (): void => {
-  console.log(state)
-}
+const { store, onSubmit, onCancel } = useCreateCategoryController()
 </script>
 
 <template>
-  <PageModalWrapper :is-open="true" title="Cadastrar área" @on-close="onClose">
+  <PageModalWrapper :is-open="true" title="Cadastrar área" @on-close="onCancel">
     <q-form @submit.prevent="onSubmit">
-      <QRow>
+      <QRow gutter="sm">
         <QCol>
-          <q-input v-model="state.name" label="Nome" outlined />
+          <q-input
+            v-model="store.form.name"
+            :rules="[() => 'texto']"
+            label="Nome"
+            outlined />
         </QCol>
         <QCol>
-          <q-input v-model="state.description" label="Descrição" outlined />
+          <q-input
+            v-model="store.form.description"
+            bottom-slots
+            label="Descrição"
+            outlined />
         </QCol>
         <QCol>
-          <FormActions />
+          <q-toggle v-model="store.form.isActive" label="Área ativa" />
         </QCol>
       </QRow>
+      <FormActions @on-cancel="onCancel" />
     </q-form>
   </PageModalWrapper>
 </template>
