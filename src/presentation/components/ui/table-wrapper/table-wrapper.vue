@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import { computed } from 'vue'
-import { useRoute } from 'vue-router'
 
 import {
   CreateFloatButton,
@@ -8,7 +7,7 @@ import {
   MainWrapper,
   NoRegisters,
   NoResults,
-  PageTitle,
+  PageWrapper,
   PaginationFooter
 } from '@/presentation/components'
 
@@ -26,6 +25,7 @@ const props = defineProps<{
   formPath: string
   noRegistersMessage?: string
   noRegistersButtonLabel?: string
+  title: string
 }>()
 
 const emit = defineEmits<{
@@ -54,63 +54,61 @@ const searchValue = computed({
     emit('update:search', value)
   }
 })
-
-const route = useRoute()
-const title = computed(() => route.meta.title as string)
 </script>
 
 <template>
-  <template v-if="noRegisters">
-    <slot name="no-registers">
-      <NoRegisters
-        :title="createRegisterLabel"
-        :message="noRegistersMessage"
-        :button-label="noRegistersButtonLabel"
-        :form-path="formPath" />
-    </slot>
-  </template>
-  <MainWrapper v-else class="table-wrapper">
-    <q-card-section class="table-wrapper__section table-wrapper__header">
-      <PageTitle :title="title" />
-      <q-input
-        v-model="searchValue"
-        debounce="400"
-        dense
-        outlined
-        placeholder="Pesquisar...">
-        <template #append>
-          <q-icon name="mdi-magnify" />
-        </template>
-      </q-input>
-    </q-card-section>
+  <PageWrapper :title="title">
+    <template v-if="noRegisters">
+      <slot name="no-registers">
+        <NoRegisters
+          :title="createRegisterLabel"
+          :message="noRegistersMessage"
+          :button-label="noRegistersButtonLabel"
+          :form-path="formPath" />
+      </slot>
+    </template>
+    <MainWrapper v-else class="table-wrapper">
+      <q-card-section class="table-wrapper__section table-wrapper__header">
+        <q-input
+          v-model="searchValue"
+          debounce="400"
+          dense
+          outlined
+          placeholder="Pesquisar...">
+          <template #append>
+            <q-icon name="mdi-magnify" />
+          </template>
+        </q-input>
+      </q-card-section>
 
-    <template v-if="isFirstLoading">
-      <slot name="first-loading-list">
-        <FirstLoadingList />
-      </slot>
-    </template>
-    <template v-else-if="noResults">
-      <slot name="no-results">
-        <NoResults />
-      </slot>
-    </template>
-    <template v-else>
-      <q-card-section class="table-wrapper__section">
-        <slot />
-      </q-card-section>
-      <q-card-section class="flex justify-between table-wrapper__section">
-        <slot name="footer">
-          <PaginationFooter
-            v-model:page="pageValue"
-            v-model:take="takeValue"
-            :pages="pages"
-            :skip="skip"
-            :total="total" />
+      <template v-if="isFirstLoading">
+        <slot name="first-loading-list">
+          <FirstLoadingList />
         </slot>
-      </q-card-section>
-    </template>
-  </MainWrapper>
-  <CreateFloatButton :form-path="formPath" :label="createRegisterLabel" />
+      </template>
+      <template v-else-if="noResults">
+        <slot name="no-results">
+          <NoResults />
+        </slot>
+      </template>
+      <template v-else>
+        <q-card-section class="table-wrapper__section">
+          <slot />
+        </q-card-section>
+        <q-card-section class="flex justify-between table-wrapper__section">
+          <slot name="footer">
+            <PaginationFooter
+              v-model:page="pageValue"
+              v-model:take="takeValue"
+              :pages="pages"
+              :skip="skip"
+              :total="total" />
+          </slot>
+        </q-card-section>
+      </template>
+    </MainWrapper>
+    <CreateFloatButton :form-path="formPath" :label="createRegisterLabel" />
+  </PageWrapper>
 </template>
 
 <style lang="scss" scoped>
@@ -134,11 +132,11 @@ const title = computed(() => route.meta.title as string)
     gap: 0.75rem;
 
     @media screen and (min-width: $breakpoint-sm-min) {
-      grid-template-columns: auto 16rem;
+      grid-template-columns: 16rem;
     }
 
     @media screen and (min-width: $breakpoint-md-min) {
-      grid-template-columns: auto 24rem;
+      grid-template-columns: 24rem;
     }
   }
 }

@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import {
-  Breadcrumbs, // GlobalSearch,
+  // GlobalSearch,
   LeftSidebar
 } from '@/presentation/components'
 import { useTogglesStore } from '@/presentation/store'
@@ -37,7 +37,6 @@ const toggles = useTogglesStore()
 
     <q-page-container>
       <q-page class="page__container" padding>
-        <Breadcrumbs />
         <router-view />
       </q-page>
     </q-page-container>
@@ -61,7 +60,7 @@ const toggles = useTogglesStore()
     gap: 0.5rem;
 
     @media screen and (min-width: $breakpoint-sm-min) {
-      gap: 1rem;
+      gap: 1.25rem;
     }
   }
 }
