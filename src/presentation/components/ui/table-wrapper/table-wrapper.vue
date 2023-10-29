@@ -24,6 +24,7 @@ const props = defineProps<{
   noRegisters: boolean
   isFirstLoading: boolean
   formPath: string
+  noRegistersTitle?: string
   noRegistersMessage?: string
   noRegistersButtonLabel?: string
   title: string
@@ -62,7 +63,7 @@ const searchValue = computed({
     <template v-if="noRegisters">
       <slot name="no-registers">
         <NoRegisters
-          :title="createRegisterLabel"
+          :title="noRegistersTitle"
           :message="noRegistersMessage"
           :button-label="noRegistersButtonLabel"
           :form-path="formPath" />
@@ -110,7 +111,10 @@ const searchValue = computed({
         </q-card-section>
       </template>
     </Paper>
-    <CreateFloatButton :form-path="formPath" :label="createRegisterLabel" />
+    <CreateFloatButton
+      v-if="!noRegisters"
+      :form-path="formPath"
+      :label="createRegisterLabel" />
   </PageWrapper>
 </template>
 

@@ -32,7 +32,7 @@ withDefaults(defineProps<NoRegistersProps>(), {
 <style lang="scss" scoped>
 .no-registers {
   &__wrapper {
-    height: calc(100vh - 8.5rem);
+    height: calc(100vh - 10rem);
     display: flex;
     flex-direction: column;
     align-items: center;
