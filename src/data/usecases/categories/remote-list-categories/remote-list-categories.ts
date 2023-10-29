@@ -4,6 +4,7 @@ import { type ListCategoriesOutputDto } from '@/domain/dto'
 import { UnexpectedException } from '@/domain/errors'
 import { type ListCategoriesUsecase } from '@/domain/usecases'
 
+import { parseRemoteCategoryEntityToCategoryEntity } from '../utils'
 import { type RemoteListCategoriesDto } from './types'
 
 export class RemoteListCategoriesUsecase implements ListCategoriesUsecase {
@@ -33,11 +34,7 @@ export class RemoteListCategoriesUsecase implements ListCategoriesUsecase {
 
     return {
       ...rest,
-      categories: categories.map(({ createdAt, updatedAt, ...category }) => ({
-        ...category,
-        createdAt: new Date(createdAt),
-        updatedAt: new Date(updatedAt)
-      }))
+      categories: categories.map(parseRemoteCategoryEntityToCategoryEntity)
     }
   }
 }

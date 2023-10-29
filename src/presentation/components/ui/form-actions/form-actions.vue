@@ -1,11 +1,24 @@
 <script lang="ts" setup>
+export type FormActionsProps = {
+  isLoading?: boolean
+}
+
 defineEmits<{ onCancel: [] }>()
+defineProps<FormActionsProps>()
 </script>
 
 <template>
   <div class="text-body form-actions">
-    <q-btn flat no-caps @click.stop="() => $emit('onCancel')"> Cancelar </q-btn>
-    <q-btn type="submit" color="primary" no-caps>Salvar</q-btn>
+    <q-btn
+      flat
+      no-caps
+      :disable="isLoading"
+      @click.stop="() => $emit('onCancel')">
+      Cancelar
+    </q-btn>
+    <q-btn type="submit" color="primary" no-caps :loading="isLoading">
+      Salvar
+    </q-btn>
   </div>
 </template>
 

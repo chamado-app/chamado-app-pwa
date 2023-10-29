@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import { onUnmounted } from 'vue'
+
 import { constants } from '@/constants'
 import {
   CopyIdAction,
@@ -21,6 +23,10 @@ const columns = useTableColumns(desktopTableColumns, mobileTableColumns)
 const defaultTableProps = useDefaultTableProps()
 const { pagination, store, loadCategories } = useListCategoriesController()
 const { deleteHandler } = useDeleteCategoryController({ loadCategories })
+
+onUnmounted(() => {
+  store.$reset()
+})
 </script>
 
 <template>

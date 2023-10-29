@@ -1,8 +1,23 @@
 <script lang="ts" setup>
-import { FormActions, PageModalWrapper } from '@/presentation/components'
-import { useCreateCategoryController } from '@/presentation/controllers'
+import { onUnmounted } from 'vue'
 
-const { store, onSubmit, onCancel } = useCreateCategoryController()
+import { FormActions, PageModalWrapper } from '@/presentation/components'
+import {
+  useCreateCategoryController, // useListCategoriesController
+  useListCategoriesController
+} from '@/presentation/controllers'
+
+const { loadCategories } = useListCategoriesController()
+const controller = useCreateCategoryController({ loadCategories })
+const { onCancel, onSubmit, store } = controller
+
+const validation = {
+  name: [(value: string) => !!value || 'Nome obrigatório']
+}
+
+onUnmounted(() => {
+  store.$reset()
+})
 </script>
 
 <template>
@@ -12,7 +27,7 @@ const { store, onSubmit, onCancel } = useCreateCategoryController()
         <QCol>
           <q-input
             v-model="store.form.name"
-            :rules="[() => 'texto']"
+            :rules="validation.name"
             label="Nome"
             outlined />
         </QCol>
@@ -27,7 +42,7 @@ const { store, onSubmit, onCancel } = useCreateCategoryController()
           <q-toggle v-model="store.form.isActive" label="Área ativa" />
         </QCol>
       </QRow>
-      <FormActions @on-cancel="onCancel" />
+      <FormActions :is-loading="store.isSubmitting" @on-cancel="onCancel" />
     </q-form>
   </PageModalWrapper>
 </template>

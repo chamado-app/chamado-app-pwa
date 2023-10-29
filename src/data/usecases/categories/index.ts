@@ -1,2 +1,5 @@
+export * from './remote-create-category'
 export * from './remote-delete-category'
 export * from './remote-list-categories'
+export * from './types'
+export * from './utils'
