@@ -39,8 +39,14 @@ export const useListCategoriesController = (): ListCategoriesController => {
 
   watch(() => store.skip, loadCategories)
   watch(() => store.take, loadCategories)
-  watch(() => store.search, loadCategories)
   watch(() => store.isLoading, useScrollToTop())
+  watch(
+    () => store.search,
+    (value) => {
+      if (value && value.length < 3) return
+      void loadCategories()
+    }
+  )
 
   onBeforeMount(loadCategories)
 
