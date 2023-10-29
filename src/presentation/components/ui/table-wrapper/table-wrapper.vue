@@ -8,7 +8,8 @@ import {
   NoResults,
   PageWrapper,
   PaginationFooter,
-  Paper
+  Paper,
+  tableSearchValidation
 } from '@/presentation/components'
 
 const props = defineProps<{
@@ -71,9 +72,11 @@ const searchValue = computed({
       <q-card-section class="table-wrapper__section table-wrapper__header">
         <q-input
           v-model="searchValue"
+          clearable
           debounce="400"
           dense
           outlined
+          :rules="tableSearchValidation.search"
           placeholder="Pesquisar...">
           <template #append>
             <q-icon name="mdi-magnify" />
@@ -130,6 +133,7 @@ const searchValue = computed({
   &__header {
     display: grid;
     gap: 0.75rem;
+    margin-bottom: -0.5rem;
 
     @media screen and (min-width: $breakpoint-sm-min) {
       grid-template-columns: 16rem;

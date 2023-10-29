@@ -3,13 +3,13 @@ import { onUnmounted } from 'vue'
 
 import { FormActions, PageModalWrapper } from '@/presentation/components'
 import {
-  useCreateCategoryController, // useListCategoriesController
+  useCreateCategoryController,
   useListCategoriesController
 } from '@/presentation/controllers'
 
 const { loadCategories } = useListCategoriesController()
 const controller = useCreateCategoryController({ loadCategories })
-const { onCancel, onSubmit, store } = controller
+const { onClose, onSubmit, store } = controller
 
 const validation = {
   name: [(value: string) => !!value || 'Nome obrigatório']
@@ -21,12 +21,13 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <PageModalWrapper :is-open="true" title="Cadastrar área" @on-close="onCancel">
+  <PageModalWrapper :is-open="true" title="Cadastrar área" @on-close="onClose">
     <q-form @submit.prevent="onSubmit">
       <QRow gutter="sm">
         <QCol>
           <q-input
             v-model="store.form.name"
+            autofocus
             :rules="validation.name"
             label="Nome"
             outlined />
@@ -42,7 +43,7 @@ onUnmounted(() => {
           <q-toggle v-model="store.form.isActive" label="Área ativa" />
         </QCol>
       </QRow>
-      <FormActions :is-loading="store.isSubmitting" @on-cancel="onCancel" />
+      <FormActions :is-loading="store.isSubmitting" @on-cancel="onClose" />
     </q-form>
   </PageModalWrapper>
 </template>

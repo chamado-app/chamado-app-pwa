@@ -1,4 +1,4 @@
-import { computed, inject, onBeforeMount, watch } from 'vue'
+import { computed, inject, watch } from 'vue'
 
 import { type ListCategoriesUsecase } from '@/domain/usecases'
 import { PROVIDERS } from '@/presentation/providers'
@@ -39,10 +39,14 @@ export const useListCategoriesController = (): ListCategoriesController => {
 
   watch(() => store.skip, loadCategories)
   watch(() => store.take, loadCategories)
-  watch(() => store.search, loadCategories)
   watch(() => store.isLoading, useScrollToTop())
-
-  onBeforeMount(loadCategories)
+  watch(
+    () => store.search,
+    (value) => {
+      if (value && value.length < 3) return
+      void loadCategories()
+    }
+  )
 
   return { pagination, store, loadCategories }
 }

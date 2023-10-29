@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { onUnmounted } from 'vue'
+import { onMounted, onUnmounted } from 'vue'
 
 import { constants } from '@/constants'
 import {
@@ -27,6 +27,8 @@ const { deleteHandler } = useDeleteCategoryController({ loadCategories })
 onUnmounted(() => {
   store.$reset()
 })
+
+onMounted(loadCategories)
 </script>
 
 <template>
