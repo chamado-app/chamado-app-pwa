@@ -1,6 +1,8 @@
-export class UnauthorizedException extends Error {
-  constructor(message = '') {
+export class UnprocessableEntityException extends Error {
+  constructor(
+    message = 'Ocorreu algum erro ao salvar, verifique os dados e tente novamente.'
+  ) {
     super(message)
-    this.name = 'UnauthorizedException'
+    this.name = 'UnprocessableEntityException'
   }
 }

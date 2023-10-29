@@ -12,10 +12,10 @@ defineProps<PageTitleProps>()
 
 <style lang="scss" scoped>
 .page-title {
-  font-size: 1.125rem;
+  font-size: 1rem;
 
   @media screen and (min-width: $breakpoint-md-min) {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
   }
 }
 </style>

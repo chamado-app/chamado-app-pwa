@@ -4,11 +4,11 @@ import { computed } from 'vue'
 import {
   CreateFloatButton,
   FirstLoadingList,
-  MainWrapper,
   NoRegisters,
   NoResults,
   PageWrapper,
-  PaginationFooter
+  PaginationFooter,
+  Paper
 } from '@/presentation/components'
 
 const props = defineProps<{
@@ -67,7 +67,7 @@ const searchValue = computed({
           :form-path="formPath" />
       </slot>
     </template>
-    <MainWrapper v-else class="table-wrapper">
+    <Paper v-else class="table-wrapper">
       <q-card-section class="table-wrapper__section table-wrapper__header">
         <q-input
           v-model="searchValue"
@@ -106,7 +106,7 @@ const searchValue = computed({
           </slot>
         </q-card-section>
       </template>
-    </MainWrapper>
+    </Paper>
     <CreateFloatButton :form-path="formPath" :label="createRegisterLabel" />
   </PageWrapper>
 </template>
