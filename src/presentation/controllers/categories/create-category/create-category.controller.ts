@@ -1,6 +1,7 @@
-import { inject, onUnmounted } from 'vue'
+import { inject } from 'vue'
 import { useRouter } from 'vue-router'
 
+import { constants } from '@/constants'
 import { type Notifier } from '@/data/protocols'
 import { type CreateCategoryUsecase } from '@/domain/usecases'
 import { PROVIDERS } from '@/presentation/providers'
@@ -21,8 +22,8 @@ export const useCreateCategoryController = ({
   const router = useRouter()
   const store = useShowCategoryStore()
 
-  const onCancel = (): void => {
-    router.back()
+  const onClose = (): void => {
+    void router.push({ name: constants.routes.categories.list })
   }
 
   const onSubmit = async (): Promise<void> => {
@@ -33,8 +34,8 @@ export const useCreateCategoryController = ({
     try {
       await createCategoryUsecase.execute(store.form)
       notifier.success({ message: 'Área criada com sucesso' })
-      router.back()
       void loadCategories()
+      onClose()
     } catch (error: any) {
       notifier.error({ message: error.message })
     } finally {
@@ -42,9 +43,5 @@ export const useCreateCategoryController = ({
     }
   }
 
-  onUnmounted(() => {
-    store.$reset()
-  })
-
-  return { store, onCancel, onSubmit }
+  return { store, onClose, onSubmit }
 }

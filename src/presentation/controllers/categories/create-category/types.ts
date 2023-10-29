@@ -7,6 +7,6 @@ export type CreateCategoryControllerProps = {
 
 export interface CreateCategoryController {
   onSubmit: () => Promise<void>
-  onCancel: () => void
+  onClose: () => void
   store: ReturnType<typeof useShowCategoryStore>
 }

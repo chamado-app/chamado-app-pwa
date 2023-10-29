@@ -1,4 +1,4 @@
-import { computed, inject, onBeforeMount, watch } from 'vue'
+import { computed, inject, watch } from 'vue'
 
 import { type ListCategoriesUsecase } from '@/domain/usecases'
 import { PROVIDERS } from '@/presentation/providers'
@@ -47,8 +47,6 @@ export const useListCategoriesController = (): ListCategoriesController => {
       void loadCategories()
     }
   )
-
-  onBeforeMount(loadCategories)
 
   return { pagination, store, loadCategories }
 }
