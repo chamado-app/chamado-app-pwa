@@ -10,6 +10,13 @@ const tableColumns: TableColumn[] = [
     align: 'left',
     format: (value: string) => value || '-'
   },
+  {
+    name: 'isActive',
+    field: 'isActive',
+    label: 'Ativação',
+    align: 'left',
+    format: (value: boolean) => (value ? 'Ativo' : 'Inativo')
+  },
   ...timestepTableColumns
 ]
 
