@@ -5,7 +5,7 @@ import { constants } from '@/constants'
 import { type Notifier } from '@/data/protocols'
 import {
   type ShowCategoryUsecase,
-  type CreateCategoryUsecase
+  type UpdateCategoryUsecase
 } from '@/domain/usecases'
 import { PROVIDERS } from '@/presentation/providers'
 import { useShowCategoryStore } from '@/presentation/store'
@@ -18,8 +18,8 @@ import {
 export const useUpdateCategoryController = ({
   loadCategories
 }: UpdateCategoryControllerProps): UpdateCategoryController => {
-  const createCategoryUsecase = inject<CreateCategoryUsecase>(
-    PROVIDERS.CREATE_CATEGORY_USECASE
+  const updateCategoryUsecase = inject<UpdateCategoryUsecase>(
+    PROVIDERS.UPDATE_CATEGORY_USECASE
   )!
   const showCategoryUsecase = inject<ShowCategoryUsecase>(
     PROVIDERS.SHOW_CATEGORY_USECASE
@@ -55,7 +55,7 @@ export const useUpdateCategoryController = ({
     store.$patch({ isSubmitting: true })
 
     try {
-      await createCategoryUsecase.execute(store.form)
+      await updateCategoryUsecase.execute(categoryId.value, store.form)
       notifier.success({ message: 'Área atualizada com sucesso' })
       void loadCategories()
       onClose()
