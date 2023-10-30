@@ -33,6 +33,7 @@ defineEmits<{ onClose: [] }>()
 <style scoped lang="scss">
 .page-modal {
   &__wrapper {
+    position: relative;
     width: 100%;
     max-width: 60rem;
   }

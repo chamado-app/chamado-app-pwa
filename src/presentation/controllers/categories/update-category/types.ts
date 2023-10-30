@@ -1,3 +1,5 @@
+import { type ComputedRef } from 'vue'
+
 import { type ListCategoriesController } from '@/presentation/controllers'
 import { type useShowCategoryStore } from '@/presentation/store'
 
@@ -9,4 +11,5 @@ export interface UpdateCategoryController {
   onSubmit: () => Promise<void>
   onClose: () => void
   store: ReturnType<typeof useShowCategoryStore>
+  categoryId: ComputedRef<string>
 }

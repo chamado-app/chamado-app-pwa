@@ -68,5 +68,5 @@ export const useUpdateCategoryController = ({
 
   onMounted(loadCategory)
 
-  return { store, onClose, onSubmit }
+  return { store, onClose, onSubmit, categoryId }
 }
