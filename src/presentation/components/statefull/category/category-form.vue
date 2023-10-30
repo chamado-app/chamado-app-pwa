@@ -4,11 +4,16 @@ import { useShowCategoryStore } from '@/presentation/store'
 
 import { CATEGORY_FORM_VALIDATION } from '.'
 
+export type CategoryFormProps = {
+  isUpdate?: boolean
+}
+
 defineEmits<{
   onSubmit: []
   onClose: []
 }>()
 
+defineProps<CategoryFormProps>()
 const store = useShowCategoryStore()
 const validation = CATEGORY_FORM_VALIDATION
 </script>
@@ -19,7 +24,7 @@ const validation = CATEGORY_FORM_VALIDATION
       <QCol>
         <q-input
           v-model="store.form.name"
-          autofocus
+          :autofocus="!isUpdate"
           :rules="validation.name"
           label="Nome"
           outlined />
