@@ -29,6 +29,10 @@ export class AuthorizeHttpClientDecorator<T, R> implements HttpClient<T, R> {
     return await this.request({ ...request, method: HttpMethod.post })
   }
 
+  async put(request: HttpRequest<T>): Promise<HttpResponse<R>> {
+    return await this.request({ ...request, method: HttpMethod.put })
+  }
+
   async get(request: HttpRequest<T>): Promise<HttpResponse<R>> {
     return await this.request({ ...request, method: HttpMethod.get })
   }

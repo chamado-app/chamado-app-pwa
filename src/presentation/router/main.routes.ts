@@ -59,7 +59,10 @@ export const mainRoutes: CustomRouteRecordRaw[] = [
               {
                 path: ':id',
                 name: constants.routes.categories.show,
-                component: () => '',
+                component: () =>
+                  import(
+                    '@/presentation/pages/categories/update-category/update-category-page.vue'
+                  ),
                 meta: { title: 'Editar área', roles: AuthenticatedRoles }
               }
             ]
