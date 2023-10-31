@@ -1,15 +1,18 @@
 <script lang="ts" setup>
 import { DeleteAction } from '@/presentation/components'
+import { useIsMobile } from '@/presentation/utils'
 
 export type MobileDeleteRegisterProps = {
   deleteHandler: () => Promise<void>
 }
 
 defineProps<MobileDeleteRegisterProps>()
+
+const isMobile = useIsMobile()
 </script>
 
 <template>
-  <DeleteAction :delete-handler="deleteHandler">
+  <DeleteAction v-if="isMobile" :delete-handler="deleteHandler">
     <template #handler="{ onOpen }">
       <q-btn
         no-caps

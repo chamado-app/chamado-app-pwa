@@ -56,14 +56,14 @@ export const createdAtTableColumn: TableColumn = {
 }
 
 export const updatedAtTableColumn: TableColumn = {
-  name: 'createdAt',
-  field: 'createdAt',
-  label: 'Criado em',
+  name: 'updatedAt',
+  field: 'updatedAt',
+  label: 'Atualizado em',
   align: 'left',
   format: formatTimestepTableColumn
 }
 
 export const timestepTableColumns: TableColumn[] = [
-  updatedAtTableColumn,
-  createdAtTableColumn
+  createdAtTableColumn,
+  updatedAtTableColumn
 ]
