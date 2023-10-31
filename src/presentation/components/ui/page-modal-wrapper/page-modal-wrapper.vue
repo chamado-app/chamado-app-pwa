@@ -11,7 +11,11 @@ defineEmits<{ onClose: [] }>()
 </script>
 
 <template>
-  <q-dialog :model-value="isOpen" persistent no-backdrop-dismiss>
+  <q-dialog
+    :model-value="isOpen"
+    no-backdrop-dismiss
+    no-route-dimiss
+    persistent>
     <q-card class="page-modal__wrapper">
       <q-card-section class="page-modal__container">
         <PageWrapper is-modal :title="title">
