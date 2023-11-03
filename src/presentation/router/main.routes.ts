@@ -68,6 +68,21 @@ export const mainRoutes: CustomRouteRecordRaw[] = [
             ]
           }
         ]
+      },
+      {
+        path: '/users',
+        children: [
+          {
+            path: '',
+            name: constants.routes.users.list,
+            component: () =>
+              import(
+                '@/presentation/pages/users/list-users/list-users-page.vue'
+              ),
+            meta: { title: 'Usuários', roles: AuthenticatedRoles },
+            children: []
+          }
+        ]
       }
     ]
   }

@@ -19,6 +19,12 @@ export const sidebarItems: SidebarItem[] = [
     label: 'Áreas',
     to: { name: constants.routes.categories.list },
     roles: AuthenticatedRoles
+  },
+  {
+    icon: 'mdi-account-multiple-outline',
+    label: 'Usuários',
+    to: { name: constants.routes.users.list },
+    roles: AuthenticatedRoles
   }
 ]
 

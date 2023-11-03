@@ -11,5 +11,8 @@ export const routes = {
   tickets: {
     list: 'tickets.list',
     show: 'tickets.show'
+  },
+  users: {
+    list: 'users.list'
   }
 } as const

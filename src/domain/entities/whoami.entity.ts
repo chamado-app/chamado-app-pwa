@@ -1,22 +1,9 @@
-export enum Role {
-  MANAGER = 'manager',
-  TECHNICIAN = 'technician',
-  USER = 'user',
-  GUEST = 'guest'
-}
-
-export const AuthenticatedRoles: Role[] = [
-  Role.MANAGER,
-  Role.TECHNICIAN,
-  Role.USER
-]
-
-export const OperationalRoles: Role[] = [Role.MANAGER, Role.TECHNICIAN]
+import { type UserEntity } from './user.entity'
 
 export interface WhoAmIEntity {
-  id: string
-  email: string
-  firstName: string
-  lastName: string
-  roles: Role[]
+  id: UserEntity['id']
+  email: UserEntity['email']
+  firstName: UserEntity['firstName']
+  lastName: UserEntity['lastName']
+  roles: UserEntity['roles']
 }
