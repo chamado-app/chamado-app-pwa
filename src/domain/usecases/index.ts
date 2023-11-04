@@ -1,4 +1,5 @@
 export * from './auth'
 export * from './categories'
+export * from './equipments'
 export * from './tickets'
 export * from './users'
