@@ -1,3 +1,5 @@
+import { h } from 'vue'
+
 import { constants } from '@/constants'
 import { AuthenticatedRoles } from '@/domain/entities'
 
@@ -98,6 +100,37 @@ export const mainRoutes: CustomRouteRecordRaw[] = [
                     '@/presentation/pages/users/create-user/create-user-page.vue'
                   ),
                 meta: { title: 'Editar usuário', roles: AuthenticatedRoles }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        path: '/equipments',
+        children: [
+          {
+            path: '',
+            name: constants.routes.equipments.list,
+            component: () =>
+              import(
+                '@/presentation/pages/equipments/list-equipments/list-equipments-page.vue'
+              ),
+            meta: { title: 'Equipamentos', roles: AuthenticatedRoles },
+            children: [
+              {
+                path: 'create',
+                name: constants.routes.equipments.create,
+                component: () => h(''),
+                meta: {
+                  title: 'Cadastrar equipamento',
+                  roles: AuthenticatedRoles
+                }
+              },
+              {
+                path: ':id',
+                name: constants.routes.equipments.show,
+                component: () => h(''),
+                meta: { title: 'Editar equipamento', roles: AuthenticatedRoles }
               }
             ]
           }

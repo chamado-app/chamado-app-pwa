@@ -7,6 +7,11 @@ export const routes = {
     show: 'categories.show',
     create: 'categories.create'
   },
+  equipments: {
+    create: 'equipments.create',
+    list: 'equipments.list',
+    show: 'equipments.show'
+  },
   home: 'home',
   tickets: {
     list: 'tickets.list',
