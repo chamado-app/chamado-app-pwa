@@ -11,6 +11,7 @@ defineProps<FormActionsProps>()
   <div class="text-body form-actions">
     <q-btn
       flat
+      type="reset"
       no-caps
       :disable="isLoading"
       @click.stop="() => $emit('onCancel')">

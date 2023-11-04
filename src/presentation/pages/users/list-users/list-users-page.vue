@@ -37,13 +37,13 @@ onMounted(loadUsers)
     v-model:search="store.search"
     title="Usuários"
     :is-first-loading="store.isFirstLoading"
-    :form-path="constants.routes.categories.create"
+    :form-path="constants.routes.users.create"
     :no-registers="store.noRegisters"
     :no-results="store.noResults"
     :pages="store.pagination.pages"
     :skip="store.skip"
     :total="store.total"
-    create-register-label="Cadastrar nono usuário"
+    create-register-label="Cadastrar novo usuário"
     @update:take="store.changeTake"
     @update:page="store.changePage"
     @update:search="store.changeSearch">
@@ -57,7 +57,7 @@ onMounted(loadUsers)
         <MobileTableRow
           :id="props.key"
           :columns="props.cols"
-          :route="constants.routes.categories.show">
+          :route="constants.routes.users.show">
           <template #list-item-value-id="{ value }">
             <CopyIdAction :value="value" />
           </template>
@@ -67,7 +67,7 @@ onMounted(loadUsers)
         <DesktopTableRow
           :id="props.key"
           :columns="props.cols"
-          :route="constants.routes.categories.show"
+          :route="constants.routes.users.show"
           :delete-handler="() => deleteHandler(props.key)">
           <template #list-item-id="{ column }">
             <CopyIdAction :value="column.value" />
