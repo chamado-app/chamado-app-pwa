@@ -3,6 +3,7 @@ import { store } from 'quasar/wrappers'
 
 export * from './auth'
 export * from './categories'
+export * from './equipments'
 export * from './tickets'
 export * from './ui'
 export * from './users'
