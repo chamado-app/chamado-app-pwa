@@ -80,7 +80,26 @@ export const mainRoutes: CustomRouteRecordRaw[] = [
                 '@/presentation/pages/users/list-users/list-users-page.vue'
               ),
             meta: { title: 'Usuários', roles: AuthenticatedRoles },
-            children: []
+            children: [
+              {
+                path: 'create',
+                name: constants.routes.users.create,
+                component: () =>
+                  import(
+                    '@/presentation/pages/users/create-user/create-user-page.vue'
+                  ),
+                meta: { title: 'Criar usuário', roles: AuthenticatedRoles }
+              },
+              {
+                path: ':id',
+                name: constants.routes.users.show,
+                component: () =>
+                  import(
+                    '@/presentation/pages/users/create-user/create-user-page.vue'
+                  ),
+                meta: { title: 'Editar usuário', roles: AuthenticatedRoles }
+              }
+            ]
           }
         ]
       }
