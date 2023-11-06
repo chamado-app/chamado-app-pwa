@@ -27,6 +27,20 @@
     }
   }
 
+  .ticket {
+    &__title {
+      border-bottom-color: $crust;
+    }
+
+    &__chat {
+      border-color: $crust;
+    }
+
+    &-person__fixed {
+      color: rgba(0, 0, 0, 0.87);
+    }
+  }
+
   .delete-action__wrapper {
     background-color: $mantle;
   }
