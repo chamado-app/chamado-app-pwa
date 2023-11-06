@@ -2,7 +2,10 @@
 import { DateTime } from 'luxon'
 import { computed } from 'vue'
 
+import { constants } from '@/constants'
 import { type TicketEntity } from '@/domain/entities'
+
+import { CopyIdAction } from '../../ui'
 
 const props = defineProps<{
   ticket: TicketEntity
@@ -25,28 +28,16 @@ const ticketCardClasses = computed(() => [
 
 <template>
   <q-item
-    :to="{ name: 'ticket-info', params: { id: props.ticket.id } }"
+    :to="{
+      name: constants.routes.tickets.show,
+      params: { id: props.ticket.id }
+    }"
     :class="ticketCardClasses">
     <q-item-section class="ticket-item__content" top>
       <div class="ticket-item__indentification">
         <div
           class="ticket-item__code text-subtitle2 text-weight-bold text-uppercase">
-          <span> #{{ props.ticket.code }} </span>
-          <q-btn
-            flat
-            round
-            icon="mdi-content-copy"
-            size="sm"
-            dense
-            @click.prevent="() => null">
-            <q-tooltip
-              anchor="top middle"
-              self="center middle"
-              class="background-inverted text-mantle"
-              :offset="[20, 20]">
-              Copiar código
-            </q-tooltip>
-          </q-btn>
+          <CopyIdAction :value="props.ticket.id" />
         </div>
         <q-chip
           class="ticket-item__status"
@@ -66,7 +57,9 @@ const ticketCardClasses = computed(() => [
           </span>
           <span class="text-caption text-subtitle2">
             {{
-              DateTime.fromMillis(props.ticket.lastMessage.date).toRelative({
+              DateTime.fromMillis(
+                props.ticket.lastMessage!.sentAt.getTime()
+              ).toRelative({
                 style: 'long',
                 round: true
               })
@@ -75,7 +68,7 @@ const ticketCardClasses = computed(() => [
         </div>
         <div class="ticket-item__sumary-section">
           <h4 class="ticket-item__subtitle text-subtitle2">
-            {{ props.ticket.lastMessage.content }}
+            {{ props.ticket.lastMessage?.message.text }}
           </h4>
         </div>
       </div>
@@ -86,7 +79,7 @@ const ticketCardClasses = computed(() => [
 <style lang="scss" scoped>
 .ticket-item {
   &__wrapper {
-    border-radius: 0.5rem;
+    border-radius: 0.25rem;
     border-width: 1px;
     border-style: solid;
     padding: 0;

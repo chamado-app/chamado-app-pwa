@@ -2,6 +2,7 @@
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 
+import { constants } from '@/constants'
 import { TicketMessageType, TicketStatus } from '@/domain/entities'
 import { PageTitle, Paper } from '@/presentation/components'
 import { useShowTicketStore, useWhoAmIStore } from '@/presentation/store'
@@ -34,7 +35,12 @@ const getStamp = (date: Date): string => {
 <template>
   <div class="wrapper">
     <div class="page-title">
-      <q-btn flat round dense icon="mdi-arrow-left" />
+      <q-btn
+        :to="{ name: constants.routes.tickets.list }"
+        flat
+        round
+        dense
+        icon="mdi-arrow-left" />
       <PageTitle :title="title" />
     </div>
     <Paper>

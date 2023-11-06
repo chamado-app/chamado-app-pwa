@@ -34,11 +34,11 @@ export interface TicketMessageEntity {
 
 export interface TicketEntity {
   id: string
-  code: string
   title: string
   messages: TicketMessageEntity[]
   status: TicketStatus
   totalMessages: number
+  lastMessage?: TicketMessageEntity
   createdAt: Date
   updatedAt: Date
 }
