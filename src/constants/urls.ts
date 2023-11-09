@@ -3,6 +3,6 @@ export const urls = {
   categories: 'categories',
   equipments: 'equipments',
   listTickets: 'tickets',
-  users: 'tickets',
+  users: 'users',
   whoami: 'auth/whoami'
 } as const
