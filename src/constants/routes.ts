@@ -14,6 +14,7 @@ export const routes = {
   },
   home: 'home',
   tickets: {
+    create: 'tickets.create',
     list: 'tickets.list',
     show: 'tickets.show'
   },
