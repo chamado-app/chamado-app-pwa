@@ -15,7 +15,9 @@ import {
   useListUsersUsecase,
   useNotifier,
   useShowCategoryUsecase,
-  useUpdateCategoryUsecase
+  useShowUserUsecase,
+  useUpdateCategoryUsecase,
+  useUpdateUserUsecase
 } from './factories'
 
 provide(PROVIDERS.AUTHENTICATE_USECASE, useAuthenticateUsecase())
@@ -28,7 +30,9 @@ provide(PROVIDERS.LIST_EQUIPMENTS_USECASE, useListEquipmentsUsecase())
 provide(PROVIDERS.LIST_TICKETS_USECASE, useListTicketsUsecase())
 provide(PROVIDERS.LIST_USERS_USECASE, useListUsersUsecase())
 provide(PROVIDERS.SHOW_CATEGORY_USECASE, useShowCategoryUsecase())
+provide(PROVIDERS.SHOW_USER_USECASE, useShowUserUsecase())
 provide(PROVIDERS.UPDATE_CATEGORY_USECASE, useUpdateCategoryUsecase())
+provide(PROVIDERS.UPDATE_USER_USECASE, useUpdateUserUsecase())
 provide(PROVIDERS.NOTIFIER, useNotifier())
 </script>
 

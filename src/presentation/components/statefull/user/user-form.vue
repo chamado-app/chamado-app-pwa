@@ -70,6 +70,7 @@ const toggleShowPassword = (): void => {
       </QCol>
       <QCol>
         <q-input
+          v-if="!isUpdate"
           v-model="store.form.password"
           :rules="validation.password"
           label="Senha do usuário"

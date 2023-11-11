@@ -10,7 +10,9 @@ export enum PROVIDERS {
   LIST_TICKETS_USECASE = 'listTicketsUsecase',
   LIST_USERS_USECASE = 'listUsersUsecase',
   SHOW_CATEGORY_USECASE = 'showCategoryUsecase',
+  SHOW_USER_USECASE = 'showUserUsecase',
   UPDATE_CATEGORY_USECASE = 'updateCategoryUsecase',
+  UPDATE_USER_USECASE = 'updateUserUsecase',
 
   // Utils
   NOTIFIER = 'notifier'

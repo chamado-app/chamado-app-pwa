@@ -1,4 +1,6 @@
 export * from './remote-create-user'
 export * from './remote-list-users'
+export * from './remote-show-user'
+export * from './remote-update-user'
 export * from './types'
 export * from './utils'

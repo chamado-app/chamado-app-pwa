@@ -95,7 +95,7 @@ export const mainRoutes: CustomRouteRecordRaw[] = [
                 name: constants.routes.users.show,
                 component: () =>
                   import(
-                    '@/presentation/pages/users/create-user/create-user-page.vue'
+                    '@/presentation/pages/users/update-user/update-user-page.vue'
                   ),
                 meta: { title: 'Editar usuário', roles: AuthenticatedRoles }
               }
