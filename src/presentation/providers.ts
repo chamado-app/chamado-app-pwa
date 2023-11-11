@@ -4,6 +4,7 @@ export enum PROVIDERS {
   CREATE_CATEGORY_USECASE = 'createCategoryUsecase',
   CREATE_USER_USECASE = 'createUserUsecase',
   DELETE_CATEGORY_USECASE = 'deleteCategoryUsecase',
+  DELETE_USER_USECASE = 'deleteUserUsecase',
   FETCH_CATEGORIES_USECASE = 'fetchCategoriesUsecase',
   LIST_CATEGORIES_USECASE = 'listCategoriesUsecase',
   LIST_EQUIPMENTS_USECASE = 'listEquipmentsUsecase',

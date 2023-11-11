@@ -9,7 +9,7 @@ import {
   TableWrapper
 } from '@/presentation/components'
 import {
-  useDeleteCategoryController,
+  useDeleteUserController,
   useListUsersController
 } from '@/presentation/controllers'
 import { useDefaultTableProps, useTableColumns } from '@/presentation/utils'
@@ -19,9 +19,7 @@ import { desktopTableColumns, mobileTableColumns } from './list-users-columns'
 const columns = useTableColumns(desktopTableColumns, mobileTableColumns)
 const defaultTableProps = useDefaultTableProps()
 const { pagination, store, loadUsers } = useListUsersController()
-const { deleteHandler } = useDeleteCategoryController({
-  loadCategories: loadUsers
-})
+const { deleteHandler } = useDeleteUserController({ loadUsers })
 
 onUnmounted(() => {
   store.$reset()
