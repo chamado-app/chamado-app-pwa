@@ -22,7 +22,7 @@ const store = useShowUserStore()
 const { store: fetchCategoriesStore } = useFetchCategoriesController()
 const validation = USER_FORM_VALIDATION
 
-const showPassword = ref(true)
+const showPassword = ref(false)
 
 const showSectorsSelection = computed(() => {
   if (!store.form.roles?.length) return false
