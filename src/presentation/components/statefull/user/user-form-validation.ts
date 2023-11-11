@@ -5,5 +5,8 @@ export const USER_FORM_VALIDATION = {
   lastName: [(value: string) => !!value || 'Sobrenome é obrigatório'],
   email: [(value: string) => !!value || 'E-mail é obrigatório'],
   password: [(value: string) => !!value || 'Senha é obrigatória'],
-  roles: [(value: Role[] | null) => !!value?.length || 'Cargo é obrigatório']
+  roles: [(value: Role[] | null) => !!value?.length || 'Cargo é obrigatório'],
+  sectors: [
+    (value: Role[] | null) => !!value?.length || 'Áreas são obrigatórias'
+  ]
 }

@@ -1,7 +1,9 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 
+import { Role } from '@/domain/entities'
 import { FormActions } from '@/presentation/components'
+import { useFetchCategoriesController } from '@/presentation/controllers'
 import { useShowUserStore } from '@/presentation/store'
 
 import { USER_FORM_VALIDATION, USER_ROLES_FORM } from '.'
@@ -17,9 +19,18 @@ defineEmits<{
 
 defineProps<UserFormProps>()
 const store = useShowUserStore()
+const { store: fetchCategoriesStore } = useFetchCategoriesController()
 const validation = USER_FORM_VALIDATION
 
 const showPassword = ref(true)
+
+const showSectorsSelection = computed(() => {
+  if (!store.form.roles?.length) return false
+  if (store.form.roles.length === 1 && store.form.roles[0] === Role.USER) {
+    return false
+  }
+  return true
+})
 
 const toggleShowPassword = (): void => {
   showPassword.value = !showPassword.value
@@ -80,6 +91,21 @@ const toggleShowPassword = (): void => {
           :options="USER_ROLES_FORM"
           :rules="validation.roles"
           label="Tipo de usuário"
+          use-chips
+          map-options
+          multiple
+          emit-value
+          outlined />
+      </QCol>
+      <QCol>
+        <q-select
+          v-if="showSectorsSelection"
+          v-model="store.form.sectors"
+          :options="fetchCategoriesStore.categories"
+          :rules="validation.sectors"
+          option-label="name"
+          option-value="id"
+          label="Áreas de atuação"
           use-chips
           map-options
           multiple

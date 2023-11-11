@@ -1,5 +1,6 @@
 export * from './remote-create-category'
 export * from './remote-delete-category'
+export * from './remote-fetch-categories'
 export * from './remote-list-categories'
 export * from './remote-show-category'
 export * from './remote-update-category'

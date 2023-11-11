@@ -1,3 +1,5 @@
+import { type CategoryEntity } from './category.entity'
+
 export enum Role {
   MANAGER = 'manager',
   TECHNICIAN = 'technician',
@@ -20,6 +22,7 @@ export interface UserEntity {
   email: string
   password: string | null
   roles: Role[]
+  sectors: CategoryEntity[]
   isActive: boolean
   createdAt: Date
   updatedAt: Date

@@ -7,6 +7,7 @@ import {
   useAuthenticateUsecase,
   useCreateCategoryUsecase,
   useDeleteCategoryUsecase,
+  useFetchCategoriesUsecase,
   useListCategoriesUsecase,
   useListEquipmentsUsecase,
   useListTicketsUsecase,
@@ -19,6 +20,7 @@ import {
 provide(PROVIDERS.AUTHENTICATE_USECASE, useAuthenticateUsecase())
 provide(PROVIDERS.CREATE_CATEGORY_USECASE, useCreateCategoryUsecase())
 provide(PROVIDERS.DELETE_CATEGORY_USECASE, useDeleteCategoryUsecase())
+provide(PROVIDERS.FETCH_CATEGORIES_USECASE, useFetchCategoriesUsecase())
 provide(PROVIDERS.LIST_CATEGORIES_USECASE, useListCategoriesUsecase())
 provide(PROVIDERS.LIST_EQUIPMENTS_USECASE, useListEquipmentsUsecase())
 provide(PROVIDERS.LIST_TICKETS_USECASE, useListTicketsUsecase())
