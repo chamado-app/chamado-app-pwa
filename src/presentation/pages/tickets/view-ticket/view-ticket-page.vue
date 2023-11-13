@@ -22,20 +22,17 @@ const { store, loadTicket, ticketId } = useShowTicketController()
 
 const { fetchUsers, store: usersStore } = useFetchUsersController()
 
-const { fetchCategories, store: categoriesStore } =
-  useFetchCategoriesController()
+const fetchCategoriesController = useFetchCategoriesController()
+const { fetchCategories, store: categoriesStore } = fetchCategoriesController
 
-const { onSent, state: sendTextMessageState } =
-  useSendTicketTextMessageController({ loadTicket })
+const sentTextMessage = useSendTicketTextMessageController({ loadTicket })
+const { onSent, state: sendTextMessageState } = sentTextMessage
 
-const { onCancelTicket, state: cancelTicketState } = useCancelTicketController({
-  loadTicket
-})
+const cancelTicket = useCancelTicketController({ loadTicket })
+const { onCancelTicket, state: cancelTicketState } = cancelTicket
 
-const { onCompleteTicket, state: completeTicketState } =
-  useCompleteTicketController({
-    loadTicket
-  })
+const completeTicket = useCompleteTicketController({ loadTicket })
+const { onCompleteTicket, state: completeTicketState } = completeTicket
 
 const getStamp = (date?: Date): string => {
   if (!date) return ''
@@ -65,6 +62,12 @@ const highlight = computed(() => {
   )
   if (!status) return ''
   return `ticket__title-${status.color}`
+})
+
+const enabledAction = computed(() => {
+  return ![TicketStatus.DONE, TicketStatus.CANCELLED].includes(
+    store.data.status
+  )
 })
 
 const scrollChatToEnd = (length: number = 0): void => {
@@ -215,9 +218,9 @@ onMounted(() => {
               <label class="info-label" for="">Área de atuação</label>
               <q-select
                 :model-value="store.data.category"
-                :disable="isOwnerAuthenticated"
                 :options="categoriesStore.categories"
                 :loading="categoriesStore.isLoading"
+                disable
                 option-label="name"
                 option-value="id"
                 map-options
@@ -266,12 +269,7 @@ onMounted(() => {
           </QRow>
           <div class="ticket__actions">
             <q-btn
-              v-if="
-                isOwnerAuthenticated &&
-                ![TicketStatus.DONE, TicketStatus.CANCELLED].includes(
-                  store.data.status
-                )
-              "
+              v-if="isOwnerAuthenticated && !enabledAction"
               color="negative"
               flat
               label="Cancelar chamado"
@@ -279,12 +277,7 @@ onMounted(() => {
               :loading="cancelTicketState.isLoading"
               @click="onCancelTicket" />
             <q-btn
-              v-if="
-                !isOwnerAuthenticated &&
-                ![TicketStatus.DONE, TicketStatus.CANCELLED].includes(
-                  store.data.status
-                )
-              "
+              v-if="!isOwnerAuthenticated && !enabledAction"
               color="positive"
               label="Encerrar chamado"
               no-caps
