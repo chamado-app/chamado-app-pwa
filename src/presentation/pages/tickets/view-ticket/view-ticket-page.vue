@@ -8,6 +8,7 @@ import { FirstLoadingList, PageTitle, Paper } from '@/presentation/components'
 import { TICKET_STATUS_MAPPED } from '@/presentation/components/statefull/ticket/status-mapped'
 import {
   useCancelTicketController,
+  useChangeTicketAssignedController,
   useCompleteTicketController,
   useFetchCategoriesController,
   useFetchUsersController,
@@ -33,6 +34,10 @@ const { onCancelTicket, state: cancelTicketState } = cancelTicket
 
 const completeTicket = useCompleteTicketController({ loadTicket })
 const { onCompleteTicket, state: completeTicketState } = completeTicket
+
+const changeTicketAssigned = useChangeTicketAssignedController({ loadTicket })
+const { onChangeTicketAssigned, state: changeTicketAssignedState } =
+  changeTicketAssigned
 
 const getStamp = (date?: Date): string => {
   if (!date) return ''
@@ -182,8 +187,11 @@ onMounted(() => {
                     ? undefined
                     : 'Nenhum responsável atribuído'
                 "
-                :loading="usersStore.isLoading"
-                :options="usersStore.users">
+                :loading="
+                  usersStore.isLoading || changeTicketAssignedState.isLoading
+                "
+                :options="usersStore.users"
+                @update:model-value="onChangeTicketAssigned">
                 <template #selected-item="ops">
                   <div class="selectable-with-avatar">
                     <q-avatar

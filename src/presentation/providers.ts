@@ -2,6 +2,7 @@ export enum PROVIDERS {
   // Usecases
   AUTHENTICATE_USECASE = 'authenticateUsecase',
   CANCEL_TICKET_USECASE = 'cancelTicketUsecase',
+  CHANGE_TICKET_ASSIGNED_USECASE = 'changeTicketAssignedUsecase',
   COMPLETE_TICKET_USECASE = 'completeTicketUsecase',
   CREATE_CATEGORY_USECASE = 'createCategoryUsecase',
   CREATE_EQUIPMENT_USECASE = 'createEquipmentUsecase',

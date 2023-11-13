@@ -1,4 +1,5 @@
 export * from './remote-cancel-ticket'
+export * from './remote-change-ticket-assigned'
 export * from './remote-complete-ticket'
 export * from './remote-create-ticket'
 export * from './remote-list-tickets'

@@ -7,6 +7,7 @@ export const urls = {
   tickets: 'tickets',
   ticketsCancel: 'tickets/:id/cancel',
   ticketsComplete: 'tickets/:id/done',
+  ticketsAssing: 'tickets/:id/assign',
   ticketsSendTextMessage: 'tickets/:id/messages/text',
   users: 'users',
   usersFetch: 'users/fetch',
