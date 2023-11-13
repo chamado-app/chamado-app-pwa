@@ -1,5 +1,6 @@
 export * from './cancel-ticket.usecase'
 export * from './change-ticket-assigned.usecase'
+export * from './change-ticket-status.usecase'
 export * from './complete-ticket.usecase'
 export * from './create-ticket.usecase'
 export * from './list-tickets.usecase'

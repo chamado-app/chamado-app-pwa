@@ -7,6 +7,7 @@ import {
   useAuthenticateUsecase,
   useCancelTicketUsecase,
   useChangeTicketAssignedUsecase,
+  useChangeTicketStatusUsecase,
   useCompleteTicketUsecase,
   useCreateCategoryUsecase,
   useCreateEquipmentUsecase,
@@ -57,6 +58,7 @@ provide(PROVIDERS.UPDATE_CATEGORY_USECASE, useUpdateCategoryUsecase())
 provide(PROVIDERS.UPDATE_EQUIPMENT_USECASE, useUpdateEquipmentUsecase())
 provide(PROVIDERS.UPDATE_USER_USECASE, useUpdateUserUsecase())
 provide(PROVIDERS.COMPLETE_TICKET_USECASE, useCompleteTicketUsecase())
+provide(PROVIDERS.CHANGE_TICKET_STATUS_USECASE, useChangeTicketStatusUsecase())
 provide(
   PROVIDERS.CHANGE_TICKET_ASSIGNED_USECASE,
   useChangeTicketAssignedUsecase()

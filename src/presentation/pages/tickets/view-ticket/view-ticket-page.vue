@@ -9,6 +9,7 @@ import { TICKET_STATUS_MAPPED } from '@/presentation/components/statefull/ticket
 import {
   useCancelTicketController,
   useChangeTicketAssignedController,
+  useChangeTicketStatusController,
   useCompleteTicketController,
   useFetchCategoriesController,
   useFetchUsersController,
@@ -38,6 +39,10 @@ const { onCompleteTicket, state: completeTicketState } = completeTicket
 const changeTicketAssigned = useChangeTicketAssignedController({ loadTicket })
 const { onChangeTicketAssigned, state: changeTicketAssignedState } =
   changeTicketAssigned
+
+const changeTicketStatus = useChangeTicketStatusController({ loadTicket })
+const { onChangeTicketStatus, state: changeTicketStatusState } =
+  changeTicketStatus
 
 const getStamp = (date?: Date): string => {
   if (!date) return ''
@@ -70,9 +75,7 @@ const highlight = computed(() => {
 })
 
 const enabledAction = computed(() => {
-  return ![TicketStatus.DONE, TicketStatus.CANCELLED].includes(
-    store.data.status
-  )
+  return [TicketStatus.DONE, TicketStatus.CANCELLED].includes(store.data.status)
 })
 
 const scrollChatToEnd = (length: number = 0): void => {
@@ -241,12 +244,18 @@ onMounted(() => {
               <label class="info-label" for="">Situação</label>
               <q-select
                 :model-value="store.data.status"
-                :disable="isOwnerAuthenticated"
+                :disable="
+                  isOwnerAuthenticated || changeTicketStatusState.isLoading
+                "
                 :options="TICKET_STATUS_MAPPED"
                 emit-value
                 map-options
                 outlined
-                dense />
+                dense
+                :loading="
+                  usersStore.isLoading || changeTicketStatusState.isLoading
+                "
+                @update:model-value="onChangeTicketStatus" />
             </QCol>
             <QCol>
               <q-separator />
@@ -355,7 +364,7 @@ onMounted(() => {
       background-color: $positive;
     }
 
-    &-waring::before {
+    &-warning::before {
       background-color: $warning;
     }
 
