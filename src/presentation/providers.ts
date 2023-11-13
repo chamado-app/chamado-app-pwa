@@ -15,6 +15,7 @@ export enum PROVIDERS {
   LIST_EQUIPMENTS_USECASE = 'listEquipmentsUsecase',
   LIST_TICKETS_USECASE = 'listTicketsUsecase',
   LIST_USERS_USECASE = 'listUsersUsecase',
+  SEND_TICKET_TEXT_MESSAGE_USECASE = 'sendTicketTextMessageUsecase',
   SHOW_CATEGORY_USECASE = 'showCategoryUsecase',
   SHOW_EQUIPMENT_USECASE = 'showEquipmentUsecase',
   SHOW_USER_USECASE = 'showUserUsecase',

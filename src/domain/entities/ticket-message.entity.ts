@@ -7,6 +7,10 @@ export enum TicketMessageType {
   SYSTEM = 'system'
 }
 
+export interface TicketTextMessageFormEntity {
+  text: string
+}
+
 export interface TicketMessageEntity {
   text: string
   url?: string

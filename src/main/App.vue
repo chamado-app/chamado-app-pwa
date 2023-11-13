@@ -20,6 +20,7 @@ import {
   useListTicketsUsecase,
   useListUsersUsecase,
   useNotifier,
+  useSendTicketTextMessageUsecase,
   useShowCategoryUsecase,
   useShowEquipmentUsecase,
   useShowUserUsecase,
@@ -49,6 +50,12 @@ provide(PROVIDERS.SHOW_USER_USECASE, useShowUserUsecase())
 provide(PROVIDERS.UPDATE_CATEGORY_USECASE, useUpdateCategoryUsecase())
 provide(PROVIDERS.UPDATE_EQUIPMENT_USECASE, useUpdateEquipmentUsecase())
 provide(PROVIDERS.UPDATE_USER_USECASE, useUpdateUserUsecase())
+
+provide(
+  PROVIDERS.SEND_TICKET_TEXT_MESSAGE_USECASE,
+  useSendTicketTextMessageUsecase()
+)
+
 provide(PROVIDERS.NOTIFIER, useNotifier())
 </script>
 
