@@ -17,6 +17,7 @@ export interface TicketMessageEntity {
   type: TicketMessageType
   ticket: TicketEntity
   sentBy: UserEntity
+  sentByMe: boolean
   sentAt: Date
   readAt?: Date
 }

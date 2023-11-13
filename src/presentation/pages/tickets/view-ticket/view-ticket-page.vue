@@ -1,27 +1,15 @@
 <script lang="ts" setup>
-import { computed } from 'vue'
-import { useRoute } from 'vue-router'
+import { computed, onMounted } from 'vue'
 
 import { constants } from '@/constants'
 import { TicketMessageType, TicketStatus } from '@/domain/entities'
-import { PageTitle, Paper } from '@/presentation/components'
-import { useShowTicketStore, useWhoAmIStore } from '@/presentation/store'
+import { FirstLoadingList, PageTitle, Paper } from '@/presentation/components'
+import { useShowTicketController } from '@/presentation/controllers'
 
-const route = useRoute()
-const ticketId = computed(() => route.params.id as string)
-const title = computed(() => {
-  const [id] = ticketId.value.split('-')
-  return `Chamado #${id.toLocaleUpperCase()}`
-})
+const { store, loadTicket, ticketId } = useShowTicketController()
 
-const store = useShowTicketStore()
-const whoamiStore = useWhoAmIStore()
-
-const sentByMe = (ownerId?: string): boolean => {
-  return whoamiStore.data?.id === ownerId
-}
-
-const getStamp = (date: Date): string => {
+const getStamp = (date?: Date): string => {
+  if (!date) return ''
   return date.toLocaleString(undefined, {
     year: '2-digit',
     month: '2-digit',
@@ -30,6 +18,13 @@ const getStamp = (date: Date): string => {
     minute: '2-digit'
   })
 }
+
+const title = computed(() => {
+  const [id] = ticketId.value.split('-')
+  return `Chamado #${id.toLocaleUpperCase()}`
+})
+
+onMounted(loadTicket)
 </script>
 
 <template>
@@ -44,7 +39,8 @@ const getStamp = (date: Date): string => {
       <PageTitle :title="title" />
     </div>
     <Paper>
-      <q-card-section class="ticket__wrapper">
+      <FirstLoadingList v-if="!store.isLoaded" />
+      <q-card-section v-else class="ticket__wrapper">
         <div class="ticket__title">
           <h2 class="text-subtitle1">
             {{ store.data.title }}
@@ -54,12 +50,11 @@ const getStamp = (date: Date): string => {
         <div class="ticket__chat">
           <div class="ticket__chat-messages">
             <template v-for="message in store.data.messages" :key="message.id">
-              <q-chat-message
-                v-if="message.message.type === TicketMessageType.SYSTEM">
+              <q-chat-message v-if="message.type === TicketMessageType.SYSTEM">
                 <template #label>
                   <div class="system-message">
                     <span class="text-weight-bold">
-                      {{ message.message.text }}
+                      {{ message.text }}
                     </span>
                     <span>{{ getStamp(message.sentAt) }}</span>
                   </div>
@@ -67,13 +62,10 @@ const getStamp = (date: Date): string => {
               </q-chat-message>
               <q-chat-message
                 v-else
-                :name="message.owner?.name"
-                :avatar="message.owner?.avatar"
-                :text="[message.message.text]"
-                :sent="sentByMe(message.owner?.id)"
-                :bg-color="
-                  sentByMe(message.owner?.id) ? 'secondary' : 'primary'
-                "
+                :name="message.sentBy.firstName"
+                :text="[message.text]"
+                :sent="message.sentByMe"
+                :bg-color="message.sentByMe ? 'secondary' : 'primary'"
                 text-color="white"
                 :stamp="getStamp(message.sentAt)" />
             </template>
@@ -264,6 +256,7 @@ const getStamp = (date: Date): string => {
     &-messages {
       min-height: 32rem;
       overflow-y: auto;
+      padding: 0 0.5rem;
     }
 
     &-type {

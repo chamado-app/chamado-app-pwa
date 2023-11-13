@@ -13,6 +13,7 @@ export enum TicketStatus {
 }
 
 export interface TicketEntity {
+  id: string
   title: string
   messages: TicketMessageEntity[]
   category: CategoryEntity
