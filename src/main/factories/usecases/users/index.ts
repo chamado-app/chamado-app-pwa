@@ -1,5 +1,6 @@
 export * from './create-user.factory'
 export * from './delete-user.factory'
+export * from './fetch-users.factory'
 export * from './list-users.factory'
 export * from './show-user.factory'
 export * from './update-user.factory'

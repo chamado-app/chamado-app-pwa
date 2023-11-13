@@ -6,5 +6,6 @@ export const urls = {
   equipmentsFetch: 'equipments/fetch',
   tickets: 'tickets',
   users: 'users',
+  usersFetch: 'users/fetch',
   whoami: 'auth/whoami'
 } as const

@@ -1,5 +1,6 @@
 export * from './remote-create-user'
 export * from './remote-delete-user'
+export * from './remote-fetch-users'
 export * from './remote-list-users'
 export * from './remote-show-user'
 export * from './remote-update-user'

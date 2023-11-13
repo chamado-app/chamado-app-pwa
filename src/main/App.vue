@@ -14,6 +14,7 @@ import {
   useDeleteUserUsecase,
   useFetchCategoriesUsecase,
   useFetchEquipmentsUsecase,
+  useFetchUsersUsecase,
   useListCategoriesUsecase,
   useListEquipmentsUsecase,
   useListTicketsUsecase,
@@ -37,6 +38,7 @@ provide(PROVIDERS.DELETE_EQUIPMENT_USECASE, useDeleteEquipmentUsecase())
 provide(PROVIDERS.DELETE_USER_USECASE, useDeleteUserUsecase())
 provide(PROVIDERS.FETCH_CATEGORIES_USECASE, useFetchCategoriesUsecase())
 provide(PROVIDERS.FETCH_EQUIPMENTS_USECASE, useFetchEquipmentsUsecase())
+provide(PROVIDERS.FETCH_USERS_USECASE, useFetchUsersUsecase())
 provide(PROVIDERS.LIST_CATEGORIES_USECASE, useListCategoriesUsecase())
 provide(PROVIDERS.LIST_EQUIPMENTS_USECASE, useListEquipmentsUsecase())
 provide(PROVIDERS.LIST_TICKETS_USECASE, useListTicketsUsecase())

@@ -10,6 +10,7 @@ export enum PROVIDERS {
   DELETE_USER_USECASE = 'deleteUserUsecase',
   FETCH_CATEGORIES_USECASE = 'fetchCategoriesUsecase',
   FETCH_EQUIPMENTS_USECASE = 'fetchEquipmentsUsecase',
+  FETCH_USERS_USECASE = 'fetchUsersUsecase',
   LIST_CATEGORIES_USECASE = 'listCategoriesUsecase',
   LIST_EQUIPMENTS_USECASE = 'listEquipmentsUsecase',
   LIST_TICKETS_USECASE = 'listTicketsUsecase',
