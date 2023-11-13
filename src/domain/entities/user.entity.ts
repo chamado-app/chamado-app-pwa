@@ -15,6 +15,8 @@ export const AuthenticatedRoles: Role[] = [
 
 export const OperationalRoles: Role[] = [Role.MANAGER, Role.TECHNICIAN]
 
+export const ManagerRole: Role[] = [Role.MANAGER]
+
 export interface UserEntity {
   id: string
   firstName: string

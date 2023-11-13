@@ -1,5 +1,5 @@
 import { constants } from '@/constants'
-import { AuthenticatedRoles } from '@/domain/entities'
+import { AuthenticatedRoles, ManagerRole } from '@/domain/entities'
 
 import { type CustomRouteRecordRaw } from './types'
 
@@ -54,7 +54,7 @@ export const mainRoutes: CustomRouteRecordRaw[] = [
               import(
                 '@/presentation/pages/categories/list-categories/list-categories-page.vue'
               ),
-            meta: { title: 'Lista de Áreas', roles: AuthenticatedRoles },
+            meta: { title: 'Lista de Áreas', roles: ManagerRole },
             children: [
               {
                 path: 'create',
@@ -63,7 +63,7 @@ export const mainRoutes: CustomRouteRecordRaw[] = [
                   import(
                     '@/presentation/pages/categories/create-category/create-category-page.vue'
                   ),
-                meta: { title: 'Nova área', roles: AuthenticatedRoles }
+                meta: { title: 'Nova área', roles: ManagerRole }
               },
               {
                 path: ':id',
@@ -72,7 +72,7 @@ export const mainRoutes: CustomRouteRecordRaw[] = [
                   import(
                     '@/presentation/pages/categories/update-category/update-category-page.vue'
                   ),
-                meta: { title: 'Editar área', roles: AuthenticatedRoles }
+                meta: { title: 'Editar área', roles: ManagerRole }
               }
             ]
           }
@@ -88,7 +88,7 @@ export const mainRoutes: CustomRouteRecordRaw[] = [
               import(
                 '@/presentation/pages/users/list-users/list-users-page.vue'
               ),
-            meta: { title: 'Usuários', roles: AuthenticatedRoles },
+            meta: { title: 'Usuários', roles: ManagerRole },
             children: [
               {
                 path: 'create',
@@ -97,7 +97,7 @@ export const mainRoutes: CustomRouteRecordRaw[] = [
                   import(
                     '@/presentation/pages/users/create-user/create-user-page.vue'
                   ),
-                meta: { title: 'Criar usuário', roles: AuthenticatedRoles }
+                meta: { title: 'Criar usuário', roles: ManagerRole }
               },
               {
                 path: ':id',
@@ -106,7 +106,7 @@ export const mainRoutes: CustomRouteRecordRaw[] = [
                   import(
                     '@/presentation/pages/users/update-user/update-user-page.vue'
                   ),
-                meta: { title: 'Editar usuário', roles: AuthenticatedRoles }
+                meta: { title: 'Editar usuário', roles: ManagerRole }
               }
             ]
           }
@@ -122,7 +122,7 @@ export const mainRoutes: CustomRouteRecordRaw[] = [
               import(
                 '@/presentation/pages/equipments/list-equipments/list-equipments-page.vue'
               ),
-            meta: { title: 'Equipamentos', roles: AuthenticatedRoles },
+            meta: { title: 'Equipamentos', roles: ManagerRole },
             children: [
               {
                 path: 'create',
@@ -133,7 +133,7 @@ export const mainRoutes: CustomRouteRecordRaw[] = [
                   ),
                 meta: {
                   title: 'Cadastrar equipamento',
-                  roles: AuthenticatedRoles
+                  roles: ManagerRole
                 }
               },
               {
@@ -143,7 +143,7 @@ export const mainRoutes: CustomRouteRecordRaw[] = [
                   import(
                     '@/presentation/pages/equipments/update-equipment/update-equipment-page.vue'
                   ),
-                meta: { title: 'Editar equipamento', roles: AuthenticatedRoles }
+                meta: { title: 'Editar equipamento', roles: ManagerRole }
               }
             ]
           }

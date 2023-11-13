@@ -1,7 +1,7 @@
 import { computed } from 'vue'
 
 import { constants } from '@/constants'
-import { AuthenticatedRoles } from '@/domain/entities'
+import { AuthenticatedRoles, Role } from '@/domain/entities'
 import { verifyAuthRoles } from '@/domain/utils'
 import { useWhoAmIStore } from '@/presentation/store'
 
@@ -18,19 +18,19 @@ export const sidebarItems: SidebarItem[] = [
     icon: 'mdi-format-list-bulleted',
     label: 'Áreas',
     to: { name: constants.routes.categories.list },
-    roles: AuthenticatedRoles
+    roles: [Role.MANAGER]
   },
   {
     icon: 'mdi-memory',
     label: 'Equipamentos',
     to: { name: constants.routes.equipments.list },
-    roles: AuthenticatedRoles
+    roles: [Role.MANAGER]
   },
   {
     icon: 'mdi-account-multiple-outline',
     label: 'Usuários',
     to: { name: constants.routes.users.list },
-    roles: AuthenticatedRoles
+    roles: [Role.MANAGER]
   }
 ]
 
