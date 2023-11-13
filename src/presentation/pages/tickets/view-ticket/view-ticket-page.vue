@@ -8,6 +8,7 @@ import { FirstLoadingList, PageTitle, Paper } from '@/presentation/components'
 import { TICKET_STATUS_MAPPED } from '@/presentation/components/statefull/ticket/status-mapped'
 import {
   useCancelTicketController,
+  useCompleteTicketController,
   useFetchCategoriesController,
   useFetchUsersController,
   useSendTicketTextMessageController,
@@ -30,6 +31,11 @@ const { onSent, state: sendTextMessageState } =
 const { onCancelTicket, state: cancelTicketState } = useCancelTicketController({
   loadTicket
 })
+
+const { onCompleteTicket, state: completeTicketState } =
+  useCompleteTicketController({
+    loadTicket
+  })
 
 const getStamp = (date?: Date): string => {
   if (!date) return ''
@@ -262,7 +268,9 @@ onMounted(() => {
             <q-btn
               v-if="
                 isOwnerAuthenticated &&
-                store.data.status !== TicketStatus.CANCELLED
+                ![TicketStatus.DONE, TicketStatus.CANCELLED].includes(
+                  store.data.status
+                )
               "
               color="negative"
               flat
@@ -271,10 +279,17 @@ onMounted(() => {
               :loading="cancelTicketState.isLoading"
               @click="onCancelTicket" />
             <q-btn
-              v-if="!isOwnerAuthenticated"
+              v-if="
+                !isOwnerAuthenticated &&
+                ![TicketStatus.DONE, TicketStatus.CANCELLED].includes(
+                  store.data.status
+                )
+              "
               color="positive"
               label="Encerrar chamado"
-              no-caps />
+              no-caps
+              :loading="completeTicketState.isLoading"
+              @click="onCompleteTicket" />
           </div>
         </div>
       </q-card-section>

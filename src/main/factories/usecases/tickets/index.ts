@@ -1,4 +1,5 @@
 export * from './cancel-ticket.factory'
+export * from './complete-ticket.factory'
 export * from './create-ticket.factory'
 export * from './list-tickets.factory'
 export * from './send-ticket-text-message.factory'

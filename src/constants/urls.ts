@@ -6,6 +6,7 @@ export const urls = {
   equipmentsFetch: 'equipments/fetch',
   tickets: 'tickets',
   ticketsCancel: 'tickets/:id/cancel',
+  ticketsComplete: 'tickets/:id/done',
   ticketsSendTextMessage: 'tickets/:id/messages/text',
   users: 'users',
   usersFetch: 'users/fetch',

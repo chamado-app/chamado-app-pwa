@@ -6,6 +6,7 @@ import { PROVIDERS } from '@/presentation/providers'
 import {
   useAuthenticateUsecase,
   useCancelTicketUsecase,
+  useCompleteTicketUsecase,
   useCreateCategoryUsecase,
   useCreateEquipmentUsecase,
   useCreateTicketUsecase,
@@ -54,6 +55,7 @@ provide(PROVIDERS.SHOW_USER_USECASE, useShowUserUsecase())
 provide(PROVIDERS.UPDATE_CATEGORY_USECASE, useUpdateCategoryUsecase())
 provide(PROVIDERS.UPDATE_EQUIPMENT_USECASE, useUpdateEquipmentUsecase())
 provide(PROVIDERS.UPDATE_USER_USECASE, useUpdateUserUsecase())
+provide(PROVIDERS.COMPLETE_TICKET_USECASE, useCompleteTicketUsecase())
 
 provide(
   PROVIDERS.SEND_TICKET_TEXT_MESSAGE_USECASE,
