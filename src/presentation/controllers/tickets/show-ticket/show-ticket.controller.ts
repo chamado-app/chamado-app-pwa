@@ -17,10 +17,10 @@ export const useShowTicketController = (): ShowTicketController => {
     PROVIDERS.SHOW_TICKET_USECASE
   )!
 
-  const loadTicket = async (): Promise<void> => {
+  const loadTicket = async (quiet: boolean = false): Promise<void> => {
     if (store.isLoading) return
 
-    store.$patch({ isLoading: true })
+    if (!quiet) store.$patch({ isLoading: true })
 
     try {
       const data = await showTicketUsecase.execute(ticketId.value)

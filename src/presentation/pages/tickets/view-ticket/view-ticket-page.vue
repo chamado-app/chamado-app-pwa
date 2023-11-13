@@ -92,6 +92,8 @@ onMounted(() => {
             ref="chat"
             v-slot="{ item: message, index }"
             :items="store.data.messages"
+            :items-size="store.data.messages.length"
+            separator
             class="ticket__chat-messages">
             <div :key="index">
               <q-chat-message v-if="message.type === TicketMessageType.SYSTEM">
@@ -130,7 +132,7 @@ onMounted(() => {
               type="text"
               :disable="sendTextMessageState.isSending"
               autogrow
-              @keyup.enter.exact.prevent="onSent">
+              @keyup.enter.exact.prevent.stop="onSent">
               <template #append>
                 <q-btn
                   round
@@ -349,8 +351,7 @@ onMounted(() => {
     }
 
     &-messages {
-      min-height: 32rem;
-      max-height: 36rem;
+      height: 32rem;
       overflow-y: auto;
       padding: 0 0.5rem 0.5rem 0;
     }

@@ -1,5 +1,7 @@
+import { type ShowTicketController } from '../show-ticket'
+
 export type SendTicketTextMessageControllerProps = {
-  loadTicket: () => Promise<void>
+  loadTicket: ShowTicketController['loadTicket']
 }
 
 export interface SendTicketTextMessageController {
