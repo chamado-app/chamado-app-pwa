@@ -45,10 +45,12 @@ export const EQUIPMENT_FORM_VALIDATION = {
       'O patrimônio deve ter pelo no máximo 60 caracteres'
   ],
   serial: [
-    (value: string) => !!value || 'O número de série é obrigatório',
     (value: string) =>
-      value.length >= 3 || 'O número de série deve ter pelo menos 3 caracteres',
+      !!value ||
+      value.length >= 3 ||
+      'O número de série deve ter pelo menos 3 caracteres',
     (value: string) =>
+      !!value ||
       value.length <= 60 ||
       'O número de série deve ter pelo no máximo 60 caracteres'
   ],

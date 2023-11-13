@@ -1,6 +1,6 @@
 import { HttpStatusCode, type HttpPostClient } from '@/data/protocols'
 import {
-  type RemoteEquimentEntity,
+  type RemoteEquipmentEntity,
   parseRemoteEquipmentEntityToEquipmentEntity
 } from '@/data/usecases'
 import { type EquipmentEntity } from '@/domain/entities'
@@ -13,7 +13,7 @@ import { type CreateEquipmentUsecase } from '@/domain/usecases'
 export class RemoteCreateEquipmentUsecase implements CreateEquipmentUsecase {
   constructor(
     private readonly url: string,
-    private readonly httpPostClient: HttpPostClient<any, RemoteEquimentEntity>
+    private readonly httpPostClient: HttpPostClient<any, RemoteEquipmentEntity>
   ) {}
 
   async execute(data: Partial<EquipmentEntity>): Promise<EquipmentEntity> {

@@ -1,10 +1,10 @@
 import { type ListEquipmentsOutputDto } from '@/domain/dto'
 
-import { type RemoteEquimentEntity } from '../types'
+import { type RemoteEquipmentEntity } from '../types'
 
 export type RemoteListEquipmentDto = Omit<
   ListEquipmentsOutputDto,
   'equipments'
 > & {
-  equipments: RemoteEquimentEntity[]
+  equipments: RemoteEquipmentEntity[]
 }

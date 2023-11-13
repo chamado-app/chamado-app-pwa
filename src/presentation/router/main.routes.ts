@@ -1,5 +1,3 @@
-import { h } from 'vue'
-
 import { constants } from '@/constants'
 import { AuthenticatedRoles } from '@/domain/entities'
 
@@ -130,7 +128,10 @@ export const mainRoutes: CustomRouteRecordRaw[] = [
               {
                 path: ':id',
                 name: constants.routes.equipments.show,
-                component: () => h(''),
+                component: () =>
+                  import(
+                    '@/presentation/pages/equipments/update-equipment/update-equipment-page.vue'
+                  ),
                 meta: { title: 'Editar equipamento', roles: AuthenticatedRoles }
               }
             ]

@@ -1,6 +1,6 @@
 import { type EquipmentEntity } from '@/domain/entities'
 
-export type RemoteEquimentEntity = Omit<
+export type RemoteEquipmentEntity = Omit<
   EquipmentEntity,
   'createdAt' | 'updatedAt'
 > & {

@@ -1,6 +1,6 @@
 import { type EquipmentEntity } from '@/domain/entities'
 
-import { type RemoteEquimentEntity as RemoteEquipmentEntity } from './types'
+import { type RemoteEquipmentEntity } from './types'
 
 export const parseRemoteEquipmentEntityToEquipmentEntity = ({
   createdAt,
