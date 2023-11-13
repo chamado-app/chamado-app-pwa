@@ -28,6 +28,9 @@ onMounted(loadTickets)
     :skip="store.skip"
     :total="store.total"
     create-register-label="Abrir novo chamado"
+    no-registers-title="Nenhum chamado encontrado"
+    no-registers-message="Caso necessário, abra um novo chamado"
+    no-registers-button-label="Abrir novo chamado"
     @update:take="store.changeTake"
     @update:page="store.changePage"
     @update:search="store.changeSearch">
