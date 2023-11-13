@@ -1,5 +1,5 @@
 export type SendTicketTextMessageControllerProps = {
-  showTicket: () => Promise<void>
+  loadTicket: () => Promise<void>
 }
 
 export interface SendTicketTextMessageController {

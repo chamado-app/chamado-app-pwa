@@ -1,5 +1,6 @@
 <script lang="ts" setup>
-import { computed, onMounted } from 'vue'
+import { QVirtualScroll } from 'quasar'
+import { computed, onMounted, ref, watch } from 'vue'
 
 import { constants } from '@/constants'
 import { TicketMessageType } from '@/domain/entities'
@@ -8,15 +9,19 @@ import { TICKET_STATUS_MAPPED } from '@/presentation/components/statefull/ticket
 import {
   useFetchCategoriesController,
   useFetchUsersController,
+  useSendTicketTextMessageControllerController,
   useShowTicketController
 } from '@/presentation/controllers'
 import { useWhoAmIStore } from '@/presentation/store'
 
+const chat = ref<QVirtualScroll | null>(null)
 const whoami = useWhoAmIStore()
 const { store, loadTicket, ticketId } = useShowTicketController()
 const { fetchUsers, store: usersStore } = useFetchUsersController()
 const { fetchCategories, store: categoriesStore } =
   useFetchCategoriesController()
+const { onSent, state: sendTextMessageState } =
+  useSendTicketTextMessageControllerController({ loadTicket })
 
 const getStamp = (date?: Date): string => {
   if (!date) return ''
@@ -48,6 +53,13 @@ const highlight = computed(() => {
   return `ticket__title-${status.color}`
 })
 
+const scrollChatToEnd = (length: number = 0): void => {
+  if (!chat.value) return
+  chat.value.scrollTo(length, 'force-end')
+}
+
+watch(() => chat.value?.items?.length, scrollChatToEnd)
+
 onMounted(() => {
   void loadTicket()
   void fetchUsers()
@@ -76,8 +88,12 @@ onMounted(() => {
           <span class="text-caption">{{ getStamp(store.data.createdAt) }}</span>
         </div>
         <div class="ticket__chat">
-          <div class="ticket__chat-messages">
-            <template v-for="message in store.data.messages" :key="message.id">
+          <q-virtual-scroll
+            ref="chat"
+            v-slot="{ item: message, index }"
+            :items="store.data.messages"
+            class="ticket__chat-messages">
+            <div :key="index">
               <q-chat-message v-if="message.type === TicketMessageType.SYSTEM">
                 <template #label>
                   <div class="system-message">
@@ -104,20 +120,25 @@ onMounted(() => {
                     icon="mdi-account" />
                 </template>
               </q-chat-message>
-            </template>
-          </div>
+            </div>
+          </q-virtual-scroll>
           <div class="ticket__chat-type">
             <q-input
+              v-model="sendTextMessageState.message"
               placeholder="Digite para responder ao chamado..."
               outlined
-              model-value=""
               type="text"
-              autogrow>
-              <template #prepend>
-                <q-btn round flat dense icon="mdi-paperclip" />
-              </template>
+              :disable="sendTextMessageState.isSending"
+              autogrow
+              @keyup.enter.exact.prevent="onSent">
               <template #append>
-                <q-btn round flat dense icon="mdi-send" />
+                <q-btn
+                  round
+                  flat
+                  dense
+                  icon="mdi-send"
+                  :loading="sendTextMessageState.isSending"
+                  @click="onSent" />
               </template>
             </q-input>
           </div>
@@ -329,7 +350,9 @@ onMounted(() => {
 
     &-messages {
       min-height: 32rem;
+      max-height: 36rem;
       overflow-y: auto;
+      padding: 0 0.5rem 0.5rem 0;
     }
 
     &-type {
