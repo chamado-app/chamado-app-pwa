@@ -2,11 +2,21 @@
 import { computed, onMounted } from 'vue'
 
 import { constants } from '@/constants'
-import { TicketMessageType, TicketStatus } from '@/domain/entities'
+import { TicketMessageType } from '@/domain/entities'
 import { FirstLoadingList, PageTitle, Paper } from '@/presentation/components'
-import { useShowTicketController } from '@/presentation/controllers'
+import { TICKET_STATUS_MAPPED } from '@/presentation/components/statefull/ticket/status-mapped'
+import {
+  useFetchCategoriesController,
+  useFetchUsersController,
+  useShowTicketController
+} from '@/presentation/controllers'
+import { useWhoAmIStore } from '@/presentation/store'
 
+const whoami = useWhoAmIStore()
 const { store, loadTicket, ticketId } = useShowTicketController()
+const { fetchUsers, store: usersStore } = useFetchUsersController()
+const { fetchCategories, store: categoriesStore } =
+  useFetchCategoriesController()
 
 const getStamp = (date?: Date): string => {
   if (!date) return ''
@@ -24,7 +34,25 @@ const title = computed(() => {
   return `Chamado #${id.toLocaleUpperCase()}`
 })
 
-onMounted(loadTicket)
+const isOwnerAuthenticated = computed(() => {
+  if (!store.data?.reportedBy) return false
+  return whoami.data?.id === store.data.reportedBy.id
+})
+
+const highlight = computed(() => {
+  if (!store.data?.status) return ''
+  const status = TICKET_STATUS_MAPPED.find(
+    (status) => status.value === store.data.status
+  )
+  if (!status) return ''
+  return `ticket__title-${status.color}`
+})
+
+onMounted(() => {
+  void loadTicket()
+  void fetchUsers()
+  void fetchCategories()
+})
 </script>
 
 <template>
@@ -39,9 +67,9 @@ onMounted(loadTicket)
       <PageTitle :title="title" />
     </div>
     <Paper>
-      <FirstLoadingList v-if="!store.isLoaded" />
+      <FirstLoadingList v-if="store.isLoading" class="no-results" />
       <q-card-section v-else class="ticket__wrapper">
-        <div class="ticket__title">
+        <div :class="['ticket__title', highlight]">
           <h2 class="text-subtitle1">
             {{ store.data.title }}
           </h2>
@@ -62,7 +90,7 @@ onMounted(loadTicket)
               </q-chat-message>
               <q-chat-message
                 v-else
-                :name="message.sentBy.firstName"
+                :name="message.sentBy.name"
                 :text="[message.text]"
                 :sent="message.sentByMe"
                 :bg-color="message.sentByMe ? 'secondary' : 'primary'"
@@ -70,7 +98,7 @@ onMounted(loadTicket)
                 :stamp="getStamp(message.sentAt)">
                 <template #avatar>
                   <q-avatar
-                    class="q-ml-xs"
+                    class="q-mx-xs"
                     color="blue-grey-1"
                     :text-color="message.sentByMe ? 'secondary' : 'primary'"
                     icon="mdi-account" />
@@ -100,26 +128,32 @@ onMounted(loadTicket)
               <label class="info-label" for="responsible">Responsável</label>
               <q-select
                 id="responsible"
-                model-value="56678f4a-3e56-40b5-bbf4-3d4a3abfa269"
+                :model-value="store.data.assignedTo"
+                :style="{ minHeight: '2.75rem' }"
+                :disable="isOwnerAuthenticated"
                 map-options
                 outlined
                 dense
                 option-label="name"
                 option-value="id"
                 emit-value
-                :options="[
-                  {
-                    name: 'João da Silva',
-                    id: '56678f4a-3e56-40b5-bbf4-3d4a3abfa269',
-                    avatar: 'https://cdn.quasar.dev/img/avatar4.jpg'
-                  }
-                ]">
-                <template #selected>
+                :label="
+                  store.data.assignedTo
+                    ? undefined
+                    : 'Nenhum responsável atribuído'
+                "
+                :loading="usersStore.isLoading"
+                :options="usersStore.users">
+                <template #selected-item="ops">
                   <div class="selectable-with-avatar">
-                    <q-avatar size="md">
-                      <img src="https://cdn.quasar.dev/img/avatar4.jpg" />
-                    </q-avatar>
-                    <span>João da Silva</span>
+                    <q-avatar
+                      class="q-ml-xs"
+                      size="md"
+                      color="blue-grey-1"
+                      icon="mdi-account" />
+                    <span>
+                      {{ ops.opt.name }}
+                    </span>
                   </div>
                 </template>
               </q-select>
@@ -128,10 +162,12 @@ onMounted(loadTicket)
               <label class="info-label">Relator</label>
               <div class="ticket-person__fixed">
                 <div class="selectable-with-avatar">
-                  <q-avatar size="md">
-                    <img src="https://cdn.quasar.dev/img/avatar6.jpg" />
-                  </q-avatar>
-                  <span>Maria dos Santos</span>
+                  <q-avatar
+                    class="q-ml-xs"
+                    size="md"
+                    color="blue-grey-1"
+                    icon="mdi-account" />
+                  <span>{{ store.data.reportedBy?.name }}</span>
                 </div>
               </div>
             </QCol>
@@ -141,14 +177,12 @@ onMounted(loadTicket)
             <QCol>
               <label class="info-label" for="">Área de atuação</label>
               <q-select
-                :options="[
-                  {
-                    label: 'Periféricos',
-                    value: TicketStatus.IN_PROGRESS
-                  }
-                ]"
-                :model-value="TicketStatus.IN_PROGRESS"
-                emit-value
+                :model-value="store.data.category"
+                :disable="isOwnerAuthenticated"
+                :options="categoriesStore.categories"
+                :loading="categoriesStore.isLoading"
+                option-label="name"
+                option-value="id"
                 map-options
                 outlined
                 dense />
@@ -156,13 +190,9 @@ onMounted(loadTicket)
             <QCol>
               <label class="info-label" for="">Situação</label>
               <q-select
-                :options="[
-                  {
-                    label: 'Em andamento',
-                    value: TicketStatus.IN_PROGRESS
-                  }
-                ]"
-                :model-value="TicketStatus.IN_PROGRESS"
+                :model-value="store.data.status"
+                :disable="isOwnerAuthenticated"
+                :options="TICKET_STATUS_MAPPED"
                 emit-value
                 map-options
                 outlined
@@ -175,27 +205,40 @@ onMounted(loadTicket)
               <label class="info-label">Equipamento</label>
               <div class="equipment">
                 <span>
+                  <span class="equipment-info">Descrição:</span>
+                  {{ store.data.equipment?.name || '-' }}
+                </span>
+                <span>
                   <span class="equipment-info">Marca:</span>
-                  HP
+                  {{ store.data.equipment?.brand || '-' }}
                 </span>
                 <span>
                   <span class="equipment-info">Modelo:</span>
-                  2774 DeskJet Ink Advantage
+                  {{ store.data.equipment?.model || '-' }}
                 </span>
                 <span>
                   <span class="equipment-info">Localização:</span>
-                  Sala 05
+                  {{ store.data.equipment?.section || '-' }}
                 </span>
                 <span>
                   <span class="equipment-info">Informações adicionais:</span>
-                  Costuma apresentar problemas de conexão via USB
+                  {{ store.data.equipment?.additionalInfo || '-' }}
                 </span>
               </div>
             </QCol>
           </QRow>
           <div class="ticket__actions">
-            <q-btn color="negative" flat label="Encerrar chamado" no-caps />
-            <q-btn color="positive" label="Solucionar chamado" no-caps />
+            <q-btn
+              v-if="isOwnerAuthenticated"
+              color="negative"
+              flat
+              label="Cancelar chamado"
+              no-caps />
+            <q-btn
+              v-if="!isOwnerAuthenticated"
+              color="positive"
+              label="Encerrar chamado"
+              no-caps />
           </div>
         </div>
       </q-card-section>
@@ -240,7 +283,30 @@ onMounted(loadTicket)
       border-radius: 0.25rem;
       left: 0;
       top: 0;
+    }
+
+    &-primary::before {
+      background-color: $primary;
+    }
+
+    &-secondary::before {
+      background-color: $secondary;
+    }
+
+    &-info::before {
       background-color: $info;
+    }
+
+    &-positive::before {
+      background-color: $positive;
+    }
+
+    &-waring::before {
+      background-color: $warning;
+    }
+
+    &-negative::before {
+      background-color: $negative;
     }
   }
 

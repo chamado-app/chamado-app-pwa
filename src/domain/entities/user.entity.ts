@@ -19,6 +19,7 @@ export interface UserEntity {
   id: string
   firstName: string
   lastName: string
+  name: string
   email: string
   password: string | null
   roles: Role[]
