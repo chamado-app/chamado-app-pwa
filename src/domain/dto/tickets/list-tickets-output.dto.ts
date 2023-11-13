@@ -1,5 +1,6 @@
-import { type TicketEntity } from '@/domain/entities'
+import { type ListOutputDto } from '@/domain/base'
+import { type ListTicketItemEntity } from '@/domain/entities'
 
-export type ListTicketsOutputDto = {
-  tickets?: TicketEntity[]
+export type ListTicketsOutputDto = ListOutputDto & {
+  tickets: ListTicketItemEntity[]
 }

@@ -1,5 +1,7 @@
 export * from './category.entity'
 export * from './equipment.entity'
+export * from './list-ticket-item.entity'
+export * from './ticket-message.entity'
 export * from './ticket.entity'
 export * from './user.entity'
 export * from './whoami.entity'

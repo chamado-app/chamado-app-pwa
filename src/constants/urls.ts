@@ -3,7 +3,7 @@ export const urls = {
   categories: 'categories',
   categoriesFetch: 'categories/fetch',
   equipments: 'equipments',
-  listTickets: 'tickets',
+  tickets: 'tickets',
   users: 'users',
   whoami: 'auth/whoami'
 } as const

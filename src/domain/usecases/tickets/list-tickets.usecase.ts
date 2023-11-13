@@ -5,5 +5,5 @@ import {
 } from '@/domain/dto'
 
 export interface ListTicketsUsecase extends Usecase<ListTicketsOutputDto> {
-  execute: (options?: ListTicketsInputDto) => Promise<ListTicketsOutputDto>
+  execute: (options: ListTicketsInputDto) => Promise<ListTicketsOutputDto>
 }

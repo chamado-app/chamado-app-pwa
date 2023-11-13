@@ -1,54 +1,45 @@
-import { faker } from '@faker-js/faker'
-
-import { type HttpGetClient } from '@/data/protocols'
+import { HttpStatusCode, type HttpGetClient } from '@/data/protocols'
 import {
-  type ListTicketsInputDto,
-  type ListTicketsOutputDto
+  type ListTicketsOutputDto,
+  type ListTicketsInputDto
 } from '@/domain/dto'
-import {
-  TicketStatus,
-  type TicketEntity,
-  TicketMessageType
-} from '@/domain/entities'
-import type { ListTicketsUsecase } from '@/domain/usecases'
+import { UnexpectedException } from '@/domain/errors'
+import { type ListTicketsUsecase } from '@/domain/usecases'
 
-export class RemoteListTickets implements ListTicketsUsecase {
+import { parseRemoteListTicketItemEntitytoListTicketItemEntity } from '../utils'
+import { type RemoteListTicketDto } from './types'
+
+export class RemoteListTicketsUsecase implements ListTicketsUsecase {
   constructor(
     private readonly url: string,
-    private readonly httpClient: HttpGetClient<
-      ListTicketsInputDto,
-      ListTicketsOutputDto
-    >
+    private readonly httpGetClient: HttpGetClient<any, RemoteListTicketDto>
   ) {}
 
-  async execute(): Promise<ListTicketsOutputDto> {
-    const { body } = await this.httpClient.get({ url: this.url })
+  async execute(options: ListTicketsInputDto): Promise<ListTicketsOutputDto> {
+    const { skip, take, search } = options
+    const { statusCode, body } = await this.httpGetClient.get({
+      url: this.url,
+      params: { skip, take, search }
+    })
 
-    if (body && !body.tickets) {
-      faker.setLocale('pt_BR')
-      body.tickets = Array.from(
-        { length: 10 },
-        (): TicketEntity => ({
-          id: faker.datatype.uuid(),
-          title: faker.lorem.sentence(),
-          createdAt: faker.date.recent(),
-          updatedAt: faker.date.recent(),
-          messages: [],
-          totalMessages: faker.datatype.number({ max: 7, min: 3 }),
-          lastMessage: {
-            id: faker.datatype.uuid(),
-            message: {
-              text: faker.lorem.sentence(),
-              type: TicketMessageType.TEXT
-            },
-            ticketId: faker.datatype.uuid(),
-            sentAt: faker.date.recent()
-          },
-          status: faker.helpers.arrayElement(Object.values(TicketStatus))
-        })
+    switch (statusCode) {
+      case HttpStatusCode.ok:
+        if (!body) throw new UnexpectedException()
+        return this.parse(body)
+
+      default:
+        throw new UnexpectedException()
+    }
+  }
+
+  private parse(body: RemoteListTicketDto): ListTicketsOutputDto {
+    const { tickets, ...rest } = body
+
+    return {
+      ...rest,
+      tickets: tickets.map(
+        parseRemoteListTicketItemEntitytoListTicketItemEntity
       )
     }
-
-    return { tickets: body?.tickets ?? [] }
   }
 }

@@ -1,9 +1,9 @@
 import { defineStore } from 'pinia'
 
-import { type TicketEntity } from '@/domain/entities'
+import { type ListTicketItemEntity } from '@/domain/entities'
 
 export type ListTicketsState = {
-  data: TicketEntity[]
+  data: ListTicketItemEntity[]
   isLoading: boolean
   isLoaded: boolean
   hasError: boolean

@@ -1,30 +1,17 @@
 <script lang="ts" setup>
-import { reactive } from 'vue'
+import { onMounted, onUnmounted } from 'vue'
 
 import { constants } from '@/constants'
 import { TableWrapper, TicketItem } from '@/presentation/components'
-import { useTicketListController } from '@/presentation/controllers'
+import { useListTicketsController } from '@/presentation/controllers'
 
-const { tickets } = useTicketListController()
-const store = reactive({
-  search: '',
-  take: 10,
-  skip: 10,
-  total: 30,
-  pagination: { page: 1, pages: 3 },
-  isFirstLoading: false,
-  noRegisters: false,
-  noResults: false,
-  changeTake() {
-    //
-  },
-  changePage() {
-    //
-  },
-  changeSearch() {
-    //
-  }
+const { store, loadTickets } = useListTicketsController()
+
+onUnmounted(() => {
+  store.$reset()
 })
+
+onMounted(loadTickets)
 </script>
 
 <template>
@@ -45,7 +32,10 @@ const store = reactive({
     @update:page="store.changePage"
     @update:search="store.changeSearch">
     <q-list class="list-tickets__content">
-      <TicketItem v-for="ticket in tickets" :key="ticket.id" :ticket="ticket" />
+      <TicketItem
+        v-for="ticket in store.data"
+        :key="ticket.id"
+        :ticket="ticket" />
     </q-list>
   </TableWrapper>
 </template>

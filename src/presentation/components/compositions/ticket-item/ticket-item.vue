@@ -3,21 +3,20 @@ import { DateTime } from 'luxon'
 import { computed } from 'vue'
 
 import { constants } from '@/constants'
-import { type TicketEntity } from '@/domain/entities'
+import { type ListTicketItemEntity } from '@/domain/entities'
 
+import { TICKET_STATUS_MAPPED } from '../../statefull/ticket/status-mapped'
 import { CopyIdAction } from '../../ui'
 
 const props = defineProps<{
-  ticket: TicketEntity
+  ticket: ListTicketItemEntity
 }>()
 
 const status = computed(() => {
-  const statuses: Record<string, any> = {
-    'in-progress': { color: 'secondary', text: 'white', label: 'Em progresso' },
-    done: { color: 'positive', text: 'white', label: 'Concluído' }
-  }
-
-  return statuses[props.ticket.status]
+  const status = TICKET_STATUS_MAPPED.find(
+    (item) => item.value === props.ticket.status
+  )
+  return status!
 })
 
 const ticketCardClasses = computed(() => [
@@ -43,7 +42,7 @@ const ticketCardClasses = computed(() => [
           class="ticket-item__status"
           :ripple="false"
           :color="status.color"
-          :text-color="status.text">
+          text-color="white">
           {{ status.label }}
         </q-chip>
       </div>
@@ -58,7 +57,7 @@ const ticketCardClasses = computed(() => [
           <span class="text-caption text-subtitle2">
             {{
               DateTime.fromMillis(
-                props.ticket.lastMessage!.sentAt.getTime()
+                props.ticket.lastMessageAt.getTime()
               ).toRelative({
                 style: 'long',
                 round: true
@@ -68,7 +67,7 @@ const ticketCardClasses = computed(() => [
         </div>
         <div class="ticket-item__sumary-section">
           <h4 class="ticket-item__subtitle text-subtitle2">
-            {{ props.ticket.lastMessage?.message.text }}
+            {{ props.ticket.lastMessage }}
           </h4>
         </div>
       </div>
@@ -84,16 +83,28 @@ const ticketCardClasses = computed(() => [
     border-style: solid;
     padding: 0;
 
-    &-positive {
-      border-color: $positive;
-    }
-
     &-primary {
       border-color: $primary;
     }
 
     &-secondary {
       border-color: $secondary;
+    }
+
+    &-info {
+      border-color: $info;
+    }
+
+    &-positive {
+      border-color: $positive;
+    }
+
+    &-waring {
+      border-color: $warning;
+    }
+
+    &-negative {
+      border-color: $negative;
     }
   }
 
