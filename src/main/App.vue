@@ -23,6 +23,7 @@ import {
   useSendTicketTextMessageUsecase,
   useShowCategoryUsecase,
   useShowEquipmentUsecase,
+  useShowTicketUsecase,
   useShowUserUsecase,
   useUpdateCategoryUsecase,
   useUpdateEquipmentUsecase,
@@ -46,6 +47,7 @@ provide(PROVIDERS.LIST_TICKETS_USECASE, useListTicketsUsecase())
 provide(PROVIDERS.LIST_USERS_USECASE, useListUsersUsecase())
 provide(PROVIDERS.SHOW_CATEGORY_USECASE, useShowCategoryUsecase())
 provide(PROVIDERS.SHOW_EQUIPMENT_USECASE, useShowEquipmentUsecase())
+provide(PROVIDERS.SHOW_TICKET_USECASE, useShowTicketUsecase())
 provide(PROVIDERS.SHOW_USER_USECASE, useShowUserUsecase())
 provide(PROVIDERS.UPDATE_CATEGORY_USECASE, useUpdateCategoryUsecase())
 provide(PROVIDERS.UPDATE_EQUIPMENT_USECASE, useUpdateEquipmentUsecase())

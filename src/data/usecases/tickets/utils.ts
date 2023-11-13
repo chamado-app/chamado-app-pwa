@@ -8,9 +8,15 @@ import {
 export const parseRemoteTicketEntityToTicketEntity = ({
   createdAt,
   updatedAt,
+  messages,
   ...ticket
 }: RemoteTicketEntity): TicketEntity => ({
   ...ticket,
+  messages: messages.map((message) => ({
+    ...message,
+    sentAt: new Date(message.sentAt),
+    readAt: message.readAt ? new Date(message.readAt) : undefined
+  })),
   createdAt: new Date(createdAt),
   updatedAt: new Date(updatedAt)
 })
