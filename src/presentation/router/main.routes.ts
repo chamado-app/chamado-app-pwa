@@ -118,7 +118,10 @@ export const mainRoutes: CustomRouteRecordRaw[] = [
               {
                 path: 'create',
                 name: constants.routes.equipments.create,
-                component: () => h(''),
+                component: () =>
+                  import(
+                    '@/presentation/pages/equipments/create-equipment/create-equipment-page.vue'
+                  ),
                 meta: {
                   title: 'Cadastrar equipamento',
                   roles: AuthenticatedRoles

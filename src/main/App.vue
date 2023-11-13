@@ -6,6 +6,7 @@ import { PROVIDERS } from '@/presentation/providers'
 import {
   useAuthenticateUsecase,
   useCreateCategoryUsecase,
+  useCreateEquipmentUsecase,
   useCreateUserUsecase,
   useDeleteCategoryUsecase,
   useDeleteEquipmentUsecase,
@@ -24,6 +25,7 @@ import {
 
 provide(PROVIDERS.AUTHENTICATE_USECASE, useAuthenticateUsecase())
 provide(PROVIDERS.CREATE_CATEGORY_USECASE, useCreateCategoryUsecase())
+provide(PROVIDERS.CREATE_EQUIPMENT_USECASE, useCreateEquipmentUsecase())
 provide(PROVIDERS.CREATE_USER_USECASE, useCreateUserUsecase())
 provide(PROVIDERS.DELETE_CATEGORY_USECASE, useDeleteCategoryUsecase())
 provide(PROVIDERS.DELETE_EQUIPMENT_USECASE, useDeleteEquipmentUsecase())

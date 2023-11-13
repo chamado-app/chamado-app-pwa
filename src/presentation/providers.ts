@@ -2,6 +2,7 @@ export enum PROVIDERS {
   // Usecases
   AUTHENTICATE_USECASE = 'authenticateUsecase',
   CREATE_CATEGORY_USECASE = 'createCategoryUsecase',
+  CREATE_EQUIPMENT_USECASE = 'createEquipmentUsecase',
   CREATE_USER_USECASE = 'createUserUsecase',
   DELETE_CATEGORY_USECASE = 'deleteCategoryUsecase',
   DELETE_EQUIPMENT_USECASE = 'deleteEquipmentUsecase',

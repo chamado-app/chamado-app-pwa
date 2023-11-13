@@ -1,13 +1,11 @@
-import { EquipmentStatus } from '@/domain/entities'
+import { type EquipmentStatus } from '@/domain/entities'
+import { EQUIPMENT_STATUS_MAPPED } from '@/presentation/components'
 import { type TableColumn } from '@/presentation/types'
 import { idTableColumn, timestepTableColumns } from '@/presentation/utils'
 
-const statusValue: Record<EquipmentStatus, string> = {
-  [EquipmentStatus.DAMAGED]: 'Danificado',
-  [EquipmentStatus.IN_REPAIR]: 'Em manutenção',
-  [EquipmentStatus.WASTED]: 'Sucata',
-  [EquipmentStatus.WAS_REMOVED]: 'Removido',
-  [EquipmentStatus.WORKING]: 'Em funcionamento'
+const formatStatus = (value: EquipmentStatus): string => {
+  const status = EQUIPMENT_STATUS_MAPPED.find((item) => item.value === value)
+  return status?.label ?? 'Indefinido'
 }
 
 const tableColumns: TableColumn[] = [
@@ -19,7 +17,7 @@ const tableColumns: TableColumn[] = [
     field: 'status',
     label: 'Situação',
     align: 'left',
-    format: (value: EquipmentStatus) => statusValue[value]
+    format: formatStatus
   },
   ...timestepTableColumns
 ]

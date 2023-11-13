@@ -1,12 +1,12 @@
 import { type EquipmentEntity } from '@/domain/entities'
 
-import { type RemoteEquimentEntity } from './types'
+import { type RemoteEquimentEntity as RemoteEquipmentEntity } from './types'
 
 export const parseRemoteEquipmentEntityToEquipmentEntity = ({
   createdAt,
   updatedAt,
   ...equipment
-}: RemoteEquimentEntity): EquipmentEntity => ({
+}: RemoteEquipmentEntity): EquipmentEntity => ({
   ...equipment,
   createdAt: new Date(createdAt),
   updatedAt: new Date(updatedAt)
