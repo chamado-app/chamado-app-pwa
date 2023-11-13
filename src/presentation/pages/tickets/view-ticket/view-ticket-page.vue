@@ -175,7 +175,9 @@ onMounted(() => {
                 id="responsible"
                 :model-value="store.data.assignedTo"
                 :style="{ minHeight: '2.75rem' }"
-                :disable="isOwnerAuthenticated"
+                :disable="
+                  isOwnerAuthenticated || changeTicketAssignedState.isLoading
+                "
                 map-options
                 outlined
                 dense

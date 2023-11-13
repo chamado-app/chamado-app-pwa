@@ -32,8 +32,8 @@ export const useCompleteTicketController = ({
 
     try {
       await completeTicketUsecase.execute(ticketId.value)
+      await loadTicket(true)
       notifier.success({ message: 'Chamado encerrado com sucesso' })
-      void loadTicket(true)
       onClean()
     } catch (error: any) {
       notifier.error({ message: error.message })

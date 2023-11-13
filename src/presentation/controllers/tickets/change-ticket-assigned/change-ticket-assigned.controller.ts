@@ -34,8 +34,8 @@ export const useChangeTicketAssignedController = ({
 
     try {
       await changeTicketAssignedUsecase.execute(ticketId.value, assignedToId)
+      await loadTicket(true)
       notifier.success({ message: 'Responsável alterado com sucesso' })
-      void loadTicket(true)
       onClean()
     } catch (error: any) {
       notifier.error({ message: error.message })

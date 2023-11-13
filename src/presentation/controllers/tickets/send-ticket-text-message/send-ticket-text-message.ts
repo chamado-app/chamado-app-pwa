@@ -34,7 +34,7 @@ export const useSendTicketTextMessageController = ({
     try {
       const payload = { text: state.message }
       await createMessageUsecase.execute(ticketId.value, payload)
-      void loadTicket(true)
+      await loadTicket(true)
       onClean()
     } catch (error: any) {
       notifier.error({ message: error.message })
