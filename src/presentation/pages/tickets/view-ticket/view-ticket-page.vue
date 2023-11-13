@@ -3,13 +3,14 @@ import { QVirtualScroll } from 'quasar'
 import { computed, onMounted, ref, watch } from 'vue'
 
 import { constants } from '@/constants'
-import { TicketMessageType } from '@/domain/entities'
+import { TicketMessageType, TicketStatus } from '@/domain/entities'
 import { FirstLoadingList, PageTitle, Paper } from '@/presentation/components'
 import { TICKET_STATUS_MAPPED } from '@/presentation/components/statefull/ticket/status-mapped'
 import {
+  useCancelTicketController,
   useFetchCategoriesController,
   useFetchUsersController,
-  useSendTicketTextMessageControllerController,
+  useSendTicketTextMessageController,
   useShowTicketController
 } from '@/presentation/controllers'
 import { useWhoAmIStore } from '@/presentation/store'
@@ -17,11 +18,18 @@ import { useWhoAmIStore } from '@/presentation/store'
 const chat = ref<QVirtualScroll | null>(null)
 const whoami = useWhoAmIStore()
 const { store, loadTicket, ticketId } = useShowTicketController()
+
 const { fetchUsers, store: usersStore } = useFetchUsersController()
+
 const { fetchCategories, store: categoriesStore } =
   useFetchCategoriesController()
+
 const { onSent, state: sendTextMessageState } =
-  useSendTicketTextMessageControllerController({ loadTicket })
+  useSendTicketTextMessageController({ loadTicket })
+
+const { onCancelTicket, state: cancelTicketState } = useCancelTicketController({
+  loadTicket
+})
 
 const getStamp = (date?: Date): string => {
   if (!date) return ''
@@ -55,7 +63,7 @@ const highlight = computed(() => {
 
 const scrollChatToEnd = (length: number = 0): void => {
   if (!chat.value) return
-  chat.value.scrollTo(length, 'force-end')
+  chat.value.scrollTo(length, 'start-force')
 }
 
 watch(() => chat.value?.items?.length, scrollChatToEnd)
@@ -252,11 +260,16 @@ onMounted(() => {
           </QRow>
           <div class="ticket__actions">
             <q-btn
-              v-if="isOwnerAuthenticated"
+              v-if="
+                isOwnerAuthenticated &&
+                store.data.status !== TicketStatus.CANCELLED
+              "
               color="negative"
               flat
               label="Cancelar chamado"
-              no-caps />
+              no-caps
+              :loading="cancelTicketState.isLoading"
+              @click="onCancelTicket" />
             <q-btn
               v-if="!isOwnerAuthenticated"
               color="positive"

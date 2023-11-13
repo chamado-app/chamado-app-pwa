@@ -5,6 +5,7 @@ import { PROVIDERS } from '@/presentation/providers'
 
 import {
   useAuthenticateUsecase,
+  useCancelTicketUsecase,
   useCreateCategoryUsecase,
   useCreateEquipmentUsecase,
   useCreateTicketUsecase,
@@ -31,6 +32,7 @@ import {
 } from './factories'
 
 provide(PROVIDERS.AUTHENTICATE_USECASE, useAuthenticateUsecase())
+provide(PROVIDERS.CANCEL_TICKET_USECASE, useCancelTicketUsecase())
 provide(PROVIDERS.CREATE_CATEGORY_USECASE, useCreateCategoryUsecase())
 provide(PROVIDERS.CREATE_EQUIPMENT_USECASE, useCreateEquipmentUsecase())
 provide(PROVIDERS.CREATE_TICKET_USECASE, useCreateTicketUsecase())

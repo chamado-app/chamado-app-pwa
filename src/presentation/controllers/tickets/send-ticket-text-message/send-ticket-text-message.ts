@@ -10,10 +10,10 @@ import {
   type SendTicketTextMessageController
 } from './types'
 
-export const useSendTicketTextMessageControllerController = ({
+export const useSendTicketTextMessageController = ({
   loadTicket
 }: SendTicketTextMessageControllerProps): SendTicketTextMessageController => {
-  const createTicketUsecase = inject<SendTicketTextMessageUsecase>(
+  const createMessageUsecase = inject<SendTicketTextMessageUsecase>(
     PROVIDERS.SEND_TICKET_TEXT_MESSAGE_USECASE
   )!
   const notifier = inject<Notifier>(PROVIDERS.NOTIFIER)!
@@ -33,7 +33,7 @@ export const useSendTicketTextMessageControllerController = ({
 
     try {
       const payload = { text: state.message }
-      await createTicketUsecase.execute(ticketId.value, payload)
+      await createMessageUsecase.execute(ticketId.value, payload)
       void loadTicket(true)
       onClean()
     } catch (error: any) {
