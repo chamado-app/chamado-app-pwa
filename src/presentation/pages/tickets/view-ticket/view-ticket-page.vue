@@ -67,7 +67,15 @@ onMounted(loadTicket)
                 :sent="message.sentByMe"
                 :bg-color="message.sentByMe ? 'secondary' : 'primary'"
                 text-color="white"
-                :stamp="getStamp(message.sentAt)" />
+                :stamp="getStamp(message.sentAt)">
+                <template #avatar>
+                  <q-avatar
+                    class="q-ml-xs"
+                    color="blue-grey-1"
+                    :text-color="message.sentByMe ? 'secondary' : 'primary'"
+                    icon="mdi-account" />
+                </template>
+              </q-chat-message>
             </template>
           </div>
           <div class="ticket__chat-type">
@@ -256,7 +264,6 @@ onMounted(loadTicket)
     &-messages {
       min-height: 32rem;
       overflow-y: auto;
-      padding: 0 0.5rem;
     }
 
     &-type {
