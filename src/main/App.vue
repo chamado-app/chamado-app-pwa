@@ -7,11 +7,13 @@ import {
   useAuthenticateUsecase,
   useCreateCategoryUsecase,
   useCreateEquipmentUsecase,
+  useCreateTicketUsecase,
   useCreateUserUsecase,
   useDeleteCategoryUsecase,
   useDeleteEquipmentUsecase,
   useDeleteUserUsecase,
   useFetchCategoriesUsecase,
+  useFetchEquipmentsUsecase,
   useListCategoriesUsecase,
   useListEquipmentsUsecase,
   useListTicketsUsecase,
@@ -28,11 +30,13 @@ import {
 provide(PROVIDERS.AUTHENTICATE_USECASE, useAuthenticateUsecase())
 provide(PROVIDERS.CREATE_CATEGORY_USECASE, useCreateCategoryUsecase())
 provide(PROVIDERS.CREATE_EQUIPMENT_USECASE, useCreateEquipmentUsecase())
+provide(PROVIDERS.CREATE_TICKET_USECASE, useCreateTicketUsecase())
 provide(PROVIDERS.CREATE_USER_USECASE, useCreateUserUsecase())
 provide(PROVIDERS.DELETE_CATEGORY_USECASE, useDeleteCategoryUsecase())
 provide(PROVIDERS.DELETE_EQUIPMENT_USECASE, useDeleteEquipmentUsecase())
 provide(PROVIDERS.DELETE_USER_USECASE, useDeleteUserUsecase())
 provide(PROVIDERS.FETCH_CATEGORIES_USECASE, useFetchCategoriesUsecase())
+provide(PROVIDERS.FETCH_EQUIPMENTS_USECASE, useFetchEquipmentsUsecase())
 provide(PROVIDERS.LIST_CATEGORIES_USECASE, useListCategoriesUsecase())
 provide(PROVIDERS.LIST_EQUIPMENTS_USECASE, useListEquipmentsUsecase())
 provide(PROVIDERS.LIST_TICKETS_USECASE, useListTicketsUsecase())

@@ -38,6 +38,7 @@ onMounted(loadTickets)
         :ticket="ticket" />
     </q-list>
   </TableWrapper>
+  <router-view />
 </template>
 
 <style lang="scss" scoped>

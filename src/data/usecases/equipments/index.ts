@@ -1,5 +1,6 @@
 export * from './remote-create-equipment'
 export * from './remote-delete-equipment'
+export * from './remote-fetch-equipments'
 export * from './remote-list-equipments'
 export * from './remote-update-equipment'
 export * from './remote-show-equipment'

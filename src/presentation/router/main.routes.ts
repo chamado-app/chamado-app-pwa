@@ -20,7 +20,18 @@ export const mainRoutes: CustomRouteRecordRaw[] = [
               import(
                 '@/presentation/pages/tickets/list-tickets/list-tickets-page.vue'
               ),
-            meta: { title: 'Chamados', roles: AuthenticatedRoles }
+            meta: { title: 'Chamados', roles: AuthenticatedRoles },
+            children: [
+              {
+                path: 'create',
+                name: constants.routes.tickets.create,
+                component: () =>
+                  import(
+                    '@/presentation/pages/tickets/create-ticket/create-ticket-page.vue'
+                  ),
+                meta: { title: 'Nova área', roles: AuthenticatedRoles }
+              }
+            ]
           },
           {
             path: ':id',

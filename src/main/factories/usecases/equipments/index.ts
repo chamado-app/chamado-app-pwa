@@ -1,5 +1,6 @@
 export * from './create-equipment.factory'
 export * from './delete-equipment.factory'
+export * from './fetch-equipments.factory'
 export * from './list-equipments.factory'
 export * from './update-equipment.factory'
 export * from './show-equipment.factory'

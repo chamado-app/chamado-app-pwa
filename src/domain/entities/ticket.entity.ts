@@ -23,3 +23,10 @@ export interface TicketEntity {
   createdAt: Date
   updatedAt: Date
 }
+
+export type CreateTicketEntity = {
+  title: string
+  message: string
+  categoryId: string
+  equipmentId: string
+}

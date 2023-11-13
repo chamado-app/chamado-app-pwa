@@ -9,7 +9,7 @@ export const EQUIPMENT_FORM_VALIDATION = {
   brand: [
     (value: string) => !!value || 'A marca é obrigatório',
     (value: string) =>
-      value.length >= 3 || 'A marca deve ter pelo menos 3 caracteres',
+      value.length >= 2 || 'A marca deve ter pelo menos 2 caracteres',
     (value: string) =>
       value.length <= 80 || 'A marca deve ter pelo no máximo 80 caracteres'
   ],
