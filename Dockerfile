@@ -4,14 +4,12 @@
 
 FROM node:18-alpine As development
 
-ARG API_URL
-
 WORKDIR /usr/src/app
 
 COPY --chown=node:node package.json ./
 COPY --chown=node:node yarn.lock ./
 
-RUN yarn install --frozen-lockfile --no-script
+RUN yarn install --frozen-lockfile --ignore-scripts
 
 USER $user
 
@@ -20,6 +18,8 @@ USER $user
 ###################
 
 FROM node:18-alpine As build
+
+ARG API_URL
 
 WORKDIR /usr/src/app
 
@@ -37,7 +37,7 @@ COPY --chown=node:node --from=development /usr/src/app/node_modules ./node_modul
 
 ENV NODE_ENV production
 
-ENV API_URL $API_URL
+RUN echo "API_URL=${API_URL}" >> .env
 
 RUN yarn build
 
@@ -51,7 +51,7 @@ COPY --chown=node:node server.js .
 COPY --chown=node:node --from=build /usr/src/app/dist/spa /usr/src/app/dist/spa
 COPY --chown=node:node --from=development /usr/src/app/package.json ./package.json
 
-RUN yarn install --frozen-lockfile --prod --no-script && yarn cache clean
+RUN yarn install --frozen-lockfile --prod --ignore-scripts && yarn cache clean
 
 CMD ["yarn", "serve"]
 
