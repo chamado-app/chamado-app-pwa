@@ -13,3 +13,4 @@ coverage
 !.env.local
 *.config.*
 vitest.setup.ts
+server.js
