@@ -1,7 +1,8 @@
 <script lang="ts" setup>
 import {
   // GlobalSearch,
-  LeftSidebar
+  LeftSidebar,
+  UserApplet
 } from '@/presentation/components'
 import { useTogglesStore } from '@/presentation/store'
 
@@ -25,9 +26,7 @@ const toggles = useTogglesStore()
         </div>
 
         <q-space />
-        <q-btn round flat>
-          <q-avatar icon="mdi-account-circle" />
-        </q-btn>
+        <UserApplet />
       </q-toolbar>
     </q-header>
 
