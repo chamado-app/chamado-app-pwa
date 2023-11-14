@@ -23,6 +23,7 @@ import {
   useListEquipmentsUsecase,
   useListTicketsUsecase,
   useListUsersUsecase,
+  useLogoutUsecase,
   useNotifier,
   useSendTicketTextMessageUsecase,
   useShowCategoryUsecase,
@@ -35,6 +36,7 @@ import {
 } from './factories'
 
 provide(PROVIDERS.AUTHENTICATE_USECASE, useAuthenticateUsecase())
+provide(PROVIDERS.LOGOUT_USECASE, useLogoutUsecase())
 provide(PROVIDERS.CANCEL_TICKET_USECASE, useCancelTicketUsecase())
 provide(PROVIDERS.CREATE_CATEGORY_USECASE, useCreateCategoryUsecase())
 provide(PROVIDERS.CREATE_EQUIPMENT_USECASE, useCreateEquipmentUsecase())
