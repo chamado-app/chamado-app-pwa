@@ -59,7 +59,8 @@ const validation = TICKET_FORM_VALIDATION
           v-model="store.form.message"
           :rules="validation.message"
           :maxlength="1024"
-          label="Mais informações sobre o problema"
+          input-class="ticket-description"
+          label="Descrição do problema"
           autogrow
           type="textarea"
           counter
@@ -71,3 +72,9 @@ const validation = TICKET_FORM_VALIDATION
       @on-cancel="() => $emit('onClose')" />
   </q-form>
 </template>
+
+<style lang="scss">
+.ticket-description {
+  min-height: 6rem !important;
+}
+</style>

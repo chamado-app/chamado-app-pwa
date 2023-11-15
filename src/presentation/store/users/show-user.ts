@@ -1,9 +1,13 @@
 import { defineStore } from 'pinia'
 
-import { type UserEntity } from '@/domain/entities'
+import { type Role, type UserEntity } from '@/domain/entities'
+
+type UserForm = Partial<Omit<UserEntity, 'roles'>> & {
+  role?: Role
+}
 
 export type ShowUserState = {
-  form: Partial<UserEntity>
+  form: UserForm
   isSubmitting: boolean
 }
 
@@ -14,7 +18,6 @@ export const useShowUserStore = defineStore('showUser', {
       lastName: '',
       email: '',
       password: '',
-      roles: [],
       isActive: true
     },
     isSubmitting: false

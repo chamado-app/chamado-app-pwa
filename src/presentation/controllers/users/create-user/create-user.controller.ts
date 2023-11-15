@@ -3,6 +3,7 @@ import { useRouter } from 'vue-router'
 
 import { constants } from '@/constants'
 import { type Notifier } from '@/data/protocols'
+import { type UserEntity } from '@/domain/entities'
 import { type CreateUserUsecase } from '@/domain/usecases'
 import { PROVIDERS } from '@/presentation/providers'
 import { useShowUserStore } from '@/presentation/store'
@@ -32,7 +33,9 @@ export const useCreateUserController = ({
     store.$patch({ isSubmitting: true })
 
     try {
-      await createUserUsecase.execute(store.form)
+      const { role, ...form } = store.form
+      const data: Partial<UserEntity> = { ...form, roles: [role!] }
+      await createUserUsecase.execute(data)
       notifier.success({ message: 'Usuário criado com sucesso' })
       void loadUsers()
       onClose()

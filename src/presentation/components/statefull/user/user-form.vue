@@ -25,11 +25,8 @@ const validation = USER_FORM_VALIDATION
 const showPassword = ref(false)
 
 const showSectorsSelection = computed(() => {
-  if (!store.form.roles?.length) return false
-  if (store.form.roles.length === 1 && store.form.roles[0] === Role.USER) {
-    return false
-  }
-  return true
+  if (!store.form.role) return false
+  return store.form.role !== Role.USER
 })
 
 const toggleShowPassword = (): void => {
@@ -88,13 +85,11 @@ const toggleShowPassword = (): void => {
       </QCol>
       <QCol>
         <q-select
-          v-model="store.form.roles"
+          v-model="store.form.role"
           :options="USER_ROLES_FORM"
-          :rules="validation.roles"
+          :rules="validation.role"
           label="Tipo de usuário"
-          use-chips
           map-options
-          multiple
           emit-value
           outlined />
       </QCol>
