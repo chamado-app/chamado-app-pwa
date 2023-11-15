@@ -1,10 +1,12 @@
 import { Cookies } from 'quasar'
 
 import {
+  type StorageRemover,
   type StorageGuetter,
   type StorageGuetterProps,
   type StorageSetter,
-  type StorageSetterProps
+  type StorageSetterProps,
+  type StorageRemoverProps
 } from '@/data/protocols'
 
 export type CookieStorageOptions = {
@@ -20,7 +22,8 @@ export type CookieStorageOptions = {
 export class QuasarCookie
   implements
     StorageSetter<string, CookieStorageOptions>,
-    StorageGuetter<string>
+    StorageGuetter<string>,
+    StorageRemover
 {
   public async set(
     params: StorageSetterProps<string, CookieStorageOptions>
@@ -32,5 +35,11 @@ export class QuasarCookie
   public get(params: StorageGuetterProps): Promise<string> {
     const { key } = params
     return Cookies.get(key)
+  }
+
+  remove(params: StorageRemoverProps): Promise<void> {
+    const { key, options = {} } = params
+    Cookies.remove(key, options)
+    return Promise.resolve()
   }
 }
