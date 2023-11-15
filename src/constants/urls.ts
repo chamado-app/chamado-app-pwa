@@ -11,5 +11,6 @@ export const urls = {
   ticketsSendTextMessage: 'tickets/:id/messages/text',
   users: 'users',
   usersFetch: 'users/fetch',
-  whoami: 'auth/whoami'
+  whoami: 'auth/whoami',
+  logout: 'auth/logout'
 } as const

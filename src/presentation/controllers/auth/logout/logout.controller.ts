@@ -7,6 +7,8 @@ import { PROVIDERS } from '@/presentation/providers'
 
 import type { LogoutController, LogoutControllerState } from './types'
 
+const TIME_TO_REDIRECT = 400
+
 export const useLogoutController = (): LogoutController => {
   const logoutUsecase = inject<LogoutUsecase>(PROVIDERS.LOGOUT_USECASE)!
   const router = useRouter()
@@ -15,13 +17,17 @@ export const useLogoutController = (): LogoutController => {
     loading: false
   })
 
+  const redirect = (): void => {
+    void router.replace({ name: constants.routes.auth.authenticate })
+  }
+
   const logout = async (): Promise<void> => {
     state.loading = true
 
     try {
       await logoutUsecase.execute()
     } finally {
-      void router.replace({ name: constants.routes.auth.authenticate })
+      setTimeout(redirect, TIME_TO_REDIRECT)
     }
   }
 
