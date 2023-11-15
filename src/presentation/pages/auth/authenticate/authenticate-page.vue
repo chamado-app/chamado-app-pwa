@@ -2,6 +2,8 @@
 import { AuthTitle } from '@/presentation/components'
 import { useAuthenticateController } from '@/presentation/controllers'
 
+import { LOGIN_VALIDATION } from './validation'
+
 const {
   authenticate,
   toggleShowingPassword,
@@ -18,9 +20,13 @@ const {
       subtitle="Faça login para continuar" />
 
     <q-form class="authenticate__form" @submit.prevent="authenticate">
-      <QRow gutter="lg">
+      <QRow gutter="xs">
         <QCol>
-          <q-input v-model="state.form.email" label="E-mail" type="email">
+          <q-input
+            v-model="state.form.email"
+            label="E-mail"
+            type="email"
+            :rules="LOGIN_VALIDATION.email">
             <template #prepend>
               <q-icon name="mdi-email-outline" />
             </template>
@@ -30,7 +36,8 @@ const {
           <q-input
             v-model="state.form.password"
             label="Senha"
-            :type="passwordFieldType">
+            :type="passwordFieldType"
+            :rules="LOGIN_VALIDATION.password">
             <template #prepend>
               <q-icon name="mdi-lock-outline" />
             </template>

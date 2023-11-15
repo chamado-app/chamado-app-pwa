@@ -22,7 +22,7 @@ const makeSut = (): SutTypes => {
 const getExpectedProps = (
   props: Record<string, any> = {}
 ): Record<string, any> => ({
-  position: 'top-right',
+  position: 'bottom-left',
   progress: true,
   textColor: 'white',
   ...props
