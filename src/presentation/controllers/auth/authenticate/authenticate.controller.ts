@@ -1,4 +1,4 @@
-import { inject, reactive } from 'vue'
+import { computed, inject, reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
 
 import { constants } from '@/constants'
@@ -17,11 +17,24 @@ export const useAuthenticateController = (): AuthenticateController => {
   )!
   const notifier = inject<Notifier>(PROVIDERS.NOTIFIER)!
   const router = useRouter()
+  const viewPassword = ref(false)
 
   const state = reactive<AuthenticateControllerState>({
     form: { email: '', password: '' },
     loading: false
   })
+
+  const passwordFieldType = computed(() =>
+    viewPassword.value ? 'text' : 'password'
+  )
+
+  const passwordTogglerIcon = computed(
+    () => `mdi-${viewPassword.value ? 'eye' : 'eye-off'}`
+  )
+
+  const toggleShowingPassword = (): void => {
+    viewPassword.value = !viewPassword.value
+  }
 
   const authenticate = async (): Promise<void> => {
     state.loading = true
@@ -35,5 +48,11 @@ export const useAuthenticateController = (): AuthenticateController => {
     }
   }
 
-  return { state, authenticate }
+  return {
+    state,
+    passwordFieldType,
+    passwordTogglerIcon,
+    authenticate,
+    toggleShowingPassword
+  }
 }

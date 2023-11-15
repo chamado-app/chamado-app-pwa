@@ -2,7 +2,13 @@
 import { AuthTitle } from '@/presentation/components'
 import { useAuthenticateController } from '@/presentation/controllers'
 
-const { authenticate, state } = useAuthenticateController()
+const {
+  authenticate,
+  toggleShowingPassword,
+  state,
+  passwordFieldType,
+  passwordTogglerIcon: togglePasswordIcon
+} = useAuthenticateController()
 </script>
 
 <template>
@@ -21,12 +27,19 @@ const { authenticate, state } = useAuthenticateController()
           </q-input>
         </QCol>
         <QCol>
-          <q-input v-model="state.form.password" label="Senha" type="password">
+          <q-input
+            v-model="state.form.password"
+            label="Senha"
+            :type="passwordFieldType">
             <template #prepend>
               <q-icon name="mdi-lock-outline" />
             </template>
             <template #append>
-              <q-btn round flat icon="mdi-eye-off-outline" />
+              <q-btn
+                round
+                flat
+                :icon="togglePasswordIcon"
+                @click="toggleShowingPassword" />
             </template>
           </q-input>
         </QCol>
