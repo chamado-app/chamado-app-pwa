@@ -22,7 +22,7 @@ export class QuasarNotifier implements Notifier {
       type: types[props.type],
       icon: icons[props.type],
       message: props.message,
-      position: 'top-right',
+      position: 'bottom-left',
       textColor: 'white',
       progress: true
     })
