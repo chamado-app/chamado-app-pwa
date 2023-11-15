@@ -3,6 +3,7 @@ import {
   parseRemoteUserEntityToUserEntity,
   type RemoteUserEntity
 } from '@/data/usecases'
+import { type FetchUsersInputDto } from '@/domain/dto'
 import { type UserEntity } from '@/domain/entities'
 import { UnexpectedException } from '@/domain/errors'
 import { type FetchUsersUsecase } from '@/domain/usecases'
@@ -13,8 +14,11 @@ export class RemoteFetchUsersUsecase implements FetchUsersUsecase {
     private readonly httpGetClient: HttpGetClient<any, RemoteUserEntity[]>
   ) {}
 
-  async execute(): Promise<UserEntity[]> {
-    const { statusCode, body } = await this.httpGetClient.get({ url: this.url })
+  async execute(data?: FetchUsersInputDto): Promise<UserEntity[]> {
+    const { statusCode, body } = await this.httpGetClient.get({
+      url: this.url,
+      params: data
+    })
 
     switch (statusCode) {
       case HttpStatusCode.ok:

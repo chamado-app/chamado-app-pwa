@@ -1,5 +1,6 @@
 import { inject, onMounted } from 'vue'
 
+import { OperationalRoles } from '@/domain/entities'
 import { type FetchUsersUsecase } from '@/domain/usecases'
 import { PROVIDERS } from '@/presentation/providers'
 import { useFetchUsersStore } from '@/presentation/store'
@@ -18,7 +19,9 @@ export const useFetchUsersController = (): FetchUsersController => {
     store.$patch({ isLoading: true })
 
     try {
-      const users = await fetchUsersUsecase.execute()
+      const users = await fetchUsersUsecase.execute({
+        showRoles: OperationalRoles
+      })
       store.$patch({ users })
     } catch (error) {
       store.$patch({ hasError: true })
