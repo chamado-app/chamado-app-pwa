@@ -59,7 +59,7 @@ const validation = TICKET_FORM_VALIDATION
           v-model="store.form.message"
           :rules="validation.message"
           :maxlength="1024"
-          label="Mais informações sobre o problema"
+          label="Descrição do problema"
           autogrow
           type="textarea"
           counter
