@@ -3,6 +3,7 @@ import { useRoute, useRouter } from 'vue-router'
 
 import { constants } from '@/constants'
 import { type Notifier } from '@/data/protocols'
+import { type UserEntity } from '@/domain/entities'
 import { type ShowUserUsecase, type UpdateUserUsecase } from '@/domain/usecases'
 import { PROVIDERS } from '@/presentation/providers'
 import { useShowUserStore } from '@/presentation/store'
@@ -36,8 +37,9 @@ export const useUpdateUserController = ({
     }
 
     try {
-      const user = await showUserUsecase.execute(userId.value)
-      store.$patch({ form: { ...user } })
+      const { roles, ...user } = await showUserUsecase.execute(userId.value)
+      const [role] = roles
+      store.$patch({ form: { ...user, role } })
     } catch (error: any) {
       notifier.error({ message: error.message })
       void router.push({ name: constants.routes.users.list })
@@ -50,7 +52,9 @@ export const useUpdateUserController = ({
     store.$patch({ isSubmitting: true })
 
     try {
-      await updateUserUsecase.execute(userId.value, store.form)
+      const { role, ...form } = store.form
+      const data: Partial<UserEntity> = { ...form, roles: [role!] }
+      await updateUserUsecase.execute(userId.value, data)
       notifier.success({ message: 'Usuário atualizado com sucesso' })
       void loadUsers()
       onClose()
