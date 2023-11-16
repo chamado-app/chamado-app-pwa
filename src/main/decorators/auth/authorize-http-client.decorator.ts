@@ -1,5 +1,3 @@
-import { useRouter } from 'vue-router'
-
 import {
   type HttpClient,
   HttpMethod,
@@ -30,7 +28,7 @@ export class AuthorizeHttpClientDecorator<T, R> implements HttpClient<T, R> {
 
     if (result.statusCode === HttpStatusCode.unauthorized) {
       await this.removeStorage.execute()
-      await useRouter().push({ name: this.authenticateRoute, replace: true })
+      window.location.replace(this.authenticateRoute)
     }
 
     return result

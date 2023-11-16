@@ -13,5 +13,5 @@ export const useAuthorizeHttpClient = (): HttpClient =>
     useHttpClient(),
     useRemoveAuthToken(),
     constants.keys.accessToken,
-    constants.routes.auth.authenticate
+    '/auth/login'
   )
