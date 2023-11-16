@@ -99,7 +99,7 @@ const ticketCardClasses = computed(() => [
       border-color: $positive;
     }
 
-    &-waring {
+    &-warning {
       border-color: $warning;
     }
 
@@ -110,22 +110,22 @@ const ticketCardClasses = computed(() => [
 
   &__content {
     display: grid;
-    grid-template-columns: 7.5rem auto;
-    grid-gap: 1.5rem;
-    padding: 1rem 1rem 1rem 0rem;
+    grid-template-columns: 8rem auto;
+    grid-gap: 1rem;
+    padding: 0.75rem 1rem 0.75rem 0rem;
   }
 
   &__indentification,
   &__sumary {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
-    justify-content: flex-start;
+    gap: 0.25rem;
+    justify-content: center;
   }
 
   &__code,
   &__status {
-    padding-left: 1rem;
+    padding-left: 0.75rem;
   }
 
   &__sumary {

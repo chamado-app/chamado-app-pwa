@@ -6,7 +6,7 @@ export const TICKET_STATUS_MAPPED: TicketStatusMapped[] = [
   { value: TicketStatus.NEW, label: 'Novo', color: 'primary' },
   {
     value: TicketStatus.AWAITING_RESPONSE,
-    label: 'Aguardando resposta',
+    label: 'Aguardando resp.',
     color: 'warning'
   },
   {
