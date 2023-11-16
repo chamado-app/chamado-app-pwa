@@ -15,7 +15,7 @@ defineProps<PageTitleProps>()
   font-size: 1rem;
 
   @media screen and (min-width: $breakpoint-md-min) {
-    font-size: 1.25rem;
+    font-size: 1rem;
   }
 }
 </style>
