@@ -32,7 +32,7 @@ const ticketCardClasses = computed(() => [
       params: { id: props.ticket.id }
     }"
     :class="ticketCardClasses">
-    <q-item-section class="ticket-item__content" top>
+    <q-item-section top class="ticket-item__content">
       <div class="ticket-item__indentification">
         <div
           class="ticket-item__code text-subtitle2 text-weight-bold text-uppercase">
@@ -50,10 +50,10 @@ const ticketCardClasses = computed(() => [
         <div class="ticket-item__sumary-section">
           <h3 class="ticket-item__title text-subtitle1 text-weight-bold">
             {{ props.ticket.title }}
+            <span class="text-caption text-subtitle1">
+              ({{ props.ticket.totalMessages }})
+            </span>
           </h3>
-          <span class="text-caption text-subtitle1">
-            ({{ props.ticket.totalMessages }})
-          </span>
           <span class="text-caption text-subtitle2">
             {{
               DateTime.fromMillis(
@@ -77,6 +77,14 @@ const ticketCardClasses = computed(() => [
 
 <style lang="scss" scoped>
 .ticket-item {
+  &__title {
+    line-height: normal;
+
+    @media screen and (max-width: $breakpoint-sm-max) {
+      font-weight: 1rem;
+    }
+  }
+
   &__wrapper {
     border-radius: 0.25rem;
     border-width: 1px;
@@ -99,7 +107,7 @@ const ticketCardClasses = computed(() => [
       border-color: $positive;
     }
 
-    &-waring {
+    &-warning {
       border-color: $warning;
     }
 
@@ -110,31 +118,64 @@ const ticketCardClasses = computed(() => [
 
   &__content {
     display: grid;
-    grid-template-columns: 7.5rem auto;
-    grid-gap: 1.5rem;
-    padding: 1rem 1rem 1rem 0rem;
+    grid-template-columns: 8rem auto;
+    grid-gap: 1rem;
+    padding: 0.75rem 1rem 0.75rem 0rem;
+
+    @media screen and (max-width: $breakpoint-sm-max) {
+      grid-gap: 0.5rem;
+      padding: 0.75rem;
+      padding-left: 0;
+    }
+  }
+
+  &__content {
+    @media screen and (max-width: $breakpoint-sm-max) {
+      grid-template-columns: 100%;
+    }
   }
 
   &__indentification,
   &__sumary {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
-    justify-content: flex-start;
+    gap: 0.25rem;
+    justify-content: center;
+  }
+
+  &__indentification {
+    @media screen and (max-width: $breakpoint-sm-max) {
+      grid-template-columns: 1fr;
+      flex-direction: row-reverse;
+      justify-content: space-between;
+      align-items: center;
+    }
   }
 
   &__code,
   &__status {
-    padding-left: 1rem;
+    padding-left: 0.75rem;
   }
 
   &__sumary {
-    gap: 0.25rem;
+    gap: 0.5rem;
+
+    @media screen and (max-width: $breakpoint-sm-max) {
+      flex-direction: column;
+      align-items: start;
+      padding-left: 0.75rem;
+    }
 
     &-section {
       display: flex;
-      gap: 0.25rem;
+      gap: 0.5rem;
       align-items: center;
+
+      @media screen and (max-width: $breakpoint-sm-max) {
+        flex-direction: column;
+        align-items: start;
+        gap: 0;
+      }
     }
   }
 
