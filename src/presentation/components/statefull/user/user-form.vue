@@ -26,7 +26,8 @@ const showPassword = ref(false)
 
 const showSectorsSelection = computed(() => {
   if (!store.form.role) return false
-  return store.form.role !== Role.USER
+  const roles: Role[] = [Role.TECHNICIAN]
+  return roles.some((role) => store.form.role === role)
 })
 
 const toggleShowPassword = (): void => {
