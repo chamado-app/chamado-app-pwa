@@ -9,7 +9,7 @@
     "lint": "eslint src --ext .vue,.ts",
     "format": "prettier --write \"**/*.{js,ts,vue,scss,html,md,json}\" --ignore-path .eslintignore",
     "dev": "quasar dev",
-    "build": "quasar build",
+    "build": "quasar build -m pwa",
     "serve": "node server.js",
     "prepare": "husky install",
     "test": "vitest run --passWithNoTests",
