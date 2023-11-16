@@ -6,5 +6,5 @@ const express = require('express'),
 const app = express()
 
 app.use(history())
-app.use(serveStatic(__dirname + '/dist/spa'))
+app.use(serveStatic(__dirname + '/dist/pwa'))
 app.listen(port)
