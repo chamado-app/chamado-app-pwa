@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { mdiCached } from '@quasar/extras/mdi-v7'
 import { Notify } from 'quasar'
 import { register } from 'register-service-worker'
