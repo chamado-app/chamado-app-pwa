@@ -21,11 +21,11 @@ const fullName = computed(
         <q-spinner v-if="state.loading" />
         <q-icon v-else name="mdi-account-circle" />
       </q-avatar>
-      <div v-if="!isMobile" class="name">
+      <div v-if="!isMobile && !!fullName" class="name">
         {{ fullName }}
       </div>
     </div>
-    <q-menu anchor="bottom left" self="top left">
+    <q-menu fit anchor="bottom left" self="top left">
       <q-list style="width: max-content" class="user-applet__list">
         <q-item v-close-popup clickable @click="logout">
           <q-item-section avatar side>
@@ -48,5 +48,6 @@ const fullName = computed(
 
 .name {
   padding-right: 0.5rem;
+  font-weight: normal;
 }
 </style>
