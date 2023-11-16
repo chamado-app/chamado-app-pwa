@@ -26,6 +26,7 @@ WORKDIR /usr/src/app
 COPY --chown=node:node package.json ./
 COPY --chown=node:node yarn.lock ./
 COPY --chown=node:node src ./src
+COPY --chown=node:node src-pwa ./src-pwa
 COPY --chown=node:node public ./public
 COPY --chown=node:node postcss.config.cjs ./
 COPY --chown=node:node index.html ./
