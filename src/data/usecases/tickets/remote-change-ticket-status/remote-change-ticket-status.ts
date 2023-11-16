@@ -1,6 +1,10 @@
 import { HttpStatusCode, type HttpPutClient } from '@/data/protocols'
 import { type TicketStatus } from '@/domain/entities'
-import { NotFoundException, UnexpectedException } from '@/domain/errors'
+import {
+  ForbiddenException,
+  NotFoundException,
+  UnexpectedException
+} from '@/domain/errors'
 import { type ChangeTicketStatusUsecase } from '@/domain/usecases'
 
 export class RemoteChangeTicketStatusUsecase
@@ -22,6 +26,11 @@ export class RemoteChangeTicketStatusUsecase
 
       case HttpStatusCode.notFound:
         throw new NotFoundException()
+
+      case HttpStatusCode.forbidden:
+        throw new ForbiddenException(
+          'Sem permissão para alterar o status do chamado'
+        )
 
       default:
         throw new UnexpectedException()

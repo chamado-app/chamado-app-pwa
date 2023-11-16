@@ -1,3 +1,4 @@
+export * from './forbidden.expection'
 export * from './not-found.expection'
 export * from './unauthorized.expection'
 export * from './unexpected.expection'
