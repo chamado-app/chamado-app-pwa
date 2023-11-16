@@ -1,7 +1,9 @@
 {
   "orientation": "portrait",
   "background_color": "#eff1f5",
-  "theme_color": "#1e66f5",
+  "theme_color": "#eff1f5",
+  "name": "Chamado.app",
+  "short_name": "Chamado.app",
   "icons": [
     {
       "src": "icons/icon-128x128.png",
