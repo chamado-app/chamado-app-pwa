@@ -48,7 +48,7 @@ FROM node:18-alpine As production
 WORKDIR /usr/src/app
 
 COPY --chown=node:node server.js .
-COPY --chown=node:node --from=build /usr/src/app/dist/spa /usr/src/app/dist/spa
+COPY --chown=node:node --from=build /usr/src/app/dist/pwa /usr/src/app/dist/pwa
 COPY --chown=node:node --from=development /usr/src/app/package.json ./package.json
 
 RUN yarn install --frozen-lockfile --prod --ignore-scripts && yarn cache clean
