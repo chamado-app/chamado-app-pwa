@@ -17,7 +17,9 @@ import {
   useShowTicketController
 } from '@/presentation/controllers'
 import { useWhoAmIStore } from '@/presentation/store'
+import { useIsMobile } from '@/presentation/utils'
 
+const isMobile = useIsMobile()
 const chat = ref<QVirtualScroll | null>(null)
 const whoami = useWhoAmIStore()
 const { store, loadTicket, ticketId } = useShowTicketController()
@@ -94,23 +96,35 @@ onMounted(() => {
 
 <template>
   <div class="wrapper">
-    <div class="page-title">
-      <q-btn
-        :to="{ name: constants.routes.tickets.list }"
-        flat
-        round
-        dense
-        icon="mdi-arrow-left" />
+    <Teleport to="#header-page-title">
       <PageTitle :title="title" />
-    </div>
+    </Teleport>
+    <div id="mobile-back-button"></div>
     <Paper>
       <FirstLoadingList v-if="store.isLoading" class="no-results" />
       <q-card-section v-else class="ticket__wrapper">
         <div :class="['ticket__title', highlight]">
-          <h2 class="text-subtitle1">
-            {{ store.data.title }}
-          </h2>
-          <span class="text-caption">{{ getStamp(store.data.createdAt) }}</span>
+          <div>
+            <h2 class="text-subtitle1">
+              {{ store.data.title }}
+            </h2>
+            <span class="text-caption">
+              {{ getStamp(store.data.createdAt) }}
+            </span>
+          </div>
+          <Teleport
+            v-if="!!store.data.id"
+            :disabled="!isMobile"
+            to="#mobile-back-button">
+            <q-btn
+              :to="{ name: constants.routes.tickets.list }"
+              flat
+              rounded
+              no-caps
+              dense
+              icon="mdi-arrow-left"
+              label="Voltar" />
+          </Teleport>
         </div>
         <div class="ticket__chat">
           <q-virtual-scroll
@@ -316,13 +330,6 @@ onMounted(() => {
   grid-gap: 1rem;
 }
 
-.page-title {
-  display: grid;
-  gap: 0.5rem;
-  grid-auto-columns: max-content;
-  grid-auto-flow: column;
-  align-items: center;
-}
 .ticket {
   &__wrapper {
     display: grid;
@@ -331,6 +338,10 @@ onMounted(() => {
   }
 
   &__title {
+    display: grid;
+    grid-auto-flow: column;
+    justify-content: space-between;
+    align-items: baseline;
     grid-column: auto / span 12;
     position: relative;
     padding-left: 1rem;

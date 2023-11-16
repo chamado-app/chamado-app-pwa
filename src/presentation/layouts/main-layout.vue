@@ -1,17 +1,19 @@
 <script lang="ts" setup>
-import {
-  // GlobalSearch,
-  LeftSidebar,
-  UserApplet
-} from '@/presentation/components'
+import { ref } from 'vue'
+
+import { LeftSidebar, UserApplet } from '@/presentation/components'
 import { useTogglesStore } from '@/presentation/store'
+
+import HeaderPageTitle from './header-page-title.vue'
+
+const titleHeaderIsMounted = ref(false)
 
 const toggles = useTogglesStore()
 </script>
 
 <template>
-  <q-layout view="hHh LpR lFr">
-    <q-header class="bg-gradient text-white">
+  <q-layout view="lHh LpR lFr">
+    <q-header class="text-body">
       <q-toolbar>
         <div class="toolbar__left-wrapper">
           <q-btn
@@ -22,7 +24,7 @@ const toggles = useTogglesStore()
             :icon="`mdi-menu${toggles.sidebar ? '-open' : ''}`"
             @click="toggles.toggleSidebar" />
 
-          <!-- <GlobalSearch /> -->
+          <HeaderPageTitle @on-mounted="() => (titleHeaderIsMounted = true)" />
         </div>
 
         <q-space />
@@ -35,7 +37,7 @@ const toggles = useTogglesStore()
     </q-drawer>
 
     <q-page-container>
-      <q-page class="page__container" padding>
+      <q-page v-if="titleHeaderIsMounted" class="page__container" padding>
         <router-view />
       </q-page>
     </q-page-container>

@@ -1,17 +1,27 @@
 .body--light {
   background-color: $background;
 
+  .q-header {
+    background-color: $background;
+  }
+
   .q-drawer {
-    background-color: $mantle;
+    background-image: linear-gradient(135deg, $primary, $secondary);
 
     .q-list {
       .q-item {
         &:hover {
           background-color: $crust;
+          color: $primary;
         }
       }
 
+      .q-router-link--active {
+        color: $text-inverted;
+      }
+
       .q-router-link--exact-active {
+        color: $primary;
         background-image: linear-gradient(to left, $crust, $crust);
       }
     }

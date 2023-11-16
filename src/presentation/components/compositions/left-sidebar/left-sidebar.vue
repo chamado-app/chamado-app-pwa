@@ -5,7 +5,10 @@ const { sidebarItems } = useLeftSidebarController()
 </script>
 
 <template>
-  <div class="sidebar__wrapper">
+  <div class="sidebar__wrapper text-body-inverted">
+    <div class="sidebar__logo-wrapper">
+      <q-img width="12rem" src="@/presentation/assets/logo-typography.svg" />
+    </div>
     <q-list>
       <q-item
         v-for="(item, index) in sidebarItems"
@@ -28,6 +31,12 @@ const { sidebarItems } = useLeftSidebarController()
 .sidebar {
   &__wrapper {
     padding: 1rem;
+  }
+
+  &__logo-wrapper {
+    display: flex;
+    justify-content: center;
+    padding: 0.675rem 0 1.675rem;
   }
 
   &__item {

@@ -3,9 +3,11 @@ import { computed } from 'vue'
 
 import { useLogoutController } from '@/presentation/controllers'
 import { useWhoAmIStore } from '@/presentation/store'
+import { useIsMobile } from '@/presentation/utils'
 
 const whoamiStore = useWhoAmIStore()
 const { logout, state } = useLogoutController()
+const isMobile = useIsMobile()
 
 const fullName = computed(
   () => `${whoamiStore.data?.firstName} ${whoamiStore.data?.lastName}`
@@ -13,20 +15,18 @@ const fullName = computed(
 </script>
 
 <template>
-  <q-btn round flat>
-    <q-avatar>
-      <q-spinner v-if="state.loading" />
-      <q-icon v-else name="mdi-account-circle" />
-    </q-avatar>
+  <q-btn rounded flat no-caps padding="0">
+    <div class="avatar-container">
+      <q-avatar>
+        <q-spinner v-if="state.loading" />
+        <q-icon v-else name="mdi-account-circle" />
+      </q-avatar>
+      <div v-if="!isMobile" class="name">
+        {{ fullName }}
+      </div>
+    </div>
     <q-menu anchor="bottom left" self="top left">
       <q-list style="width: max-content" class="user-applet__list">
-        <q-item>
-          <q-item-section avatar>
-            <q-icon name="mdi-account-circle" />
-          </q-item-section>
-          <q-item-section>{{ fullName }}</q-item-section>
-        </q-item>
-        <q-separator class="q-my-xs" inset />
         <q-item v-close-popup clickable @click="logout">
           <q-item-section avatar side>
             <q-icon name="mdi-location-exit" />
@@ -37,3 +37,16 @@ const fullName = computed(
     </q-menu>
   </q-btn>
 </template>
+
+<style lang="scss" scoped>
+.avatar-container {
+  display: grid;
+  grid-auto-flow: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.name {
+  padding-right: 0.5rem;
+}
+</style>

@@ -10,14 +10,16 @@ defineProps<PageWrapperProps>()
 </script>
 
 <template>
-  <div
-    class="page-wrapper__header"
-    :class="{ 'page-wrapper__header-modal': isModal }">
-    <PageTitle
-      :class="{ 'page-wrapper__modal-title': isModal }"
-      :title="title" />
-    <slot name="title-append" />
-  </div>
+  <Teleport :disabled="isModal" to="#header-page-title">
+    <div
+      class="page-wrapper__header"
+      :class="{ 'page-wrapper__header-modal': isModal }">
+      <PageTitle
+        :class="{ 'page-wrapper__modal-title': isModal }"
+        :title="title" />
+      <slot name="title-append" />
+    </div>
+  </Teleport>
   <slot />
 </template>
 
